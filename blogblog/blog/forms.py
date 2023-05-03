@@ -89,9 +89,6 @@ class UserLogInForm(AuthenticationForm):
         fields.update(self.fields)
         self.fields = fields
 
-
-
-
     def clean(self):
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
@@ -100,10 +97,12 @@ class UserLogInForm(AuthenticationForm):
             try:
                 user = User.objects.get(email=email)
             except User.DoesNotExist:
-                raise ValidationError("Пользователь с таким email не найден")
+                raise ValidationError("User with this email was not found")
             else:
                 if not user.check_password(password):
-                    raise ValidationError("Неверный пароль")
+                    raise ValidationError("Incorrect password")
                 if not user.is_active:
-                    raise ValidationError("Пользователь неактивен")
+                    raise ValidationError("User is inactive")
+        print(email, password)
+
         return self.cleaned_data

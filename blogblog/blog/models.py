@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
 
@@ -10,7 +10,7 @@ class ShortTextMixin:
     def short_text(self):
         return f'{self.text[:75]}...' if len(self.text) > 75 else self.text
 
-
+    
 class Author(models.Model):
     user: User
 

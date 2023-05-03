@@ -3,6 +3,8 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.html import format_html
+
+from .forms import AuthorCreationForm
 from .models import Content, Author, Comment
 
 
@@ -15,6 +17,13 @@ class UserProfileInline(admin.StackedInline):
 
 class AuthorAdmin(UserAdmin):
     inlines = [UserProfileInline]
+    add_form = AuthorCreationForm
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'email', 'password1', 'password2', 'first_name', 'last_name', 'phone'),
+        }),
+    )
 
     def get_inline_instances(self, request, obj=None):
         if not obj:

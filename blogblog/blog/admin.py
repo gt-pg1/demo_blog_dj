@@ -5,13 +5,28 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.db import models
 
-from django_summernote.widgets import SummernoteWidget
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
 from .forms import AdminUserCreationForm
 from .models import Content, Author, Comment
 
 
 # Register your models here.
+
+
+class SummernoteWidgetWithDisabledPicture(SummernoteWidget):
+    def summernote_settings(self, *args, **kwargs):
+        settings = super().summernote_settings(*args, **kwargs)
+        settings['disableUpload'] = True
+        settings['toolbar'] = [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['insert', ['link', 'table', 'hr']],
+            ['view', ['fullscreen']],
+        ]
+        settings['disableDragAndDrop'] = True
+        return settings
 
 class UserProfileInline(admin.StackedInline):
     model = Author
@@ -47,8 +62,9 @@ class ContentAdmin(admin.ModelAdmin):
                     'author',
                     'is_published']
     readonly_fields = ['slug']
+    list_per_page = 20
     formfield_overrides = {
-        models.TextField: {'widget': SummernoteWidget}
+        models.TextField: {'widget': SummernoteWidgetWithDisabledPicture}
     }
 
 
@@ -58,6 +74,7 @@ class CommentAdmin(admin.ModelAdmin):
                     'author',
                     'content_link',
                     'date_time_create']
+    list_per_page = 40
 
     def content_link(self, obj):
         url = reverse('admin:blog_content_change', args=[obj.content.pk])

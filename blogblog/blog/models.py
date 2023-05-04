@@ -5,6 +5,8 @@ from django.utils.text import slugify
 
 from .helpers import to_latin
 
+from bs4 import BeautifulSoup
+
 User._meta.get_field('email')._unique = True
 
 
@@ -12,7 +14,9 @@ class ShortTextMixin:
     text: str
 
     def short_text(self):
-        return f'{self.text[:75]}...' if len(self.text) > 75 else self.text
+        soup = BeautifulSoup(self.text, 'html.parser')
+        text = soup.get_text(separator=' ')
+        return f'{text[:75]}...' if len(text) > 75 else text
 
 
 class Author(models.Model):

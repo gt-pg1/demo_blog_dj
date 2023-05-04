@@ -1,5 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
+from django.utils.text import slugify
+
+from .helpers import to_latin
 
 User._meta.get_field('email')._unique = True
 
@@ -29,11 +33,22 @@ class Content(models.Model, ShortTextMixin):
     id: int
     text: str
 
+    title = models.CharField(max_length=120, null=False, blank=False)
+    slug = models.SlugField(max_length=180, unique=True, null=False, blank=False)
     text = models.TextField(max_length=2000, null=False)
     date_time_create = models.DateTimeField(auto_now_add=True)
     date_time_edit = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     is_published = models.BooleanField(default=True, null=False)
+
+    def save(self, *args, **kwargs):
+        if not self.date_time_create:
+            self.date_time_create = timezone.now()
+        if not self.slug:
+            date_time = self.date_time_create.strftime("%Y-%m-%d-%H-%M-%S")
+            slug = slugify(f'{self.title}-{date_time}', allow_unicode=True)
+            self.slug = to_latin(slug)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'Post {self.id} (author: {self.author.user.username})'

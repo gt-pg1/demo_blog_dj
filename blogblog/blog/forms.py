@@ -1,18 +1,11 @@
-from datetime import datetime
+from collections import OrderedDict
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from .models import Author
-import re
-from transliterate import translit
-from collections import OrderedDict
 
-
-def to_latin(string):
-    if re.match('^[A-Za-z0-9_-]*$', string):
-        return string
-    return translit(string, 'ru', reversed=True)
+from .helpers import to_latin
 
 
 class AdminUserCreationForm(UserCreationForm):
@@ -62,6 +55,7 @@ class UserSignUpForm(UserCreationForm):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
 
+        # Saving data for the Author model occurs through the post_save signal in signal.py
         if commit:
             user.save()
 

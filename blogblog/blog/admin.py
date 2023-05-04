@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.html import format_html
+
 from .forms import AdminUserCreationForm
 from .models import Content, Author, Comment
 
@@ -36,11 +37,13 @@ admin.site.register(User, AuthorAdmin)
 
 @admin.register(Content)
 class ContentAdmin(admin.ModelAdmin):
-    list_display = ['short_text',
+    list_display = ['title',
+                    'short_text',
                     'date_time_create',
                     'date_time_edit',
                     'author',
                     'is_published']
+    readonly_fields = ['slug']
 
 
 @admin.register(Comment)

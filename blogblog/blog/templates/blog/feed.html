@@ -1,0 +1,58 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+  <h1>Blog</h1>
+  <ul>
+    {% for content in contents %}
+      <li>
+
+        <h2>{{ content.title }}</h2>
+        <p>{{ content.short_text }}</p>
+        <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
+      </li>
+    {% empty %}
+      <p>No articles yet.</p>
+    {% endfor %}
+  </ul>
+
+  {% if contents.has_other_pages %}
+    <ul class="pagination">
+      {% if contents.has_previous %}
+        <li><a href="?page={{ contents.previous_page_number }}">&laquo;</a></li>
+      {% endif %}
+      {% for i in contents.paginator.page_range %}
+        {% if contents.number == i %}
+          <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if contents.has_next %}
+        <li><a href="?page={{ contents.next_page_number }}">&raquo;</a></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+
+  {% if is_paginated %}
+    <div class="pagination">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+              <a href="?page=1">&laquo; first</a>
+              <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; prev</a>
+          {% endif %}
+
+          <span class="current-page">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+          </span>
+
+          {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+    </div>
+  {% endif %}
+
+{% endblock %}

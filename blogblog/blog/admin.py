@@ -1,11 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from django.db import models
 from django.urls import reverse
 from django.utils.html import format_html
-from django.db import models
-
-from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+from django_summernote.widgets import SummernoteWidget
 
 from .forms import AdminUserCreationForm
 from .models import Content, Author, Comment
@@ -27,6 +26,7 @@ class SummernoteWidgetWithDisabledPicture(SummernoteWidget):
         ]
         settings['disableDragAndDrop'] = True
         return settings
+
 
 class UserProfileInline(admin.StackedInline):
     model = Author

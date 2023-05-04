@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('demo-blog-admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('summernote/', include('django_summernote.urls')),
 ]

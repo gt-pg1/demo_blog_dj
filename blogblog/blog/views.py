@@ -1,10 +1,8 @@
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
-from django.db.models import F
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, ListView
 
 from .forms import UserSignUpForm, UserLogInForm
@@ -12,24 +10,33 @@ from .models import Content
 
 
 def index(request):
-    return render(request, 'blog/base.html')
+    return redirect('feed')
+
+
+class PaginationRedirectMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated and request.GET.get('page'):
+            next_url = request.get_full_path()
+            login_url = '{}?next={}'.format(reverse('login'), next_url)
+            return redirect(login_url)
+        return super().dispatch(request, *args, **kwargs)
 
 
 class UserSignUpView(FormView):
     template_name = 'blog/signup.html'
     form_class = UserSignUpForm
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('feed')
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return super().form_valid(form)
+        next_url = self.request.GET.get('next', reverse('feed'))
+        return redirect(next_url)
 
 
 class UserLogInView(LoginView):
     template_name = 'blog/login.html'
     authentication_form = UserLogInForm
-    success_url = reverse_lazy('main')
 
     def form_valid(self, form):
         email = form.cleaned_data.get('email')
@@ -38,7 +45,7 @@ class UserLogInView(LoginView):
         user = authenticate(self.request, username=username, password=password)
         if user is not None and user.is_authenticated:
             login(self.request, user)
-            return redirect(self.get_success_url())
+            return redirect(self.request.GET.get('next', reverse('main')))
         else:
             form.add_error('email', 'Incorrect email or password')
             return self.form_invalid(form)
@@ -47,7 +54,7 @@ class UserLogInView(LoginView):
         return self.success_url
 
 
-class FeedView(LoginRequiredMixin, ListView):
+class FeedView(PaginationRedirectMixin, ListView):
     model = Content
     template_name = 'blog/feed.html'
     context_object_name = 'contents'

@@ -3,37 +3,21 @@
 {% block title %}Blog{% endblock %}
 
 {% block content %}
-  <h1>Blog</h1>
-  <ul>
-    {% for content in contents %}
-      <li>
-
-        <h2>{{ content.title }}</h2>
-        <p>{{ content.short_text }}</p>
-        <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
-      </li>
-    {% empty %}
-      <p>No articles yet.</p>
-    {% endfor %}
-  </ul>
-
-  {% if contents.has_other_pages %}
-    <ul class="pagination">
-      {% if contents.has_previous %}
-        <li><a href="?page={{ contents.previous_page_number }}">&laquo;</a></li>
-      {% endif %}
-      {% for i in contents.paginator.page_range %}
-        {% if contents.number == i %}
-          <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
-        {% else %}
-          <li><a href="?page={{ i }}">{{ i }}</a></li>
+    <h1>Blog</h1>
+    <div class="content-list">
+      {% for content in contents %}
+        <div class="content-item">
+          <h2>{{ content.title }}</h2>
+          <p>{{ content.short_text }}</p>
+          <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
+        </div>
+        {% if not forloop.last %}
+          <hr>
         {% endif %}
+      {% empty %}
+        <p>No articles yet.</p>
       {% endfor %}
-      {% if contents.has_next %}
-        <li><a href="?page={{ contents.next_page_number }}">&raquo;</a></li>
-      {% endif %}
-    </ul>
-  {% endif %}
+    </div>
 
   {% if is_paginated %}
     <div class="pagination">

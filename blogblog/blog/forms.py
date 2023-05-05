@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 from .helpers import to_latin
+from .models import Comment
 
 
 class AdminUserCreationForm(UserCreationForm):
@@ -100,3 +101,12 @@ class UserLogInForm(AuthenticationForm):
         print(email, password)
 
         return self.cleaned_data
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
+        widgets = {
+            'text': forms.Textarea(attrs={'rows': 3})
+        }

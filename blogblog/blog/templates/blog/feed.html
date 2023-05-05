@@ -7,7 +7,7 @@
     <div class="content-list">
       {% for content in contents %}
         <div class="content-item">
-          <h2>{{ content.title }}</h2>
+          <h2><a href="{% url 'content' content.slug %}">{{ content.title }}</a></h2>
           <p>{{ content.short_text }}</p>
           <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
         </div>

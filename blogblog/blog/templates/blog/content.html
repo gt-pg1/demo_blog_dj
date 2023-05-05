@@ -1,0 +1,34 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ content.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ content.title }}</h1>
+    <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
+    <p>{{ content.text|safe }}</p>
+
+    {% if comments %}
+        <h2>Comments:</h2>
+        <ul>
+        {% for comment in comments %}
+            <li>
+                <p>{{ comment.text }}</p>
+                <p>Published on {{ comment.date_time_create }} by {{ comment.author }}</p>
+                {% if request.user.is_authenticated and comment.author == request.user.author %}
+                <button onclick="location.href='{% url 'delete_comment' pk=comment.pk slug=content.slug %}'">Delete</button>
+                {% endif %}
+            </li>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Add Comment:</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+{% endblock %}

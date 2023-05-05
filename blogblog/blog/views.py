@@ -1,12 +1,12 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import FormView, ListView
+from django.views.generic import FormView, ListView, DetailView
 
-from .forms import UserSignUpForm, UserLogInForm
-from .models import Content
+from .forms import UserSignUpForm, UserLogInForm, CommentForm
+from .models import Content, Comment
 
 
 def index(request):
@@ -18,6 +18,15 @@ class PaginationRedirectMixin:
         if not request.user.is_authenticated and request.GET.get('page'):
             next_url = request.get_full_path()
             login_url = '{}?next={}'.format(reverse('login'), next_url)
+            return redirect(login_url)
+        return super().dispatch(request, *args, **kwargs)
+
+
+class ContentRedirectMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            next_url = request.build_absolute_uri()
+            login_url = f"{reverse('login')}?next={next_url}"
             return redirect(login_url)
         return super().dispatch(request, *args, **kwargs)
 
@@ -63,3 +72,34 @@ class FeedView(PaginationRedirectMixin, ListView):
 
     def get_queryset(self):
         return self.model.objects.filter(is_published=True).order_by('-date_time_create')
+
+
+class ContentView(ContentRedirectMixin, DetailView):
+    model = Content
+    template_name = 'blog/content.html'
+    context_object_name = 'content'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = self.object.comment_set.all()
+        context['form'] = CommentForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            content = self.get_object()
+            comment = form.save(commit=False)
+            comment.content = content
+            comment.author = request.user.author
+            comment.save()
+            return redirect('content', slug=self.get_object().slug)
+        else:
+            context = self.get_context_data(form=form)
+            return self.render_to_response(context)
+
+
+def delete_comment(request, slug, pk):
+    comment = get_object_or_404(Comment, pk=pk, author=request.user.author)
+    comment.delete()
+    return redirect('content', slug=slug)

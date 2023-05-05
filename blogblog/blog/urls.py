@@ -7,8 +7,9 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='main'),
-    # path('feed', login_required(views.IndexView.as_view()), name='feed'),
     path('feed', views.FeedView.as_view(), name='feed'),
+    path('feed/<slug:slug>/', views.ContentView.as_view(), name='content'),
+    path('feed/<slug:slug>/delete_comment/<int:pk>', views.delete_comment, name='delete_comment'),
     path('signup', views.UserSignUpView.as_view(), name='signup'),
     path('login', views.UserLogInView.as_view(), name='login'),
     path('logout', auth_views.LogoutView.as_view(), name='logout')

@@ -8,25 +8,10 @@ from django_summernote.widgets import SummernoteWidget
 
 from .forms import AdminUserCreationForm
 from .models import Content, Author, Comment
+from .widgets import SecureSummernoteWidgetWithoutPicture
 
 
 # Register your models here.
-
-
-class SummernoteWidgetWithDisabledPicture(SummernoteWidget):
-    def summernote_settings(self, *args, **kwargs):
-        settings = super().summernote_settings(*args, **kwargs)
-        settings['disableUpload'] = True
-        settings['toolbar'] = [
-            ['style', ['style']],
-            ['font', ['bold', 'italic', 'underline', 'clear']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['insert', ['link', 'table', 'hr']],
-            ['view', ['fullscreen']],
-        ]
-        settings['disableDragAndDrop'] = True
-        return settings
-
 
 class UserProfileInline(admin.StackedInline):
     model = Author
@@ -64,7 +49,7 @@ class ContentAdmin(admin.ModelAdmin):
     readonly_fields = ['slug']
     list_per_page = 20
     formfield_overrides = {
-        models.TextField: {'widget': SummernoteWidgetWithDisabledPicture}
+        models.TextField: {'widget': SecureSummernoteWidgetWithoutPicture}
     }
 
 

@@ -1,14 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from django.db import models
 from django.urls import reverse
 from django.utils.html import format_html
-from django_summernote.widgets import SummernoteWidget
 
 from .forms import AdminUserCreationForm
 from .models import Content, Author, Comment
-from .widgets import SecureSummernoteWidgetWithoutPicture
 
 
 # Register your models here.
@@ -48,9 +45,6 @@ class ContentAdmin(admin.ModelAdmin):
                     'is_published']
     readonly_fields = ['slug']
     list_per_page = 20
-    formfield_overrides = {
-        models.TextField: {'widget': SecureSummernoteWidgetWithoutPicture}
-    }
 
 
 @admin.register(Comment)

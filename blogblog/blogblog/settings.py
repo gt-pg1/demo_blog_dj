@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'debug_toolbar',
-    'django_summernote',
+    'tinymce',
 
 ]
 
@@ -134,6 +134,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = '/login'
 
-SUMMERNOTE_CONFIG = {
-    'disable_attachment': True,
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': 'paste',
+    'paste_as_text': True,
+    'height': 400,
 }

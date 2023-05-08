@@ -16,12 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django_summernote.views import SummernoteUploadAttachment
 
 urlpatterns = [
     path('', include('blog.urls')),
     path('demo-blog-admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
-    path('summernote/', include('django_summernote.urls')),
-    path('summernote/upload_attachment/', SummernoteUploadAttachment.as_view(), name='django_summernote-upload_attachment'),
+    path('tinymce/', include('tinymce.urls')),
 ]

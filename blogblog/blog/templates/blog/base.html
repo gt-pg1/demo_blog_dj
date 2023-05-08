@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %}</title>
-{% block extra_head %} {% endblock %}
+{{ form.media }}
 </head>
 <body>
 {{ user }}
@@ -14,6 +14,7 @@
         {% csrf_token %}
         <button type="submit">Log Out</button>
     </form>
+    <button onclick="location.href='{% url 'create_content' %}'">Create</button>
 {% else %}
     <p>You are not logged in</p>
     <a href="{% url 'login' %}">Sign In</a>

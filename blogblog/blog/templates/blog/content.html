@@ -3,6 +3,7 @@
 {% block title %}{{ content.title }}{% endblock %}
 
 {% block content %}
+    <p><a href="{% url 'feed' %}{% if feed_page %}?page={{ feed_page }}{% endif %}">Back to feed</a></p>
     <h1>{{ content.title }}</h1>
     <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
     <p>{{ content.text|safe }}</p>

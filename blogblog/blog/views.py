@@ -1,11 +1,12 @@
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import FormView, ListView, DetailView
+from django.views.generic import FormView, ListView, DetailView, CreateView
 
-from .forms import UserSignUpForm, UserLogInForm, CommentForm
+from .forms import UserSignUpForm, UserLogInForm, CommentForm, ContentForm
 from .models import Content, Comment
 
 
@@ -73,8 +74,13 @@ class FeedView(PaginationRedirectMixin, ListView):
     def get_queryset(self):
         return self.model.objects.filter(is_published=True).order_by('-date_time_create')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['feed_page'] = context['page_obj'].number
+        return context
 
-class ContentView(ContentRedirectMixin, DetailView):
+
+class ContentView(DetailView):
     model = Content
     template_name = 'blog/content.html'
     context_object_name = 'content'
@@ -83,6 +89,7 @@ class ContentView(ContentRedirectMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['comments'] = self.object.comment_set.all()
         context['form'] = CommentForm()
+        context['feed_page'] = self.request.GET.get('page')
         return context
 
     def post(self, request, *args, **kwargs):
@@ -103,3 +110,17 @@ def delete_comment(request, slug, pk):
     comment = get_object_or_404(Comment, pk=pk, author=request.user.author)
     comment.delete()
     return redirect('content', slug=slug)
+
+
+class CreateContentView(LoginRequiredMixin, CreateView):
+    model = Content
+    template_name = 'blog/create.html'
+    form_class = ContentForm
+    success_url = reverse_lazy('feed')
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user.author
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('content', kwargs={'slug': self.object.slug})

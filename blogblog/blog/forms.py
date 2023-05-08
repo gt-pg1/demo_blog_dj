@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 from .helpers import to_latin
-from .models import Comment
+from .models import Comment, Content
+
 
 
 class AdminUserCreationForm(UserCreationForm):
@@ -110,3 +111,10 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'text': forms.Textarea(attrs={'rows': 3})
         }
+
+
+class ContentForm(forms.ModelForm):
+    class Meta:
+        model = Content
+        fields = ('title', 'text')
+

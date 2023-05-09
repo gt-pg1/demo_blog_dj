@@ -40,7 +40,7 @@ class Content(models.Model, ShortTextMixin):
 
     title = models.CharField(max_length=120, null=False, blank=False)
     slug = models.SlugField(max_length=180, unique=True, null=False, blank=False)
-    text = HTMLField(max_length=2000, null=False)
+    text = HTMLField(null=False)
     date_time_create = models.DateTimeField(auto_now_add=True)
     date_time_edit = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)

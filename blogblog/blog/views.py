@@ -80,7 +80,7 @@ class FeedView(PaginationRedirectMixin, ListView):
         return context
 
 
-class ContentView(DetailView):
+class ContentView(ContentRedirectMixin, DetailView):
     model = Content
     template_name = 'blog/content.html'
     context_object_name = 'content'

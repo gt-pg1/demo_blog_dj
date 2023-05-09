@@ -137,7 +137,7 @@ LOGOUT_REDIRECT_URL = '/login'
 
 TINYMCE_DEFAULT_CONFIG = {
     'plugins': 'paste, emoticons, lists, searchreplace, table, hr, link, code, wordcount',
-    'paste_as_text': True,
+    'paste_preprocess': open(os.path.join(BASE_DIR, 'blog', 'static', 'blog', 'js', 'paste-preprocess.js')).read(),
     'height': 400,
     'skin': 'oxide-dark',
     'menubar': False,
@@ -164,7 +164,7 @@ TINYMCE_DEFAULT_CONFIG = {
             'name': 'table', 'items': ['table']
         },
         {
-            'name': 'additional', 'items': ['searchreplace', 'emoticons', 'wordcount']
+            'name': 'additional', 'items': ['searchreplace', 'emoticons', 'wordcount', 'code']
         }
     ],
     # 'toolbar_drawer' and 'toolbar_mode' add an extra menu that will hide menu items that won't fit
@@ -178,5 +178,4 @@ TINYMCE_DEFAULT_CONFIG = {
     'target_list': False,
     'default_link_target': '_blank',
     'setup': open(os.path.join(BASE_DIR, 'blog', 'static', 'blog', 'js', 'tinymce-setup.js')).read()
-
 }

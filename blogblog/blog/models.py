@@ -1,12 +1,11 @@
+from bs4 import BeautifulSoup
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from tinymce.models import HTMLField
 
 from .helpers import to_latin
-
-from tinymce.models import HTMLField
-from bs4 import BeautifulSoup
 
 User._meta.get_field('email')._unique = True
 

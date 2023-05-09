@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('blog.urls')),
     path('demo-blog-admin/', admin.site.urls),
+
+    # path('demo-blog-admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
     path('tinymce/', include('tinymce.urls')),
+    path('', include('blog.urls')),
 ]

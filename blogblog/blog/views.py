@@ -2,8 +2,10 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
+from django.core.exceptions import ValidationError
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.utils.html import strip_tags
 from django.views.generic import FormView, ListView, DetailView, CreateView
 
 from .forms import UserSignUpForm, UserLogInForm, CommentForm, ContentForm
@@ -124,3 +126,4 @@ class CreateContentView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('content', kwargs={'slug': self.object.slug})
+

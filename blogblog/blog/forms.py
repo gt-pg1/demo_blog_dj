@@ -4,6 +4,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.utils.html import strip_tags
 from tinymce.widgets import TinyMCE
 
 from .helpers import to_latin
@@ -114,9 +115,9 @@ class CommentForm(forms.ModelForm):
 
 
 class ContentForm(forms.ModelForm):
-    text = forms.CharField(widget=TinyMCE(), max_length=2000)
-
     class Meta:
         model = Content
         fields = ('title', 'text')
+
+
 

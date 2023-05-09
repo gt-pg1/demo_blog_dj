@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -125,7 +125,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -135,7 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = '/login'
 
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': 'paste, emoticons, lists, searchreplace, table, hr, link',
+    'plugins': 'paste, emoticons, lists, searchreplace, table, hr, link, code, wordcount',
     'paste_as_text': True,
     'height': 400,
     'skin': 'oxide-dark',
@@ -163,7 +164,7 @@ TINYMCE_DEFAULT_CONFIG = {
             'name': 'table', 'items': ['table']
         },
         {
-            'name': 'additional', 'items': ['searchreplace', 'emoticons']
+            'name': 'additional', 'items': ['searchreplace', 'emoticons', 'wordcount']
         }
     ],
     # 'toolbar_drawer' and 'toolbar_mode' add an extra menu that will hide menu items that won't fit
@@ -175,5 +176,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'link_url': True,
     'link_text': True,
     'target_list': False,
-    'default_link_target': '_blank'
+    'default_link_target': '_blank',
+    'setup': open(os.path.join(BASE_DIR, 'blog', 'static', 'blog', 'js', 'tinymce-setup.js')).read()
+
 }

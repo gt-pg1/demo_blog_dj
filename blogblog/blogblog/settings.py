@@ -135,7 +135,45 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = '/login'
 
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': 'paste',
+    'plugins': 'paste, emoticons, lists, searchreplace, table, hr, link',
     'paste_as_text': True,
     'height': 400,
+    'skin': 'oxide-dark',
+    'menubar': False,
+    'toolbar': [
+        {
+            'name': 'history', 'items': ['undo', 'redo']
+        },
+        {
+            'name': 'style', 'items': ['styleselect', 'h2', 'h3', 'bold', 'italic', 'blockquote', 'hr']
+        },
+        {
+            'name': 'alignment', 'items': ['alignleft', 'aligncenter', 'alignright', 'alignjustify']
+        },
+        {
+            'name': 'indents', 'items': ['outdent', 'indent']
+        },
+        {
+            'name': 'link', 'items': ['link']
+        },
+        {
+            'name': 'lists', 'items': ['numlist', 'bullist']
+        },
+        {
+            'name': 'table', 'items': ['table']
+        },
+        {
+            'name': 'additional', 'items': ['searchreplace', 'emoticons']
+        }
+    ],
+    # 'toolbar_drawer' and 'toolbar_mode' add an extra menu that will hide menu items that won't fit
+    # toolbar_drawer is actual for v5.1, toolbar_mode will actual for v5.2 and higher
+    'toolbar_drawer': 'floating',
+    'toolbar_mode': 'floating',
+    # Simplifying the menu for adding links
+    'link_title': False,
+    'link_url': True,
+    'link_text': True,
+    'target_list': False,
+    'default_link_target': '_blank'
 }

@@ -136,7 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = '/login'
 
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': 'paste, emoticons, lists, searchreplace, table, hr, link, code, wordcount',
+    'plugins': 'paste, emoticons, lists, searchreplace, table, hr, link, wordcount',
     'paste_preprocess': open(os.path.join(BASE_DIR, 'blog', 'static', 'blog', 'js', 'paste-preprocess.js')).read(),
     'height': 400,
     'skin': 'oxide-dark',
@@ -164,7 +164,7 @@ TINYMCE_DEFAULT_CONFIG = {
             'name': 'table', 'items': ['table']
         },
         {
-            'name': 'additional', 'items': ['searchreplace', 'emoticons', 'wordcount', 'code']
+            'name': 'additional', 'items': ['searchreplace', 'emoticons', 'wordcount']
         }
     ],
     # 'toolbar_drawer' and 'toolbar_mode' add an extra menu that will hide menu items that won't fit

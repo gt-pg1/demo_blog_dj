@@ -9,7 +9,13 @@ from .helpers import to_latin
 from .models import Comment, Content
 
 
-class AdminUserCreationForm(UserCreationForm):
+class LowercaseEmailMixin:
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        return email.lower()
+
+
+class AdminUserCreationForm(LowercaseEmailMixin, UserCreationForm):
     email = forms.EmailField(
         required=True,
         help_text='Required'
@@ -31,7 +37,7 @@ class AdminUserCreationForm(UserCreationForm):
         fields = ('username', 'email', 'phone', 'first_name', 'last_name', 'password1', 'password2')
 
 
-class UserSignUpForm(UserCreationForm):
+class UserSignUpForm(LowercaseEmailMixin, UserCreationForm):
     first_name = forms.CharField(required=True, help_text='Required. 150 characters or fewer.')
     last_name = forms.CharField(required=True, help_text='Required. 150 characters or fewer.')
     email = forms.EmailField(required=True, help_text='Required')
@@ -72,7 +78,7 @@ class UserSignUpForm(UserCreationForm):
         return user
 
 
-class UserLogInForm(AuthenticationForm):
+class UserLogInForm(LowercaseEmailMixin, AuthenticationForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'autofocus': True}))
 
     def __init__(self, *args, **kwargs):

@@ -73,7 +73,8 @@ class FeedView(PaginationRedirectMixin, ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        return self.model.objects.filter(is_published=True).order_by('-date_time_create')
+        queryset = self.model.objects.filter(is_published=True).order_by('-date_time_create')
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -84,8 +85,8 @@ class FeedView(PaginationRedirectMixin, ListView):
 
 class MyFeedView(LoginRequiredMixin, FeedView):
     def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(author=self.request.user.author)
+        queryset = self.model.objects.filter(author=self.request.user.author).order_by('-date_time_create')
+        return queryset
 
 
 class ContentView(ContentRedirectMixin, DetailView):
@@ -144,3 +145,23 @@ class CreateContentView(BaseContentView, CreateView):
 
 class UpdateContentView(BaseContentView, UpdateView):
     template_name = 'blog/update.html'
+
+
+def change_content_status(request, slug, publish):
+    content = get_object_or_404(Content, slug=slug, author=request.user.author)
+
+    if publish:
+        content.publish()
+    else:
+        content.unpublish()
+
+    next_url = request.GET.get('next', 'feed')
+    return redirect(next_url)
+
+
+def unpublish_content(request, slug):
+    return change_content_status(request, slug, False)
+
+
+def publish_content(request, slug):
+    return change_content_status(request, slug, True)

@@ -1,42 +1,47 @@
-    {% extends "blog/base.html" %}
+{% extends "blog/base.html" %}
 
-    {% block title %}Blog{% endblock %}
+{% block title %}Blog{% endblock %}
 
-    {% block content %}
-        <h1>Blog</h1>
-        <div class="content-list">
-          {% for content in contents %}
+{% block content %}
+    <h1>Blog</h1>
+    <div class="content-list">
+        {% for content in contents %}
             <div class="content-item">
-              <h2><a href="{% url 'content' content.slug %}?page={{ feed_page }}">{{ content.title }}</a></h2>
-              <p>{{ content.short_text }}</p>
-              <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
+                <h2><a href="{% url 'content' content.slug %}?page={{ feed_page }}">{{ content.title }}</a></h2>
+                <p>{{ content.short_text }}</p>
+                <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
+                {% if content.author == request.user.author and content.is_published %}
+                    <a href="{% url 'unpublish' slug=content.slug %}?next={{ request.path }}?page={{feed_page}}">Unpublish</a>
+                {% elif content.author == request.user.author and not content.is_published %}
+                    <a href="{% url 'publish' slug=content.slug %}?next={{ request.path }}?page={{feed_page}}">Publish</a>
+                {% endif %}
             </div>
             {% if not forloop.last %}
-              <hr>
+                <hr>
             {% endif %}
-          {% empty %}
+        {% empty %}
             <p>No articles yet.</p>
-          {% endfor %}
-        </div>
+        {% endfor %}
+    </div>
 
-      {% if is_paginated %}
+    {% if is_paginated %}
         <div class="pagination">
-          <span class="step-links">
-              {% if page_obj.has_previous %}
-                  <a href="?page=1">&laquo; first</a>
-                  <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; prev</a>
-              {% endif %}
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; prev</a>
+                {% endif %}
 
-              <span class="current-page">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-              </span>
+                <span class="current-page">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
 
-              {% if page_obj.has_next %}
-                  <a href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a>
-                  <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-              {% endif %}
-          </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
-      {% endif %}
+    {% endif %}
 
-    {% endblock %}
+{% endblock %}

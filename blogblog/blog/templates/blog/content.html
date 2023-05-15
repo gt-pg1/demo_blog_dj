@@ -10,6 +10,11 @@
     <h1>{{ content.title }}</h1>
     <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
     <p>{{ content.text|safe }}</p>
+    {% if content.author == request.user.author and content.is_published %}
+        <a href="{% url 'unpublish' slug=content.slug %}?next={{ request.path }}">Unpublish</a>
+    {% elif content.author == request.user.author and not content.is_published %}
+        <a href="{% url 'publish' slug=content.slug %}?next={{ request.path }}">Publish</a>
+    {% endif %}
 
     {% if comments %}
         <h2>Comments:</h2>

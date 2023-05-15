@@ -54,6 +54,14 @@ class Content(models.Model, ShortTextMixin):
             self.slug = to_latin(slug)
         super().save(*args, **kwargs)
 
+    def unpublish(self):
+        self.is_published = False
+        self.save()
+
+    def publish(self):
+        self.is_published = True
+        self.save()
+
     def __str__(self):
         return f'Post {self.id} (author: {self.author.user.username})'
 

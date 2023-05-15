@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import FormView, ListView, DetailView, CreateView
+from django.views import View
+from django.views.generic import FormView, ListView, DetailView, CreateView, UpdateView
 
 from .forms import UserSignUpForm, UserLogInForm, CommentForm, ContentForm
 from .models import Content, Comment
@@ -112,15 +113,27 @@ def delete_comment(request, slug, pk):
     return redirect('content', slug=slug)
 
 
-class CreateContentView(LoginRequiredMixin, CreateView):
+class BaseContentView(LoginRequiredMixin, View):
     model = Content
-    template_name = 'blog/create.html'
+    template_name = None
     form_class = ContentForm
-    success_url = reverse_lazy('feed')
+    success_url = None
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(author=self.request.user.author)
+
+    def get_success_url(self):
+        return reverse('content', kwargs={'slug': self.object.slug})
 
     def form_valid(self, form):
         form.instance.author = self.request.user.author
         return super().form_valid(form)
 
-    def get_success_url(self):
-        return reverse('content', kwargs={'slug': self.object.slug})
+
+class CreateContentView(BaseContentView, CreateView):
+    template_name = 'blog/create.html'
+
+
+class UpdateContentView(BaseContentView, UpdateView):
+    template_name = 'blog/update.html'

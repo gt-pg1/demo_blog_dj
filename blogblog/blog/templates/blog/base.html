@@ -18,7 +18,9 @@
     <button onclick="location.href='{% url 'create_content' %}'">Create</button>
 {% else %}
     <p>You are not logged in</p>
+    {% if not request.path == "/login" %}
     <a href="{% url 'login' %}">Sign In</a>
+    {% endif %}
 {% endif %}
 {% block content %}
 {% endblock %}

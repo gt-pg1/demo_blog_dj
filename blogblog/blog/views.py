@@ -78,7 +78,14 @@ class FeedView(PaginationRedirectMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['feed_page'] = context['page_obj'].number
+        context['username'] = self.request.user.username
         return context
+
+
+class MyFeedView(LoginRequiredMixin, FeedView):
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(author=self.request.user.author)
 
 
 class ContentView(ContentRedirectMixin, DetailView):

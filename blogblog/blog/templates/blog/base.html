@@ -16,6 +16,7 @@
         <button type="submit">Log Out</button>
     </form>
     <button onclick="location.href='{% url 'create_content' %}'">Create</button>
+<button onclick="location.href='{% url 'my_content' username=request.user.username %}'">My Content</button>
 {% else %}
     <p>You are not logged in</p>
     {% if not request.path == "/login" %}

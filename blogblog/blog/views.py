@@ -1,13 +1,14 @@
-from django.contrib.auth import login, authenticate
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect, get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.shortcuts import redirect, get_object_or_404, render
+from django.urls import reverse
 from django.views import View
 from django.views.generic import FormView, ListView, DetailView, CreateView, UpdateView
 
-from .forms import UserSignUpForm, UserLogInForm, CommentForm, ContentForm
+from .forms import UserSignUpForm, UserLogInForm, CommentForm, ContentForm, UserEditForm, UserPasswordChangeForm
 from .models import Content, Comment
 
 
@@ -36,7 +37,9 @@ class ContentRedirectMixin:
 class UserSignUpView(FormView):
     template_name = 'blog/signup.html'
     form_class = UserSignUpForm
-    success_url = reverse_lazy('feed')
+
+    def get_success_url(self):
+        return reverse('feed')
 
     def form_valid(self, form):
         user = form.save()
@@ -44,10 +47,23 @@ class UserSignUpView(FormView):
         next_url = self.request.GET.get('next', reverse('feed'))
         return redirect(next_url)
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(self.get_success_url())
+        return super().dispatch(request, *args, **kwargs)
+
 
 class UserLogInView(LoginView):
     template_name = 'blog/login.html'
     authentication_form = UserLogInForm
+
+    def get_success_url(self):
+        return reverse('feed')
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(self.get_success_url())
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         email = form.cleaned_data.get('email')
@@ -61,8 +77,55 @@ class UserLogInView(LoginView):
             form.add_error('email', 'Incorrect email or password')
             return self.form_invalid(form)
 
+
+class UserEditView(View):
+    template_name = 'blog/user_edit.html'
+    user_form_class = UserEditForm
+    password_form_class = UserPasswordChangeForm
+
     def get_success_url(self):
-        return self.success_url
+        return reverse('user_edit')
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        user_form = self.user_form_class(instance=user)
+        password_form = self.password_form_class(user=user)
+        return render(request, self.template_name, {'user_form': user_form, 'password_form': password_form})
+
+    def post(self, request, *args, **kwargs):
+        if 'save_user' in request.POST:
+            user_form = self.user_form_class(request.POST, instance=request.user)
+            if user_form.is_valid():
+                user_form.save()
+                messages.success(request, 'Your profile has been updated successfully.')
+                return redirect(self.get_success_url())
+            else:
+                errors = user_form.errors
+                if 'username' in errors:
+                    messages.error(request, errors['username'])
+                if 'first_name' in errors:
+                    messages.error(request, errors['first_name'])
+                if 'last_name' in errors:
+                    messages.error(request, errors['last_name'])
+                if 'phone' in errors:
+                    messages.error(request, errors['phone'])
+
+        if 'change_password' in request.POST:
+            password_form = self.password_form_class(user=request.user, data=request.POST)
+            if password_form.is_valid():
+                user = password_form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, 'Your password has been changed successfully.')
+                return redirect(self.get_success_url())
+            else:
+                errors = password_form.errors
+                if 'old_password' in errors:
+                    messages.error(request, errors['old_password'])
+                if 'new_password2' in errors:
+                    messages.error(request, errors['new_password2'])
+                return redirect(self.get_success_url())
+
+        return redirect(self.get_success_url())
 
 
 class FeedView(PaginationRedirectMixin, ListView):

@@ -1,12 +1,12 @@
 from collections import OrderedDict
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 from .helpers import to_latin
-from .models import Comment, Content
+from .models import Comment, Content, Author
 
 
 class LowercaseEmailMixin:
@@ -104,9 +104,48 @@ class UserLogInForm(LowercaseEmailMixin, AuthenticationForm):
                     raise ValidationError("Incorrect password")
                 if not user.is_active:
                     raise ValidationError("User is inactive")
-        print(email, password)
 
         return self.cleaned_data
+
+
+class UserEditForm(forms.ModelForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField(widget=forms.HiddenInput)
+    phone = forms.CharField(max_length=25, required=False)
+    username = forms.CharField()
+
+    class Meta:
+        model = User
+        fields = ['email', 'username', 'first_name', 'last_name', 'phone']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.author = None
+        instance = kwargs.get('instance')
+        if instance:
+            try:
+                self.author = Author.objects.get(user=instance)
+                self.fields['phone'].initial = self.author.phone
+            except Author.DoesNotExist:
+                pass
+
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+        if commit and self.author:
+            self.author.phone = self.cleaned_data['phone']
+            self.author.save()
+        return user
+
+
+class UserPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.PasswordInput(attrs={'type': 'password'})
+    new_password1 = forms.PasswordInput(attrs={'type': 'password'})
+    new_password2 = forms.PasswordInput(attrs={'type': 'password'})
+
+    class Meta:
+        model = User
+        fields = ('old_password', 'new_password1', 'new_password2')
 
 
 class CommentForm(forms.ModelForm):

@@ -18,5 +18,4 @@ urlpatterns = [
     path('login', views.UserLogInView.as_view(), name='login'),
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('<path:path>/', RedirectView.as_view(url='/%(path)s', permanent=True)),
-    # path('', RedirectView.as_view(url='/')),
 ]

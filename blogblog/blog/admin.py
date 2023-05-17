@@ -20,7 +20,6 @@ class AuthorAdmin(UserAdmin):
     add_form = AdminUserCreationForm
     add_fieldsets = (
         (None, {
-            'classes': ('wide',),
             'fields': ('email', 'username', 'password1', 'password2', 'first_name', 'last_name', 'phone'),
         }),
     )

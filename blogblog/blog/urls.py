@@ -1,4 +1,5 @@
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import PasswordChangeView
 from django.urls import path
 from django.views.generic import RedirectView
 
@@ -18,6 +19,6 @@ urlpatterns = [
     path('login', views.UserLogInView.as_view(), name='login'),
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('edit', views.UserEditView.as_view(), name='user_edit'),
-    path('change_password', views.PasswordChangeView.as_view(), name='password_change'),
+    path('change_password', PasswordChangeView.as_view(), name='password_change'),
     path('<path:path>/', RedirectView.as_view(url='/%(path)s', permanent=True)),
 ]

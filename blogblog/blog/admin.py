@@ -8,14 +8,19 @@ from .forms import AdminUserCreationForm
 from .models import Content, Author, Comment
 
 
-# Register your models here.
-
 class UserProfileInline(admin.StackedInline):
+    """
+    Defining the mapping of the model (fields) Author as an inline model
+    """
     model = Author
     can_delete = False
 
 
 class AuthorAdmin(UserAdmin):
+    """
+    In "inlines" it is specified that the fields of the Author and User models are displayed in the form and edited at the same time
+    "add_form" and "add_fieldsets" define the form for adding a new user
+    """
     inlines = [UserProfileInline]
     add_form = AdminUserCreationForm
     add_fieldsets = (
@@ -23,6 +28,15 @@ class AuthorAdmin(UserAdmin):
             'fields': ('email', 'username', 'password1', 'password2', 'first_name', 'last_name', 'phone'),
         }),
     )
+
+    def get_fieldsets(self, request, obj=None):
+        """
+        Hides the Permissions block for all users except superusers
+        """
+        fieldsets = super().get_fieldsets(request, obj)
+        if not request.user.is_superuser:
+            fieldsets = list(filter(lambda f: f[0] != 'Permissions', fieldsets))
+        return fieldsets
 
 
 admin.site.unregister(User)

@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
@@ -8,7 +9,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import FormView, ListView, DetailView, CreateView, UpdateView
 
-from .forms import UserSignUpForm, UserLogInForm, CommentForm, ContentForm, UserEditForm, UserPasswordChangeForm
+from .forms import UserSignUpForm, UserLogInForm, CommentForm, ContentForm, UserEditForm
 from .models import Content, Comment
 
 
@@ -81,7 +82,7 @@ class UserLogInView(LoginView):
 class UserEditView(View):
     template_name = 'blog/user_edit.html'
     user_form_class = UserEditForm
-    password_form_class = UserPasswordChangeForm
+    password_form_class = PasswordChangeForm
 
     def get_success_url(self):
         return reverse('user_edit')

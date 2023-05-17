@@ -24,11 +24,6 @@ class AuthorAdmin(UserAdmin):
         }),
     )
 
-    def get_inline_instances(self, request, obj=None):
-        if not obj:
-            return list()
-        return super(AuthorAdmin, self).get_inline_instances(request, obj)
-
 
 admin.site.unregister(User)
 admin.site.register(User, AuthorAdmin)

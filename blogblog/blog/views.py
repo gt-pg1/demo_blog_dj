@@ -6,6 +6,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse, reverse_lazy
 from django.views import View
@@ -24,52 +25,20 @@ def index(request):
     return redirect('feed')
 
 
-class PaginationRedirectMixin:
-    """
-    Mixin that redirects unauthenticated users with pagination requests to the login page.
-
-    This mixin checks if the user is not authenticated and if the 'page' parameter is present in the GET parameters.
-    If both conditions are met, it redirects the user to the login page with the 'next' parameter set to the current URL.
-    After successful login, the user will be redirected back to the original paginated page.
-
-    Note: This mixin assumes that you have a login view with the name 'login' defined in your Django URL configuration.
-    If your login view has a different name, update the reverse() call accordingly.
-    """
-
-    def dispatch(self, request, *args, **kwargs):
-        """
-        Redirects unauthenticated users with pagination requests to the login page.
-
-        This method is called when a request is made to the associated view. It checks if the user is not authenticated
-        and if the 'page' parameter is present in the GET parameters. If both conditions are met, it redirects the user
-        to the login page with the 'next' parameter set to the current URL.
-
-        Args:
-            request (HttpRequest): The HTTP request object.
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
-
-        Returns:
-            HttpResponse: The response object.
-
-        """
-
-        if not request.user.is_authenticated and 'page' in request.GET:
-            next_url = request.get_full_path()
-            login_url = f"{reverse('login')}?next={next_url}"
-            return redirect(login_url)
-        return super().dispatch(request, *args, **kwargs)
-
-
-class ContentRedirectMixin:
+class AuthenticationRedirectMixin:
     """
     Mixin that redirects unauthenticated users to the login page.
 
-    This mixin checks if the user is not authenticated. If the user is unauthenticated, it redirects them to the login page.
-    After successful login, the user is redirected back to the original page they were trying to access.
+    Methods:
+        - dispatch(request, *args, **kwargs): Redirects unauthenticated users to the login page.
 
-    Note: This mixin assumes that you have a login view with the name 'login' defined in your Django URL configuration.
-    If your login view has a different name, update the reverse() call accordingly.
+    Args:
+        request (HttpRequest): The HTTP request object.
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+
+    Returns:
+        HttpResponse: The response object.
     """
 
     def dispatch(self, request, *args, **kwargs):
@@ -90,13 +59,62 @@ class ContentRedirectMixin:
         """
 
         if not request.user.is_authenticated:
-            next_url = request.build_absolute_uri()
-            login_url = f"{reverse('login')}?next={next_url}"
-            return redirect(login_url)
+            if 'page' in request.GET:
+                next_url = request.get_full_path()
+                print('page', next_url)
+                login_url = f"{reverse('login')}?next={next_url}"
+                return redirect(login_url)
+
+            elif 'next' in request.GET:
+                next_url = request.build_absolute_uri()
+                print('next', next_url)
+                login_url = f"{reverse('login')}?next={next_url}"
+                return redirect(login_url)
+
         return super().dispatch(request, *args, **kwargs)
 
 
-class UserSignUpView(FormView):
+class SuccessUrlRedirectMixin:
+    """
+    Mixin that redirects authenticated users to a specified success URL.
+
+    Methods:
+        - dispatch(request, *args, **kwargs): Handles the request dispatching.
+
+    Args:
+        request (HttpRequest): The request object.
+        *args: Variable length argument list.
+        **kwargs: Arbitrary keyword arguments.
+
+    Returns:
+        HttpResponse: The response for the request dispatching.
+
+    Note:
+        This mixin should be applied only if the `success_url` attribute is defined in the class.
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Handles the request dispatching.
+
+        If the user is already authenticated and the `success_url` attribute is defined,
+        it redirects them to the success URL. Otherwise, it proceeds with the default dispatching behavior.
+
+        Args:
+            request (HttpRequest): The request object.
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+            HttpResponse: The response for the request dispatching.
+        """
+
+        if request.user.is_authenticated and hasattr(self, 'success_url'):
+            return redirect(self.success_url)
+        return super().dispatch(request, *args, **kwargs)
+
+
+class UserSignUpView(SuccessUrlRedirectMixin, FormView):
     """
     View for user sign-up.
 
@@ -137,29 +155,8 @@ class UserSignUpView(FormView):
         next_url = self.request.GET.get('next', reverse('feed'))
         return redirect(next_url)
 
-    def dispatch(self, request, *args, **kwargs):
-        """
-        Handles the request dispatching.
 
-        If the user is already authenticated, it redirects them to the success URL.
-        Otherwise, it proceeds with the default dispatching behavior.
-
-        Args:
-            request (HttpRequest): The request object.
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
-
-        Returns:
-            HttpResponse: The response for the request dispatching.
-
-        """
-
-        if request.user.is_authenticated:
-            return redirect(self.success_url)
-        return super().dispatch(request, *args, **kwargs)
-
-
-class UserLogInView(LoginView):
+class UserLogInView(SuccessUrlRedirectMixin, LoginView):
     """
     View for user login.
 
@@ -180,27 +177,6 @@ class UserLogInView(LoginView):
     template_name = 'blog/login.html'
     authentication_form = UserLogInForm
     success_url = reverse_lazy('feed')
-
-    def dispatch(self, request, *args, **kwargs):
-        """
-        Handles the request dispatching.
-
-        If the user is already authenticated, it redirects them to the success URL.
-        Otherwise, it proceeds with the default dispatching behavior.
-
-        Args:
-            request (HttpRequest): The request object.
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
-
-        Returns:
-            HttpResponse: The response for the request dispatching.
-
-        """
-
-        if request.user.is_authenticated:
-            return redirect(self.success_url)
-        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         """
@@ -350,7 +326,7 @@ class UserEditView(View):
         return super().dispatch(request, *args, **kwargs)
 
 
-class FeedView(PaginationRedirectMixin, ListView):
+class FeedView(AuthenticationRedirectMixin, ListView):
     """
     A view for displaying the feed content.
 
@@ -433,7 +409,7 @@ class MyFeedView(LoginRequiredMixin, FeedView):
         return queryset
 
 
-class ContentView(ContentRedirectMixin, DetailView):
+class ContentView(AuthenticationRedirectMixin, DetailView):
     """
     This class-based view displays the detailed view of a content object and handles adding comments to the content.
 
@@ -557,7 +533,6 @@ class CreateAuthorMixin(LoginRequiredMixin, View):
     model = Content
     template_name = None
     form_class = ContentForm
-    success_url = None
 
     def get_queryset(self):
         """
@@ -581,6 +556,12 @@ class CreateAuthorMixin(LoginRequiredMixin, View):
 
         form.instance.author = self.request.user.author
         return super().form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect(reverse('login'))
+
+        return super().dispatch(request, *args, **kwargs)
 
 
 class CreateContentView(CreateAuthorMixin, CreateView):

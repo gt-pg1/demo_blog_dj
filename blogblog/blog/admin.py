@@ -12,8 +12,17 @@ class UserProfileInline(admin.StackedInline):
     """
     Inline model definition for the Author model.
 
-    Defines the mapping of the Author model fields as an inline model.
+    Inherits from:
+        - admin.StackedInline
+
+    Attributes:
+        - model (Author): The model associated with the inline.
+        - can_delete (bool): Specifies whether the inline can be deleted.
+
+    Returns:
+        None
     """
+
     model = Author
     can_delete = False
 
@@ -22,14 +31,21 @@ class AuthorAdmin(UserAdmin):
     """
     Custom UserAdmin for managing authors.
 
-    In "inlines", it is specified that the fields of the Author and User models
-    are displayed in the form and edited at the same time.
+    Inherits from:
+        - UserAdmin
 
-    "add_form" and "add_fieldsets" define the form for adding a new user.
+    Attributes:
+        - inlines (list): Specifies the inline models to be displayed and edited at the same time.
+        - add_form (AdminUserCreationForm): Specifies the form for adding a new user.
+        - add_fieldsets (tuple): Defines the fieldsets for the add form.
 
-    Overrides the get_fieldsets method to hide the Permissions block for all users
-    except superusers.
+    Methods:
+        - get_fieldsets(request, obj=None): Returns the fieldsets for the UserAdmin form.
+
+    Returns:
+        None
     """
+
     inlines = [UserProfileInline]
     add_form = AdminUserCreationForm
     add_fieldsets = (
@@ -52,6 +68,7 @@ class AuthorAdmin(UserAdmin):
         Returns:
             list: The list of fieldsets to be displayed in the UserAdmin form.
         """
+
         fieldsets = super().get_fieldsets(request, obj)
         if not request.user.is_superuser:
             fieldsets = list(filter(lambda f: f[0] != 'Permissions', fieldsets))
@@ -66,8 +83,17 @@ class CommentInline(admin.TabularInline):
     """
     Inline model definition for the Comment model.
 
-    Defines the mapping of the Comment model fields as an inline model.
+    Inherits from:
+        - admin.TabularInline
+
+    Attributes:
+        - model (Comment): The Comment model to be displayed as an inline model.
+        - extra (int): The number of extra empty forms to display.
+
+    Returns:
+        None
     """
+
     model = Comment
     extra = 0
 
@@ -75,13 +101,21 @@ class CommentInline(admin.TabularInline):
 @admin.register(Content)
 class ContentAdmin(admin.ModelAdmin):
     """
-    ModelAdmin class for managing Content model in the admin panel.
+    ModelAdmin class for managing the Content model in the admin panel.
 
-    Sets the display options for the Content model on the admin panel.
+    Inherits from:
+        - admin.ModelAdmin
 
-    In "inlines", it is specified that the fields of the Comment and Content models
-    are displayed in the form and edited at the same time.
+    Attributes:
+        - inlines (list): Specifies the inline models to be displayed in the form and edited at the same time.
+        - list_display (list): Specifies the fields to be displayed in the list view of the Content model.
+        - readonly_fields (list): Specifies the fields that are read-only in the admin panel.
+        - list_per_page (int): Specifies the number of items to display per page in the list view.
+
+    Returns:
+        None
     """
+
     inlines = [CommentInline]
     list_display = ['title',
                     'short_text',
@@ -96,10 +130,22 @@ class ContentAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     """
-    ModelAdmin class for managing Comment model in the admin panel.
+    ModelAdmin class for managing the Comment model in the admin panel.
 
-    Sets the display options for the Comment model on the admin panel.
+    Inherits from:
+        - admin.ModelAdmin
+
+    Attributes:
+        - list_display (list): Specifies the fields to be displayed in the list view of the Comment model.
+        - list_per_page (int): Specifies the number of items to display per page in the list view.
+
+    Methods:
+        - content_link(obj): Generates a link to the post that was commented on.
+
+    Returns:
+        None
     """
+
     list_display = ['short_text',
                     'author',
                     'content_link',
@@ -116,6 +162,7 @@ class CommentAdmin(admin.ModelAdmin):
         Returns:
             str: HTML link to the post.
         """
+
         url = reverse('admin:blog_content_change', args=[obj.content.pk])
         return format_html('<a href="{}">{}</a>', url, obj.content)
 

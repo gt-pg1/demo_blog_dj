@@ -24,7 +24,7 @@
                 <p>{{ comment.text }}</p>
                 <p>Published on {{ comment.date_time_create }} by {{ comment.author }}</p>
                 {% if request.user.is_authenticated and comment.author == request.user.author %}
-                <button onclick="location.href='{% url 'delete_comment' pk=comment.pk slug=content.slug %}'">Delete</button>
+                <button onclick="location.href='{% url 'delete_comment' pk=comment.pk slug=content.slug %}?page={{ feed_page }}'">Delete</button>
                 {% endif %}
             </li>
         {% empty %}

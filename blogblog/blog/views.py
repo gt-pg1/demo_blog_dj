@@ -1,3 +1,5 @@
+from urllib.parse import urlencode
+
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -349,35 +351,118 @@ class UserEditView(View):
 
 
 class FeedView(PaginationRedirectMixin, ListView):
+    """
+    A view for displaying the feed content.
+
+    This view inherits from the PaginationRedirectMixin and ListView classes.
+    It displays the feed content to authenticated users and redirects anonymous users to the login page.
+
+    Attributes:
+        model (Model): The model class to retrieve data from.
+        template_name (str): The name of the template to be rendered.
+        context_object_name (str): The name of the variable to use in the template for the list of objects.
+        login_url (str): The URL to redirect to for anonymous users.
+        paginate_by (int): The number of items to display per page.
+
+    Methods:
+        get_queryset(): Returns the queryset of feed content to be displayed.
+        get_context_data(**kwargs): Adds additional context data to be used in the template.
+    """
+
     model = Content
     template_name = 'blog/feed.html'
     context_object_name = 'contents'
     login_url = 'login'
-    paginate_by = 3
+    paginate_by = 10
 
     def get_queryset(self):
+        """
+        Returns the queryset of feed content to be displayed.
+
+        Filters the content by 'is_published' and orders it by the 'date_time_create' field in descending order.
+
+        Returns:
+            QuerySet: The filtered and ordered queryset of feed content.
+        """
+
         queryset = self.model.objects.filter(is_published=True).order_by('-date_time_create')
         return queryset
 
     def get_context_data(self, **kwargs):
+        """
+        Adds additional context data to be used in the template.
+
+        Adds the current number of feed page number to the context.
+        This is necessary for the subsequent storage of the page number in the GET parameter of the link.
+
+        Args:
+            **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+            dict: The updated context data.
+        """
+
         context = super().get_context_data(**kwargs)
         context['feed_page'] = context['page_obj'].number
-        context['username'] = self.request.user.username
+        # context['username'] = self.request.user.username
         return context
 
 
 class MyFeedView(LoginRequiredMixin, FeedView):
+    """
+    A view for displaying the feed content of the current user.
+
+    This view inherits from the LoginRequiredMixin and FeedView classes.
+    It requires the user to be authenticated and displays only their own feed content.
+
+    Methods:
+        get_queryset(): Returns the queryset of user's feed content to be displayed.
+    """
+
     def get_queryset(self):
+        """
+        Returns the queryset of user's feed content to be displayed.
+
+        Filters the content by the current user's author and orders it by the 'date_time_create' field in descending order.
+
+        Returns:
+            QuerySet: The filtered and ordered queryset of user's feed content.
+        """
+
         queryset = self.model.objects.filter(author=self.request.user.author).order_by('-date_time_create')
         return queryset
 
 
 class ContentView(ContentRedirectMixin, DetailView):
+    """
+    This class-based view displays the detailed view of a content object and handles adding comments to the content.
+
+    Inherits from:
+        - ContentRedirectMixin: A mixin that handles a redirect if the user is not authorized.
+
+    Attributes:
+        model (Model): The model class representing the content objects.
+        template_name (str): The name of the template used to render the content view.
+        context_object_name (str): The name of the context variable containing the content object.
+
+    Methods:
+        get_context_data(self, **kwargs): Returns the context data for rendering the content view.
+        post(self, request, *args, **kwargs): Handles the HTTP POST request for adding comments to the content.
+    """
+
     model = Content
     template_name = 'blog/content.html'
     context_object_name = 'content'
 
     def get_context_data(self, **kwargs):
+        """
+        Returns the context data for rendering the content view, including the comment form,
+        comments, and the page number from which the user accessed the content.
+
+        Returns:
+            dict: The context data.
+        """
+
         context = super().get_context_data(**kwargs)
         context['comments'] = self.object.comment_set.all()
         context['form'] = CommentForm()
@@ -385,52 +470,162 @@ class ContentView(ContentRedirectMixin, DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
+        """
+        Handles the HTTP POST request for adding comments to the content.
+        Processes the page data to ensure the correct transfer of the last page number in the 'page' query parameter.
+
+        Args:
+            request (HttpRequest): The request object.
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+            HttpResponseRedirect: The redirect response after adding a comment.
+        """
+
         form = CommentForm(request.POST)
+        content = self.get_object()
+        page = self.request.GET.get('page')
+        url = reverse('content', kwargs={'slug': content.slug})
+        params = urlencode({'page': page}) if page else ''
+
         if form.is_valid():
-            content = self.get_object()
             comment = form.save(commit=False)
             comment.content = content
             comment.author = request.user.author
             comment.save()
-            return redirect('content', slug=self.get_object().slug)
-        else:
-            context = self.get_context_data(form=form)
-            return self.render_to_response(context)
+
+            return redirect(f"{url}?{params}")
+
+        context = {
+            'form': form,
+            'content': content,
+            'comments': content.comment_set.all(),
+            'feed_page': page,
+        }
+        return redirect(f"{url}?{params}", context)
 
 
 def delete_comment(request, slug, pk):
+    """
+    Deletes a comment based on the provided comment ID.
+    Redirects to the content view after deleting the comment.
+
+    Args:
+        request (HttpRequest): The request object.
+        slug (str): The slug of the content.
+        pk (int): The primary key of the comment to delete.
+
+    Returns:
+        HttpResponseRedirect: The redirect response to the content view.
+
+    Note:
+        The function handles the page data to ensure correct transfer of the last page number
+        in the 'page' GET parameter.
+    """
+
     comment = get_object_or_404(Comment, pk=pk, author=request.user.author)
     comment.delete()
-    return redirect('content', slug=slug)
+
+    page = request.GET.get('page')
+    url = reverse('content', kwargs={'slug': slug})
+    params = urlencode({'page': page}) if page else ''
+    redirect_url = f"{url}?{params}"
+
+    return redirect(redirect_url)
 
 
-class BaseContentView(LoginRequiredMixin, View):
+class CreateAuthorMixin(LoginRequiredMixin, View):
+    """
+    A mixin that restricts access to content creation and updating to the authenticated user who is the author.
+
+    Inherits from:
+        - LoginRequiredMixin: Ensures that the user is authenticated before accessing the view.
+        - View: Provides the base implementation for class-based views.
+
+    Attributes:
+        - model (Model): The model associated with the content.
+        - template_name (str): The name of the template used to render the view.
+        - form_class (Form): The form class used for creating or updating content.
+        - success_url (str): The URL to redirect to after successful creation or update of content.
+
+    Methods:
+        - get_queryset(): Returns a filtered queryset containing content owned by the current authenticated user (author).
+        - get_success_url(): Returns the URL to redirect to after successful creation or update of content.
+        - form_valid(form): Sets the author of the content to the current authenticated user before saving the form.
+    """
     model = Content
     template_name = None
     form_class = ContentForm
     success_url = None
 
     def get_queryset(self):
+        """
+        Returns a filtered queryset containing content owned by the current authenticated user (author).
+        """
+
         queryset = super().get_queryset()
         return queryset.filter(author=self.request.user.author)
 
     def get_success_url(self):
+        """
+        Returns the URL to redirect to after successful creation or update of content.
+        """
+
         return reverse('content', kwargs={'slug': self.object.slug})
 
     def form_valid(self, form):
+        """
+        Sets the author of the content to the current authenticated user before saving the form.
+        """
+
         form.instance.author = self.request.user.author
         return super().form_valid(form)
 
 
-class CreateContentView(BaseContentView, CreateView):
+class CreateContentView(CreateAuthorMixin, CreateView):
+    """
+    A view that allows the authenticated user (author) to create new content.
+
+    Inherits from:
+        - CreateAuthorMixin: Restricts access to content creation to the authenticated user who is the author.
+        - CreateView: Provides the functionality for creating new objects.
+
+    Attributes:
+        - template_name (str): The name of the template used to render the view.
+    """
+
     template_name = 'blog/create.html'
 
 
-class UpdateContentView(BaseContentView, UpdateView):
+class UpdateContentView(CreateAuthorMixin, UpdateView):
+    """
+    A view that allows the authenticated user (author) to update existing content.
+
+    Inherits from:
+        - CreateAuthorMixin: Restricts access to content updating to the authenticated user who is the author.
+        - UpdateView: Provides the functionality for updating existing objects.
+
+    Attributes:
+        - template_name (str): The name of the template used to render the view.
+    """
+
     template_name = 'blog/update.html'
 
 
 def change_content_status(request, slug, publish):
+    """
+    Change the status of a content item (publish or unpublish) based on the provided slug.
+
+    Args:
+        - request (HttpRequest): The HTTP request object.
+        - slug (str): The slug of the content item.
+        - publish (bool): Boolean flag indicating whether to publish (True) or unpublish (False) the content.
+
+    Returns:
+        - HttpResponse: A redirect response to the specified next URL.
+    """
+
     content = get_object_or_404(Content, slug=slug, author=request.user.author)
 
     if publish:
@@ -443,8 +638,30 @@ def change_content_status(request, slug, publish):
 
 
 def unpublish_content(request, slug):
+    """
+    Unpublish a content item based on the provided slug.
+
+    Args:
+        - request (HttpRequest): The HTTP request object.
+        - slug (str): The slug of the content item.
+
+    Returns:
+        - HttpResponse: A redirect response to the specified next URL.
+    """
+
     return change_content_status(request, slug, False)
 
 
 def publish_content(request, slug):
+    """
+    Publish a content item based on the provided slug.
+
+    Args:
+        - request (HttpRequest): The HTTP request object.
+        - slug (str): The slug of the content item.
+
+    Returns:
+        - HttpResponse: A redirect response to the specified next URL.
+    """
+
     return change_content_status(request, slug, True)

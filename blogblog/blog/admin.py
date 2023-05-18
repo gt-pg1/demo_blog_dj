@@ -38,6 +38,7 @@ class AuthorAdmin(UserAdmin):
         - inlines (list): Specifies the inline models to be displayed and edited at the same time.
         - add_form (AdminUserCreationForm): Specifies the form for adding a new user.
         - add_fieldsets (tuple): Defines the fieldsets for the add form.
+        - list_display (list): Specifies the fields to be displayed in the list view of the User model.
 
     Methods:
         - get_fieldsets(request, obj=None): Returns the fieldsets for the UserAdmin form.
@@ -50,9 +51,23 @@ class AuthorAdmin(UserAdmin):
     add_form = AdminUserCreationForm
     add_fieldsets = (
         (None, {
-            'fields': ('email', 'username', 'password1', 'password2', 'first_name', 'last_name', 'phone'),
+            'fields': (
+                'email',
+                'username',
+                'password1',
+                'password2',
+                'first_name',
+                'last_name',
+                'phone'
+            ),
         }),
     )
+    list_display = ['username',
+                    'email',
+                    'first_name',
+                    'last_name',
+                    'is_staff',
+                    'is_active']
 
     def get_fieldsets(self, request, obj=None):
         """

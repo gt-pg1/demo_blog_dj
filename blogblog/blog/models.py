@@ -13,6 +13,12 @@ User._meta.get_field('email')._unique = True
 class ShortTextMixin:
     """
     Mixin for shortening the text of an article for convenient display in previews.
+
+    Attributes:
+        - text (str): The full text of the article.
+
+    Methods:
+        - short_text(): Returns a shortened version of the text.
     """
 
     text: str
@@ -27,6 +33,7 @@ class ShortTextMixin:
         Returns:
             str: Shortened text.
         """
+
         soup = BeautifulSoup(self.text, 'html.parser')
         text = soup.get_text(separator=' ')
         return f'{text[:75]}...' if len(text) > 75 else text
@@ -36,7 +43,16 @@ class Author(models.Model):
     """
     Model representing an author.
 
-    An author is associated with a user and contains additional information such as the last active date and phone number.
+    Inherits from:
+        - models.Model
+
+    Attributes:
+        - user (User): The associated user for the author.
+        - date_last_active (DateTimeField): The date and time of the author's last activity.
+        - phone (CharField): The author's phone number (optional).
+
+    Methods:
+        - __str__(): Returns a string representation of the author.
     """
 
     user: User
@@ -65,10 +81,29 @@ class Content(models.Model, ShortTextMixin):
     """
     Model representing a content.
 
-    This model includes fields such as title, slug, text, creation date and time, last edit date and time,
-    author, and publication status.
+    Inherits from:
+        - models.Model
+        - ShortTextMixin
 
-    It inherits from the `ShortTextMixin` to provide a method for shortening the text of the article.
+    Attributes:
+        - id (int): The ID of the content.
+        - title (CharField): The title of the content.
+        - slug (SlugField): The slug of the content.
+        - text (HTMLField): The text of the content (maximum 2000 characters). Instance of the TinyMCE editor.
+        - date_time_create (DateTimeField): The date and time of content creation.
+        - date_time_edit (DateTimeField): The date and time of content last edit.
+        - author (ForeignKey): The author of the content.
+        - is_published (BooleanField): The publication status of the content.
+
+    Methods:
+        - save(*args, **kwargs): Overrides the default save method to set the creation date, generate a slug,
+          and save the instance.
+        - unpublish(): Sets the is_published field of the content to False and saves the instance.
+        - publish(): Sets the is_published field of the content to True and saves the instance.
+        - __str__(): Returns a string representation of the content.
+
+    Returns:
+        - str: String representation of the content.
     """
 
     id: int
@@ -136,10 +171,20 @@ class Content(models.Model, ShortTextMixin):
 
 class Comment(models.Model, ShortTextMixin):
     """
-    Model representing a comments.
+    Model representing a comment.
 
-    This model stores information about comments made on the content.
-    It inherits from the `ShortTextMixin` to provide a method for shortening the text of the comment.
+    Inherits from:
+        - models.Model
+        - ShortTextMixin
+
+    Attributes:
+        - text (CharField): The text of the comment.
+        - date_time_create (DateTimeField): The date and time of comment creation.
+        - author (ForeignKey): The author of the comment.
+        - content (ForeignKey): The content the comment belongs to.
+
+    Returns:
+        None
     """
 
     text: str

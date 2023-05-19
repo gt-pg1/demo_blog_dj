@@ -6,6 +6,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
+from django.db.models import Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse, reverse_lazy
@@ -356,12 +357,14 @@ class FeedView(AuthenticationRedirectMixin, ListView):
         Returns the queryset of feed content to be displayed.
 
         Filters the content by 'is_published' and orders it by the 'date_time_create' field in descending order.
+        Counts the number of comments on a post
 
         Returns:
             QuerySet: The filtered and ordered queryset of feed content.
         """
 
         queryset = self.model.objects.filter(is_published=True).order_by('-date_time_create')
+        queryset = queryset.annotate(comment_count=Count('comment'))
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -380,7 +383,7 @@ class FeedView(AuthenticationRedirectMixin, ListView):
 
         context = super().get_context_data(**kwargs)
         context['feed_page'] = context['page_obj'].number
-        # context['username'] = self.request.user.username
+
         return context
 
 
@@ -400,12 +403,14 @@ class MyFeedView(LoginRequiredMixin, FeedView):
         Returns the queryset of user's feed content to be displayed.
 
         Filters the content by the current user's author and orders it by the 'date_time_create' field in descending order.
+        Counts the number of comments on a post
 
         Returns:
             QuerySet: The filtered and ordered queryset of user's feed content.
         """
 
         queryset = self.model.objects.filter(author=self.request.user.author).order_by('-date_time_create')
+        queryset = queryset.annotate(comment_count=Count('comment'))
         return queryset
 
 
@@ -433,7 +438,7 @@ class ContentView(AuthenticationRedirectMixin, DetailView):
     def get_context_data(self, **kwargs):
         """
         Returns the context data for rendering the content view, including the comment form,
-        comments, and the page number from which the user accessed the content.
+        comments, comments count, and the page number from which the user accessed the content.
 
         Returns:
             dict: The context data.
@@ -441,6 +446,7 @@ class ContentView(AuthenticationRedirectMixin, DetailView):
 
         context = super().get_context_data(**kwargs)
         context['comments'] = self.object.comment_set.all()
+        context['comments_count'] = context['comments'].count()
         context['form'] = CommentForm()
         context['feed_page'] = self.request.GET.get('page')
         return context

@@ -15,6 +15,7 @@
     {% csrf_token %}
     <button type="submit">Log Out</button>
 </form>
+<button onclick="location.href='{% url 'feed' %}'">Home</button>
 <button onclick="location.href='{% url 'create_content' %}'">Create</button>
 <button onclick="location.href='{% url 'my_content' username=request.user.username %}'">My Content</button>
 <button onclick="location.href='{% url 'user_edit' %}'">Profile</button>

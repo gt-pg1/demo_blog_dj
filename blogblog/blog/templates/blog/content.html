@@ -18,6 +18,7 @@
 
     {% if comments %}
         <h2>Comments:</h2>
+        <p>{{ comments_count }} comment{{ comments_count|pluralize }}</p>
         <ul>
         {% for comment in comments %}
             <li>

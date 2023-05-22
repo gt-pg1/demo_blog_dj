@@ -50,6 +50,7 @@ class Author(models.Model):
         - user (User): The associated user for the author.
         - date_last_active (DateTimeField): The date and time of the author's last activity.
         - phone (CharField): The author's phone number (optional).
+        - date_time_last_post (DateTimeField): The date and time of the author's last content post (optional).
 
     Methods:
         - __str__(): Returns a string representation of the author.

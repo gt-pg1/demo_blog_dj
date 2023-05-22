@@ -60,6 +60,7 @@ class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_last_active = models.DateTimeField()
     phone = models.CharField(max_length=25, null=True, blank=True)
+    date_time_last_post = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         """
@@ -104,6 +105,11 @@ class Content(models.Model, ShortTextMixin):
 
     Returns:
         - str: String representation of the content.
+
+    Note:
+        The 2000 character limit for the text field is not reflected in the model because the field is written HTML,
+        and the restriction for the user is reflected in characters, not taking into account HTML -
+        therefore, the interface and model restrictions will conflict with each other.
     """
 
     id: int

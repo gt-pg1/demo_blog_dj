@@ -1,3 +1,4 @@
+from datetime import timedelta
 from urllib.parse import urlencode
 
 from django.contrib import messages
@@ -7,9 +8,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.db.models import Count
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse, reverse_lazy
+from django.utils import timezone
 from django.views import View
 from django.views.generic import FormView, ListView, DetailView, CreateView, UpdateView
 
@@ -579,10 +581,45 @@ class CreateContentView(CreateAuthorMixin, CreateView):
         - CreateView: Provides the functionality for creating new objects.
 
     Attributes:
-        - template_name (str): The name of the template used to render the view.
+        template_name (str): The name of the template used to render the view.
+        cooldown_period (timedelta): The cooldown period between content submissions in minutes.
     """
 
     template_name = 'blog/create.html'
+    cooldown_period = timedelta(minutes=10)
+
+    def form_valid(self, form):
+        """
+        Handle the valid form submission.
+
+        If the user is not a superuser and has submitted content within the cooldown period,
+        display an error message and invalidate the form submission. Otherwise, associate
+        the content with the author and save it to the database.
+
+        Args:
+            form (Form): The submitted form instance.
+
+        Returns:
+            HttpResponse: The response after form submission.
+        """
+
+        author = self.request.user.author
+        if not self.request.user.is_superuser and author.date_time_last_post:
+            cooldown_end = author.date_time_last_post + self.cooldown_period
+            if cooldown_end > timezone.now():
+                cooldown_remaining = (cooldown_end - timezone.now()).total_seconds() // 60
+                message = f"You can post content again in {int(cooldown_remaining)} minutes."
+                messages.error(self.request, message)
+                return self.form_invalid(form)
+
+        form.instance.author = author
+        response = super().form_valid(form)
+
+        author.date_time_last_post = timezone.now()
+        author.save()
+
+        return response
+
 
 
 class UpdateContentView(CreateAuthorMixin, UpdateView):

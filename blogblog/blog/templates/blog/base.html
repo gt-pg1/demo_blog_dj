@@ -6,27 +6,52 @@
     <title>{% block title %} {% endblock %}</title>
     {{ form.media }}
     <link rel="canonical" href="{{ canonical_path }}">
-</head>
-<body>
-{{ user }}
-{% if user_authenticated %}
-<p>You are logged in</p>
-<form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Log Out</button>
-</form>
-<button onclick="location.href='{% url 'feed' %}'">Home</button>
-<button onclick="location.href='{% url 'create_content' %}'">Create</button>
-<button onclick="location.href='{% url 'my_content' username=request.user.username %}'">My Content</button>
-<button onclick="location.href='{% url 'user_edit' %}'">Profile</button>
-{% else %}
-<p>You are not logged in</p>
-{% if not request.path == "/login" %}
-<a href="{% url 'login' %}">Sign In</a>
-{% endif %}
-{% endif %}
-{% block content %}
-{% endblock %}
+        <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/jquery-ui.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/custom_bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/fontawesome.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/elegant.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/plyr.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/aos.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/css/themify-icons.css' %}">
+        <link rel="shortcut icon" href="{% static 'blog/img/shortcut_logo.png' %}">
+    </head>
+    <body>
+        <div id="main">
+            {% include 'blog/includes/header.html' %}
+            {{ user }}
+            {% if user_authenticated %}
+            <p>You are logged in</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Log Out</button>
+            </form>
+            <button onclick="location.href='{% url 'feed' %}'">Home</button>
+            <button onclick="location.href='{% url 'create_content' %}'">Create</button>
+            <button onclick="location.href='{% url 'my_content' username=request.user.username %}'">My Content</button>
+            <button onclick="location.href='{% url 'user_edit' %}'">Profile</button>
+            {% else %}
+            <p>You are not logged in</p>
+            {% if not request.path == "/login" %}
+                <a href="{% url 'login' %}">Sign In</a>
+            {% endif %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
 
-</body>
+        <script src="{% static 'blog/js/jquery-3.4.0.min.js' %}"></script>
+        <script src="{% static 'blog/js/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'blog/js/slick.min.js' %}"></script>
+        <script src="{% static 'blog/js/plyr.min.js' %}"></script>
+        <script src="{% static 'blog/js/aos.js' %}"></script>
+        <script src="{% static 'blog/js/jquery.scrollUp.min.js' %}"></script>
+        <script src="{% static 'blog/js/masonry.pkgd.min.js' %}"></script>
+        <script src="{% static 'blog/js/imagesloaded.pkgd.min.js' %}"></script>
+        <script src="{% static 'blog/js/numscroller-1.0.js' %}"></script>
+        <script src="{% static 'blog/js/jquery.countdown.min.js' %}"></script>
+        <script src="{% static 'blog/js/main.js' %}"></script>
+        </div>
+    </body>
 </html>

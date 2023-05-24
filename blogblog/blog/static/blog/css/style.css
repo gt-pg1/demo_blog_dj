@@ -286,11 +286,6 @@ header {
                 -ms-transition: all 0.4s cubic-bezier(0.22, 0.68, 0, 1.71);
                 -o-transition: all 0.4s cubic-bezier(0.22, 0.68, 0, 1.71);
                 transition: all 0.4s cubic-bezier(0.22, 0.68, 0, 1.71); }
-              header .header-wrapper .header-menu ul .nav-item form button.pisen-nav-link {
-                border: none;
-                background: none;
-                cursor: pointer;
-                outline: none;}
 
     header .header-wrapper .menu-function {
       text-align: right; }
@@ -425,7 +420,56 @@ header.mobile .header-wrapper .menu-function {
    Custom Header Styles (for demo blog)
 *************************************/
 
+/* For the correct operation of the menu and drop-down list for Django (working with form and button) */
+header .header-wrapper .header-menu ul .nav-item form button.pisen-nav-link {
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;}
+header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #1d2c44;
+  text-align: left;}
 
+/* For the correct display of the first and last menu items
+(on the left is the feed, on the right is account management, as is customary in blogs) */
+@media (min-width: 768px) {
+  .header-wrapper .navigation {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header-wrapper .nav-left {
+    order: 1;
+  }
+
+  .header-wrapper .nav-right {
+    order: 3;
+  }
+
+  .header-wrapper .nav-feed {
+    order: 2;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .header-wrapper .nav-left,
+  .header-wrapper .nav-right {
+    justify-content: flex-start;
+  }
+
+  .header-wrapper .nav-right {
+    margin-top: 10px;
+  }
+
+  .header-wrapper .sub-menu-opener {
+    display: inline-block;
+    margin-left: 5px;
+  }
+}
 
 
 /************************************

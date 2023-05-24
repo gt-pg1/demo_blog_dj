@@ -2,3 +2,4 @@
 load_data.js linguist-detectable=true
 paste-preprocessor.js linguist-detectable=true
 *.css linguist-detectable=false
+*.scss linguist-detectable=false

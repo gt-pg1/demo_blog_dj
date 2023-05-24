@@ -16,27 +16,56 @@ class ShortTextMixin:
 
     Attributes:
         - text (str): The full text of the article.
+        - title (str): The title of the article.
 
     Methods:
-        - short_text(): Returns a shortened version of the text.
+        - short_text(length=None): Returns a shortened version of the text.
+        - short_title(): Returns a shortened version of the title.
     """
 
     text: str
+    title: str
+    short_length = 60
 
-    def short_text(self):
+    def short_text(self, length=None):
         """
-        Returns a shortened version of the text's.
+        Returns a shortened version of the text.
 
-        The text is reduced to 75 characters, or it is not reduced if it contains fewer characters.
+        The text is reduced to the specified length (default is 60 characters),
+        or it is not reduced if it contains fewer characters.
         The BeautifulSoup parser is used to remove unnecessary characters and tags from the HTML.
+
+        Args:
+            length (int): The desired length of the shortened text.
 
         Returns:
             str: Shortened text.
         """
 
+        if length is None:
+            length = self.short_length
         soup = BeautifulSoup(self.text, 'html.parser')
         text = soup.get_text(separator=' ')
-        return f'{text[:75]}...' if len(text) > 75 else text
+
+        if len(text) > length:
+            return f'{text[:length]}...'
+        else:
+            return text
+
+    def short_title(self):
+        """
+        Returns a shortened version of the title.
+
+        The title is reduced to the specified length (default is 60 characters),
+        or it is not reduced if it contains fewer characters.
+
+        Returns:
+            str: Shortened title.
+        """
+        if len(self.title) > self.short_length:
+            return f'{self.title[:self.short_length]}...'
+        else:
+            return self.title
 
 
 class Author(models.Model):
@@ -62,6 +91,7 @@ class Author(models.Model):
     date_last_active = models.DateTimeField()
     phone = models.CharField(max_length=25, null=True, blank=True)
     date_time_last_post = models.DateTimeField(null=True, blank=True)
+
 
     def __str__(self):
         """
@@ -123,6 +153,10 @@ class Content(models.Model, ShortTextMixin):
     date_time_edit = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     is_published = models.BooleanField(default=True, null=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.short_text_length = 75
 
     def save(self, *args, **kwargs):
         """

@@ -349,6 +349,7 @@ class FeedView(AuthenticationRedirectMixin, ListView):
     """
 
     model = Content
+    # template_name = 'blog/_old_feed.html'
     template_name = 'blog/feed.html'
     context_object_name = 'contents'
     login_url = 'login'
@@ -376,6 +377,10 @@ class FeedView(AuthenticationRedirectMixin, ListView):
         Adds the current number of feed page number to the context.
         This is necessary for the subsequent storage of the page number in the GET parameter of the link.
 
+        The method also updates the `short_text` attribute of each content item
+        in the `contents` queryset. It calls the `short_text` method of the `Content`
+        model, which returns a shortened version of the article text.
+
         Args:
             **kwargs: Arbitrary keyword arguments.
 
@@ -385,6 +390,8 @@ class FeedView(AuthenticationRedirectMixin, ListView):
 
         context = super().get_context_data(**kwargs)
         context['feed_page'] = context['page_obj'].number
+        for content in context['contents']:
+            content.short_text = content.short_text(250)
 
         return context
 

@@ -79,81 +79,97 @@
 *************************************/
 /*===========Font light===========*/
 @font-face {
-  font-family: 'Cerebri-light';
-  src: url("../fonts/cerebrisans-light.eot");
-  src: url("../fonts/cerebrisans-light.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-light.woff") format("woff"), url("../fonts/cerebrisans-light.woff2") format("woff"), url("../fonts/cerebrisans-light.ttf") format("truetype"), url("../fonts/cerebrisans-light.svg#cerebrisans-light") format("svg");
+  font-family: 'Mulish-Light';
+  src: url("../fonts/Mulish-Light.eot");
+  src: url("../fonts/Mulish-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-Light.woff") format("woff"), url("../fonts/Mulish-Light.woff2") format("woff"), url("../fonts/Mulish-Light.ttf") format("truetype"), url("../fonts/Mulish-Light.svg#Mulish-Light") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 /*===========Font light italic===========*/
 @font-face {
-  font-family: 'Cerebri-light-italic';
-  src: url("../fonts/cerebrisans-lightitalic.eot");
-  src: url("../fonts/cerebrisans-lightitalic.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-lightitalic.woff") format("woff"), url("../fonts/cerebrisans-lightitalic.woff2") format("woff"), url("../fonts/cerebrisans-lightitalic.ttf") format("truetype"), url("../fonts/cerebrisans-lightitalic.svg#cerebrisans-lightitalic") format("svg");
+  font-family: 'Mulish-LightItalic';
+  src: url("../fonts/Mulish-LightItalic.eot");
+  src: url("../fonts/Mulish-LightItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-LightItalic.woff") format("woff"), url("../fonts/Mulish-LightItalic.woff2") format("woff"), url("../fonts/Mulish-LightItalic.ttf") format("truetype"), url("../fonts/Mulish-LightItalic.svg#Mulish-LightItalic") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 /*===========Font regular===========*/
 @font-face {
-  font-family: 'Cerebri-regular';
-  src: url("../fonts/cerebrisans-regular.eot");
-  src: url("../fonts/cerebrisans-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-regular.woff") format("woff"), url("../fonts/cerebrisans-regular.woff2") format("woff"), url("../fonts/cerebrisans-regular.ttf") format("truetype"), url("../fonts/cerebrisans-regular.svg#cerebrisans-regular") format("svg");
+  font-family: 'Mulish-Regular';
+  src: url("../fonts/Mulish-Regular.eot");
+  src: url("../fonts/Mulish-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-Regular.woff") format("woff"), url("../fonts/Mulish-Regular.woff2") format("woff"), url("../fonts/Mulish-Regular.ttf") format("truetype"), url("../fonts/Mulish-Regular.svg#Mulish-Regular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 /*===========Font regular italic===========*/
 @font-face {
-  font-family: 'Cerebri-italic';
-  src: url("../fonts/cerebrisans-italic.eot");
-  src: url("../fonts/cerebrisans-italic.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-italic.woff") format("woff"), url("../fonts/cerebrisans-italic.woff2") format("woff"), url("../fonts/cerebrisans-italic.ttf") format("truetype"), url("../fonts/cerebrisans-italic.svg#cerebrisans-italic") format("svg");
+  font-family: 'Mulish-Italic';
+  src: url("../fonts/Mulish-Italic.eot");
+  src: url("../fonts/Mulish-Italic.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-Italic.woff") format("woff"), url("../fonts/Mulish-Italic.woff2") format("woff"), url("../fonts/Mulish-Italic.ttf") format("truetype"), url("../fonts/Mulish-Italic.svg#cerebrisans-italic") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 /*===========Font medium===========*/
 @font-face {
-  font-family: 'Cerebri-medium';
-  src: url("../fonts/cerebrisans-medium.eot");
-  src: url("../fonts/cerebrisans-medium.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-medium.woff") format("woff"), url("../fonts/cerebrisans-medium.woff2") format("woff"), url("../fonts/cerebrisans-medium.ttf") format("truetype"), url("../fonts/cerebrisans-medium.svg#cerebrisans-medium") format("svg");
+  font-family: 'Mulish-Medium';
+  src: url("../fonts/Mulish-Medium.eot");
+  src: url("../fonts/Mulish-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-Medium.woff") format("woff"), url("../fonts/Mulish-Medium.woff2") format("woff"), url("../fonts/Mulish-Medium.ttf") format("truetype"), url("../fonts/Mulish-Medium.svg#Mulish-Medium") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 /*===========Font medium italic===========*/
 @font-face {
-  font-family: 'Cerebri-medium-italic';
-  src: url("../fonts/cerebrisans-mediumitalic.eot");
-  src: url("../fonts/cerebrisans-mediumitalic.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-mediumitalic.woff") format("woff"), url("../fonts/cerebrisans-mediumitalic.woff2") format("woff"), url("../fonts/cerebrisans-mediumitalic.ttf") format("truetype"), url("../fonts/cerebrisans-mediumitalic.svg#cerebrisans-mediumitalic") format("svg");
+  font-family: 'Mulish-MediumItalic';
+  src: url("../fonts/Mulish-MediumItalic.eot");
+  src: url("../fonts/Mulish-MediumItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-MediumItalic.woff") format("woff"), url("../fonts/Mulish-MediumItalic.woff2") format("woff"), url("../fonts/Mulish-MediumItalic.ttf") format("truetype"), url("../fonts/Mulish-MediumItalic.svg#Mulish-MediumItalic") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+ /*===========Font semi bold===========*/
+@font-face {
+  font-family: 'Mulish-SemiBold';
+  src: url("../fonts/Mulish-SemiBold.eot");
+  src: url("../fonts/Mulish-SemiBold.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-SemiBold.woff") format("woff"), url("../fonts/Mulish-SemiBold.woff2") format("woff"), url("../fonts/Mulish-SemiBold.ttf") format("truetype"), url("../fonts/Mulish-SemiBold.svg#Mulish-SemiBold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+ /*===========Font semi bold italic===========*/
+@font-face {
+  font-family: 'Mulish-SemiBold';
+  src: url("../fonts/Mulish-SemiBoldItalic.eot");
+  src: url("../fonts/Mulish-SemiBoldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-SemiBoldItalic.woff") format("woff"), url("../fonts/Mulish-SemiBoldItalic.woff2") format("woff"), url("../fonts/Mulish-SemiBoldItalic.ttf") format("truetype"), url("../fonts/Mulish-SemiBoldItalic.svg#Mulish-SemiBoldItalic") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 /*===========Font bold===========*/
 @font-face {
-  font-family: 'Cerebri-bold';
-  src: url("../fonts/cerebrisans-bold.eot");
-  src: url("../fonts/cerebrisans-bold.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-bold.woff") format("woff"), url("../fonts/cerebrisans-bold.woff2") format("woff"), url("../fonts/cerebrisans-bold.ttf") format("truetype"), url("../fonts/cerebrisans-bold.svg#cerebrisans-bold") format("svg");
+  font-family: 'Mulish-Bold';
+  src: url("../fonts/Mulish-Bold.eot");
+  src: url("../fonts/Mulish-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-Bold.woff") format("woff"), url("../fonts/Mulish-Bold.woff2") format("woff"), url("../fonts/Mulish-Bold.ttf") format("truetype"), url("../fonts/Mulish-Bold.svg#Mulish-Bold") format("svg");
   font-weight: normal;
   font-style: normal; }
 
-/*===========Font bold===========*/
+/*===========Font bold italic===========*/
 @font-face {
-  font-family: 'Cerebri-bold-italic';
-  src: url("../fonts/cerebrisans-bolditalic.eot");
-  src: url("../fonts/cerebrisans-bolditalic.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-bolditalic.woff") format("woff"), url("../fonts/cerebrisans-bolditalic.woff2") format("woff"), url("../fonts/cerebrisans-bolditalic.ttf") format("truetype"), url("../fonts/cerebrisans-bolditalic.svg#cerebrisans-bolditalic") format("svg");
+  font-family: 'Mulish-BoldItalic';
+  src: url("../fonts/Mulish-BoldItalic.eot");
+  src: url("../fonts/Mulish-BoldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-BoldItalic.woff") format("woff"), url("../fonts/Mulish-BoldItalic.woff2") format("woff"), url("../fonts/Mulish-BoldItalic.ttf") format("truetype"), url("../fonts/Mulish-BoldItalic.svg#Mulish-BoldItalic") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 /*===========Font extra bold===========*/
 @font-face {
-  font-family: 'Cerebri-extrabold';
-  src: url("../fonts/cerebrisans-extrabold.eot");
-  src: url("../fonts/cerebrisans-extrabold.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-extrabold.woff") format("woff"), url("../fonts/cerebrisans-extrabold.woff2") format("woff"), url("../fonts/cerebrisans-extrabold.ttf") format("truetype"), url("../fonts/cerebrisans-extrabold.svg#cerebrisans-extrabold") format("svg");
+  font-family: 'Mulish-ExtraBold';
+  src: url("../fonts/Mulish-ExtraBold.eot");
+  src: url("../fonts/Mulish-ExtraBold.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-ExtraBold.woff") format("woff"), url("../fonts/Mulish-ExtraBold.woff2") format("woff"), url("../fonts/Mulish-ExtraBold.ttf") format("truetype"), url("../fonts/Mulish-ExtraBold.svg#Mulish-ExtraBold") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 /*===========Font extra bold italic===========*/
 @font-face {
-  font-family: 'Cerebri-extrabold-italic';
-  src: url("../fonts/cerebrisans-extrabolditalic.eot");
-  src: url("../fonts/cerebrisans-extrabolditalic.eot?#iefix") format("embedded-opentype"), url("../fonts/cerebrisans-extrabolditalic.woff") format("woff"), url("../fonts/cerebrisans-extrabolditalic.woff2") format("woff"), url("../fonts/cerebrisans-extrabolditalic.ttf") format("truetype"), url("../fonts/cerebrisans-extrabolditalic.svg#cerebrisans-extrabolditalic") format("svg");
+  font-family: 'Mulish-ExtraBoldItalic';
+  src: url("../fonts/Mulish-ExtraBoldItalic.eot");
+  src: url("../fonts/Mulish-ExtraBoldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-ExtraBoldItalic.woff") format("woff"), url("../fonts/Mulish-ExtraBoldItalic.woff2") format("woff"), url("../fonts/Mulish-ExtraBoldItalic.ttf") format("truetype"), url("../fonts/Mulish-ExtraBoldItalic.svg#Mulish-ExtraBoldItalic") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -203,7 +219,7 @@ header {
           opacity: 1;
           visibility: visible; }
         header .header-wrapper .header-menu ul .nav-item .pisen-nav-link {
-          font-family: "Cerebri-bold";
+          font-family: "Mulish-Bold";
           font-size: 16px;
           color: #1d2c44;
           line-height: 24px;
@@ -256,7 +272,7 @@ header {
           header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item {
             list-style: none; }
             header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item .sub-menu-link {
-              font-family: "Cerebri-regular";
+              font-family: "Mulish-Regular";
               font-size: 16px;
               color: #1d2c44;
               line-height: 40px;
@@ -478,13 +494,13 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 .posts {
   cursor: default; }
   .posts .post-describe {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 17px;
     color: #646d7c;
     line-height: 26px;
     display: block; }
   .posts .post-title {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 36px;
     color: #1d2c44;
     line-height: 44px;
@@ -498,7 +514,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
       color: #f17070;
       text-decoration: none; }
     .posts .post-title.regular {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 26px;
       color: #1d2c44;
       line-height: 30px;
@@ -512,7 +528,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
         color: #f17070;
         text-decoration: none; }
     .posts .post-title.small {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 20px;
       color: #1d2c44;
       line-height: 24px;
@@ -528,7 +544,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     .posts .post-title:hover {
       text-decoration: underline; }
   .posts .upload-day, .posts .author-name {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 14px;
     color: #a4a8b0;
     line-height: 1;
@@ -540,7 +556,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   .posts .post-tag.mini a {
     font-size: 12px; }
   .posts .post-tag a {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 14px;
     color: #f17070;
     line-height: 1;
@@ -556,6 +572,23 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
       text-decoration: none; }
     .posts .post-tag a:before {
       content: "#"; }
+   .posts .post-comment a {
+    font-family: "Mulish-Regular";
+    font-size: 14px;
+    color: #f17070;
+    line-height: 1;
+    display: inline-block;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+    text-transform: uppercase; }
+  .posts .post-comment a:hover {
+      color: #f17070;
+      text-decoration: none; }
+  .posts .post-comment a:before {
+      content: ""; }
   .posts .post-img {
     width: 100%;
     overflow: hidden; }
@@ -665,7 +698,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
    	Typography
 *************************************/
 .title {
-  font-family: "Cerebri-bold";
+  font-family: "Mulish-Bold";
   font-size: 36px;
   color: #1d2c44;
   line-height: 44px;
@@ -682,7 +715,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     text-decoration: underline; }
 
 .title-small {
-  font-family: "Cerebri-bold";
+  font-family: "Mulish-Bold";
   font-size: 26px;
   color: #1d2c44;
   line-height: 35px;
@@ -699,7 +732,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     text-decoration: underline; }
 
 .bundle-title {
-  font-family: "Cerebri-bold";
+  font-family: "Mulish-Bold";
   font-size: 30px;
   color: #1d2c44;
   line-height: 1;
@@ -848,7 +881,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
         display: block;
         margin-bottom: 15px; }
       .instagram .instagram-posts .instagram-img_block .instagram-post_block p {
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 16px;
         color: #fff;
         line-height: 1;
@@ -860,7 +893,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 footer {
   padding-bottom: 30px; }
   footer .footer-link--title {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 20px;
     color: #1d2c44;
     line-height: 1;
@@ -869,7 +902,7 @@ footer {
   footer .footer-links ul li {
     list-style: none; }
     footer .footer-links ul li .footer-link {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #646d7c;
       line-height: 36px;
@@ -901,7 +934,7 @@ footer {
   footer .footer-contact .contact-method {
     margin-bottom: 20px; }
     footer .footer-contact .contact-method p {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #646d7c;
       line-height: 26px;
@@ -917,7 +950,7 @@ footer {
       border: 0;
       background-color: transparent;
       transform: translateY(-50%);
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #646d7c;
       line-height: 36px;
@@ -933,14 +966,14 @@ footer {
   footer form .read-policy {
     margin-bottom: 20px; }
     footer form .read-policy label {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 14px;
       color: #646d7c;
       line-height: 20px;
       display: block;
       display: inline-block; }
   footer .copyright {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 14px;
     color: #a4a8b0;
     line-height: 20px;
@@ -985,7 +1018,7 @@ footer.v2 {
   height: 45px;
   width: 100%;
   transition: border 0.3s ease;
-  font-family: "Cerebri-regular";
+  font-family: "Mulish-Regular";
   font-size: 16px;
   color: #646d7c;
   line-height: 1;
@@ -996,7 +1029,7 @@ footer.v2 {
     border-color: #a4a8b0; }
   .input-form::-webkit-input-placeholder {
     /* WebKit, Blink, Edge */
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1005,7 +1038,7 @@ footer.v2 {
   .input-form:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
     color: #909;
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1014,7 +1047,7 @@ footer.v2 {
   .input-form::-moz-placeholder {
     /* Mozilla Firefox 19+ */
     color: #909;
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1022,7 +1055,7 @@ footer.v2 {
     line-height: -moz-block-height; }
   .input-form:-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1030,7 +1063,7 @@ footer.v2 {
     line-height: -moz-block-height; }
   .input-form::-ms-input-placeholder {
     /* Microsoft Edge */
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1038,7 +1071,7 @@ footer.v2 {
     line-height: -moz-block-height; }
   .input-form::placeholder {
     /* Most modern browsers support this now. */
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1058,7 +1091,7 @@ footer.v2 {
   padding: 20px;
   width: 100%;
   transition: border 0.3s ease;
-  font-family: "Cerebri-regular";
+  font-family: "Mulish-Regular";
   font-size: 16px;
   color: #646d7c;
   line-height: 1;
@@ -1069,7 +1102,7 @@ footer.v2 {
     border-color: #a4a8b0; }
   .textarea-form::-webkit-input-placeholder {
     /* WebKit, Blink, Edge */
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1078,7 +1111,7 @@ footer.v2 {
   .textarea-form:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
     color: #909;
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1087,7 +1120,7 @@ footer.v2 {
   .textarea-form::-moz-placeholder {
     /* Mozilla Firefox 19+ */
     color: #909;
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1095,7 +1128,7 @@ footer.v2 {
     line-height: -moz-block-height; }
   .textarea-form:-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1103,7 +1136,7 @@ footer.v2 {
     line-height: -moz-block-height; }
   .textarea-form::-ms-input-placeholder {
     /* Microsoft Edge */
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1111,7 +1144,7 @@ footer.v2 {
     line-height: -moz-block-height; }
   .textarea-form::placeholder {
     /* Most modern browsers support this now. */
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #a4a8b0;
     line-height: 1;
@@ -1162,7 +1195,7 @@ footer.v2 {
       height: 70px;
       width: 100%;
       transition: border 0.3s ease;
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #646d7c;
       line-height: 1;
@@ -1170,7 +1203,7 @@ footer.v2 {
       border-width: 0 0 2px 0;
       background-color: transparent;
       width: 50vw;
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 28px;
       color: #646d7c;
       line-height: 1;
@@ -1181,7 +1214,7 @@ footer.v2 {
         border-color: #a4a8b0; }
       #search-full .search-box input::-webkit-input-placeholder {
         /* WebKit, Blink, Edge */
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 16px;
         color: #a4a8b0;
         line-height: 1;
@@ -1190,7 +1223,7 @@ footer.v2 {
       #search-full .search-box input:-moz-placeholder {
         /* Mozilla Firefox 4 to 18 */
         color: #909;
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 16px;
         color: #a4a8b0;
         line-height: 1;
@@ -1199,7 +1232,7 @@ footer.v2 {
       #search-full .search-box input::-moz-placeholder {
         /* Mozilla Firefox 19+ */
         color: #909;
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 16px;
         color: #a4a8b0;
         line-height: 1;
@@ -1207,7 +1240,7 @@ footer.v2 {
         line-height: -moz-block-height; }
       #search-full .search-box input:-ms-input-placeholder {
         /* Internet Explorer 10-11 */
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 16px;
         color: #a4a8b0;
         line-height: 1;
@@ -1215,7 +1248,7 @@ footer.v2 {
         line-height: -moz-block-height; }
       #search-full .search-box input::-ms-input-placeholder {
         /* Microsoft Edge */
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 16px;
         color: #a4a8b0;
         line-height: 1;
@@ -1223,7 +1256,7 @@ footer.v2 {
         line-height: -moz-block-height; }
       #search-full .search-box input::placeholder {
         /* Most modern browsers support this now. */
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 16px;
         color: #a4a8b0;
         line-height: 1;
@@ -1292,7 +1325,7 @@ footer.v2 {
     right: 30px;
     z-index: 5; }
     .posts .post-classic-tib .post-detail .post-title, .posts .post-video-text-in_block .post-detail .post-title {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 24px;
       color: #fff;
       line-height: 26px;
@@ -1475,21 +1508,21 @@ footer.v2 {
 .posts .post-with-quote .post-quote {
   padding: 50px 70px; }
   .posts .post-with-quote .post-quote q {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 24px;
     color: #fff;
     line-height: 30px;
     display: block;
     margin-bottom: 20px; }
   .posts .post-with-quote .post-quote .quote-author .author-name {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 16px;
     color: #fff;
     line-height: 1;
     display: block;
     margin-bottom: 5px; }
   .posts .post-with-quote .post-quote .quote-author .author-position {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 11px;
     color: #fff;
     line-height: 1;
@@ -1521,7 +1554,7 @@ footer.v2 {
     margin-right: 30px;
     object-fit: cover; }
   .posts .post-mini_block .post-title {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 20px;
     color: #1d2c44;
     line-height: 24px;
@@ -1681,7 +1714,7 @@ footer.v2 {
   .product-block .product-detail .product-name {
     margin-bottom: 5px; }
     .product-block .product-detail .product-name a {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #646d7c;
       line-height: 1;
@@ -1696,7 +1729,7 @@ footer.v2 {
         color: #f17070;
         text-decoration: none; }
   .product-block .product-detail .product-price, .product-block .product-detail .shop-cart .cart-table .table tbody .product-total, .shop-cart .cart-table .table tbody .product-block .product-detail .product-total {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 18px;
     color: #1d2c44;
     line-height: 1;
@@ -1726,7 +1759,7 @@ footer.v2 {
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease; }
   .shop-sidebar .shop-sidebar--title {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 24px;
     color: #1d2c44;
     line-height: 1;
@@ -1740,7 +1773,7 @@ footer.v2 {
       .shop-sidebar .categories ul li input {
         margin-right: 5px; }
       .shop-sidebar .categories ul li label {
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 16px;
         color: #646d7c;
         line-height: 33px;
@@ -1768,7 +1801,7 @@ footer.v2 {
         border: 0; }
     .shop-sidebar .price-filter #amount {
       border: 0;
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #1d2c44;
       line-height: 1;
@@ -1776,7 +1809,7 @@ footer.v2 {
   .shop-sidebar .color ul li {
     list-style: none; }
     .shop-sidebar .color ul li .color-group {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #646d7c;
       line-height: 33px;
@@ -1823,7 +1856,7 @@ footer.v2 {
 .shop {
   margin-bottom: 70px; }
   .shop #open-shop-sidebar {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 18px;
     color: #1d2c44;
     line-height: 1;
@@ -1845,7 +1878,7 @@ footer.v2 {
         position: inherit;
         z-index: 2; }
         .shop .shop-banner .post-classic-tib .post-detail .post-title, .shop .shop-banner .posts .post-video-text-in_block .post-detail .post-title, .posts .shop .shop-banner .post-video-text-in_block .post-detail .post-title {
-          font-family: "Cerebri-bold";
+          font-family: "Mulish-Bold";
           font-size: 40px;
           color: #fff;
           line-height: 55px;
@@ -1871,13 +1904,13 @@ footer.v2 {
       justify-content: space-between;
       align-items: baseline; }
       .shop .products-top_bar .product-show_block .product-found h5 {
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 18px;
         color: #646d7c;
         line-height: 1;
         display: block; }
         .shop .products-top_bar .product-show_block .product-found h5 span {
-          font-family: "Cerebri-bold";
+          font-family: "Mulish-Bold";
           font-size: 18px;
           color: #1d2c44;
           line-height: 1;
@@ -1890,7 +1923,7 @@ footer.v2 {
     white-space: nowrap;
     overflow-x: auto; }
     .shop .product-detail_filter label {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 18px;
       color: #646d7c;
       line-height: 1;
@@ -1905,7 +1938,7 @@ footer.v2 {
       background-position: 97% center;
       background-size: 20px;
       padding: 5px 40px 5px 20px;
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 18px;
       color: #1d2c44;
       line-height: 1;
@@ -2277,7 +2310,7 @@ footer.v2 {
     line-height: 30px; }
 
 .sidebar-block-title {
-  font-family: "Cerebri-bold";
+  font-family: "Mulish-Bold";
   font-size: 24px;
   color: #1d2c44;
   line-height: 1;
@@ -2306,7 +2339,7 @@ footer.v2 {
     font-size: 48px;
     margin-bottom: 18px; }
   .subcribe-sidebar-block .subcribe-block .subcribe-title {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 20px;
     color: #1d2c44;
     line-height: 28px;
@@ -2328,7 +2361,7 @@ footer.v2 {
   .subcribe-sidebar-block .subcribe-block form .read-policy input {
     margin-right: 10px; }
   .subcribe-sidebar-block .subcribe-block form .read-policy label {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 14px;
     color: #646d7c;
     line-height: 18px;
@@ -2378,7 +2411,7 @@ footer.v2 {
       left: 100px;
       transform: translateY(-50%); }
       .blog-story .main-news_block .post-classic-tib.big-post .post-detail .post-title, .blog-story .main-news_block .posts .big-post.post-video-text-in_block .post-detail .post-title, .posts .blog-story .main-news_block .big-post.post-video-text-in_block .post-detail .post-title {
-        font-family: "Cerebri-bold";
+        font-family: "Mulish-Bold";
         font-size: 40px;
         color: #fff;
         line-height: 55px;
@@ -2408,7 +2441,7 @@ footer.v2 {
     top: auto;
     transform: translateY(0); }
     .blog-story .main-news_block .post-classic-tib.big-post .post-detail .post-title, .blog-story .main-news_block .posts .big-post.post-video-text-in_block .post-detail .post-title, .posts .blog-story .main-news_block .big-post.post-video-text-in_block .post-detail .post-title {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 30px;
       color: #fff;
       line-height: 35px;
@@ -2425,7 +2458,7 @@ footer.v2 {
     left: 30px;
     bottom: auto; }
     .blog-story .main-news_block .post-classic-tib.big-post .post-detail .post-title, .blog-story .main-news_block .posts .big-post.post-video-text-in_block .post-detail .post-title, .posts .blog-story .main-news_block .big-post.post-video-text-in_block .post-detail .post-title {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 24px;
       color: #fff;
       line-height: 28px;
@@ -2442,7 +2475,7 @@ footer.v2 {
     left: 30px;
     bottom: auto; }
     .blog-story .main-news_block .post-classic-tib.big-post .post-detail .post-title, .blog-story .main-news_block .posts .big-post.post-video-text-in_block .post-detail .post-title, .posts .blog-story .main-news_block .big-post.post-video-text-in_block .post-detail .post-title {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 30px;
       color: #fff;
       line-height: 35px;
@@ -2490,7 +2523,7 @@ footer.v2 {
     position: unset;
     max-width: 780px; }
     .blog-creative .post-classic-tib.big-post .post-detail .post-title, .blog-creative .posts .big-post.post-video-text-in_block .post-detail .post-title, .posts .blog-creative .big-post.post-video-text-in_block .post-detail .post-title {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 40px;
       color: #fff;
       line-height: 55px;
@@ -2627,7 +2660,7 @@ footer.v2 {
     text-align: center;
     padding: 100px 0; }
     .blog-detail .blog-detail_banner .blog-detail-title {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 36px;
       color: #fff;
       line-height: 48px;
@@ -2639,7 +2672,7 @@ footer.v2 {
       text-align: center;
       margin-bottom: 20px; }
       .blog-detail .blog-detail_banner .blog-credit .blog-credit_wrapper h5 {
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 14px;
         color: #fff;
         line-height: 1;
@@ -2647,7 +2680,7 @@ footer.v2 {
         display: inline-block; }
       .blog-detail .blog-detail_banner .blog-credit .blog-credit_wrapper p {
         margin-right: 30px;
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 14px;
         color: #fff;
         line-height: 1;
@@ -2658,7 +2691,7 @@ footer.v2 {
   .blog-detail .post-block {
     margin-bottom: 30px; }
     .blog-detail .post-block .blog-detail-title {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 36px;
       color: #1d2c44;
       line-height: 48px;
@@ -2690,7 +2723,7 @@ footer.v2 {
           right: 100%;
           top: 12px; }
         .blog-detail .post-block .blog-credit .blog-credit_wrapper h5 {
-          font-family: "Cerebri-bold";
+          font-family: "Mulish-Bold";
           font-size: 12px;
           color: #f17070;
           line-height: 1;
@@ -2701,7 +2734,7 @@ footer.v2 {
             content: "-";
             margin: 0 5px; }
         .blog-detail .post-block .blog-credit .blog-credit_wrapper p {
-          font-family: "Cerebri-regular";
+          font-family: "Mulish-Regular";
           font-size: 14px;
           color: #646d7c;
           line-height: 1;
@@ -2711,7 +2744,7 @@ footer.v2 {
       width: 100%;
       margin-bottom: 50px; }
     .blog-detail .post-block .blog-pragraph {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 18px;
       color: #646d7c;
       line-height: 30px;
@@ -2720,7 +2753,7 @@ footer.v2 {
       .blog-detail .post-block .blog-pragraph span {
         font-size: 60px;
         float: left;
-        font-family: "Cerebri-bold";
+        font-family: "Mulish-Bold";
         font-size: 60px;
         color: #1d2c44;
         line-height: 1;
@@ -2729,7 +2762,7 @@ footer.v2 {
     .blog-detail .post-block .blog-quote {
       margin-bottom: 40px; }
       .blog-detail .post-block .blog-quote q {
-        font-family: "Cerebri-italic";
+        font-family: "Mulish-Italic";
         font-size: 18px;
         color: #1d2c44;
         line-height: 30px;
@@ -2737,14 +2770,14 @@ footer.v2 {
         display: inline-block;
         margin-bottom: 15px; }
       .blog-detail .post-block .blog-quote .quote-author {
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 18px;
         color: #f17070;
         line-height: 1;
         display: block;
         text-align: right; }
     .blog-detail .post-block .post-title {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 24px;
       color: #1d2c44;
       line-height: 28px;
@@ -2782,7 +2815,7 @@ footer.v2 {
         outline: 0;
         box-shadow: 0; }
     .blog-detail .post-footer .post-share p {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #1d2c44;
       line-height: 1;
@@ -2838,14 +2871,14 @@ footer.v2 {
       .blog-detail .another-posts .another-post_block .post-title {
         flex-grow: 1; }
         .blog-detail .another-posts .another-post_block .post-title p {
-          font-family: "Cerebri-regular";
+          font-family: "Mulish-Regular";
           font-size: 16px;
           color: #a4a8b0;
           line-height: 1;
           display: block;
           margin-bottom: 15px; }
         .blog-detail .another-posts .another-post_block .post-title a {
-          font-family: "Cerebri-bold";
+          font-family: "Mulish-Bold";
           font-size: 20px;
           color: #1d2c44;
           line-height: 26px;
@@ -2875,14 +2908,14 @@ footer.v2 {
     .blog-detail .post-author-detail .author-info {
       margin-left: 40px; }
       .blog-detail .post-author-detail .author-info h5 {
-        font-family: "Cerebri-bold";
+        font-family: "Mulish-Bold";
         font-size: 20px;
         color: #1d2c44;
         line-height: 1;
         display: block;
         margin-bottom: 10px; }
       .blog-detail .post-author-detail .author-info p {
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 18px;
         color: #646d7c;
         line-height: 26px;
@@ -2901,7 +2934,7 @@ footer.v2 {
   .blog-detail .blog-quick-banner {
     margin-bottom: 40px; }
   .blog-detail .post-comment h2 {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 30px;
     color: #1d2c44;
     line-height: 1;
@@ -2938,7 +2971,7 @@ footer.v2 {
 .blog-detail.blog-detail-sidebar .blog-detail_sidebar .sidebar-categories ul li {
   list-style: none; }
   .blog-detail.blog-detail-sidebar .blog-detail_sidebar .sidebar-categories ul li .category-link {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 18px;
     color: #646d7c;
     line-height: 1;
@@ -3082,7 +3115,7 @@ footer.v2 {
     .shop-cart .cart-table .table thead tr th {
       border-top: 0;
       border-bottom: 1px solid #ebebeb;
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 16px;
       color: #1d2c44;
       line-height: 1;
@@ -3100,14 +3133,14 @@ footer.v2 {
       height: 170px;
       object-fit: cover; }
     .shop-cart .cart-table .table tbody .product-name {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 18px;
       color: #1d2c44;
       line-height: 1;
       display: block;
       display: table-cell; }
     .shop-cart .cart-table .table tbody .product-price, .shop-cart .cart-table .table tbody .product-total {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 16px;
       color: #1d2c44;
       line-height: 1;
@@ -3118,7 +3151,7 @@ footer.v2 {
       display: inline-block;
       padding: 5px 10px; }
       .shop-cart .cart-table .table tbody .product-quantity .quantity-control .control-btn {
-        font-family: "Cerebri-regular";
+        font-family: "Mulish-Regular";
         font-size: 18px;
         color: #1d2c44;
         line-height: 1;
@@ -3137,7 +3170,7 @@ footer.v2 {
         width: 70px;
         padding: 0 20px;
         text-align: center;
-        font-family: "Cerebri-bold";
+        font-family: "Mulish-Bold";
         font-size: 18px;
         color: #646d7c;
         line-height: 1;
@@ -3182,7 +3215,7 @@ footer.v2 {
       box-shadow: 0; }
 
 .shop-cart .cart-action .cart-function_block .discount h2 {
-  font-family: "Cerebri-bold";
+  font-family: "Mulish-Bold";
   font-size: 16px;
   color: #1d2c44;
   line-height: 1;
@@ -3198,7 +3231,7 @@ footer.v2 {
   .shop-cart .cart-action .cart-function_block .discount form button {
     border: 0;
     background-color: transparent;
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 16px;
     color: #1d2c44;
     line-height: 1;
@@ -3216,7 +3249,7 @@ footer.v2 {
     height: auto;
     width: 100%;
     transition: border 0.3s ease;
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #646d7c;
     line-height: 1;
@@ -3230,7 +3263,7 @@ footer.v2 {
       border-color: #a4a8b0; }
     .shop-cart .cart-action .cart-function_block .discount form input::-webkit-input-placeholder {
       /* WebKit, Blink, Edge */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3239,7 +3272,7 @@ footer.v2 {
     .shop-cart .cart-action .cart-function_block .discount form input:-moz-placeholder {
       /* Mozilla Firefox 4 to 18 */
       color: #909;
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3248,7 +3281,7 @@ footer.v2 {
     .shop-cart .cart-action .cart-function_block .discount form input::-moz-placeholder {
       /* Mozilla Firefox 19+ */
       color: #909;
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3256,7 +3289,7 @@ footer.v2 {
       line-height: -moz-block-height; }
     .shop-cart .cart-action .cart-function_block .discount form input:-ms-input-placeholder {
       /* Internet Explorer 10-11 */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3264,7 +3297,7 @@ footer.v2 {
       line-height: -moz-block-height; }
     .shop-cart .cart-action .cart-function_block .discount form input::-ms-input-placeholder {
       /* Microsoft Edge */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3272,7 +3305,7 @@ footer.v2 {
       line-height: -moz-block-height; }
     .shop-cart .cart-action .cart-function_block .discount form input::placeholder {
       /* Most modern browsers support this now. */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3286,7 +3319,7 @@ footer.v2 {
     border-bottom: 1px solid #fff; }
   .shop-cart .cart-action .cart-total .table tbody td {
     border-top: 0;
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 16px;
     color: #1d2c44;
     line-height: 1;
@@ -3294,7 +3327,7 @@ footer.v2 {
     display: table-cell;
     padding: 20px; }
   .shop-cart .cart-action .cart-total .table tbody .sub-total--title {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #1d2c44;
     line-height: 1;
@@ -3348,7 +3381,7 @@ footer.v2 {
 	Shop checkout
 *************************************/
 .shop-checkout form .checkout-title {
-  font-family: "Cerebri-bold";
+  font-family: "Mulish-Bold";
   font-size: 24px;
   color: #1d2c44;
   line-height: 1;
@@ -3358,7 +3391,7 @@ footer.v2 {
 .shop-checkout form .form-group {
   margin-bottom: 20px; }
   .shop-checkout form .form-group label {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #1d2c44;
     line-height: 1;
@@ -3378,7 +3411,7 @@ footer.v2 {
     height: 45px;
     width: 100%;
     transition: border 0.3s ease;
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #646d7c;
     line-height: 1;
@@ -3391,7 +3424,7 @@ footer.v2 {
       border-color: #a4a8b0; }
     .shop-checkout form .form-group input[type="text"]::-webkit-input-placeholder, .shop-checkout form .form-group input[type="email"]::-webkit-input-placeholder, .shop-checkout form .form-group input[type="password"]::-webkit-input-placeholder {
       /* WebKit, Blink, Edge */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3400,7 +3433,7 @@ footer.v2 {
     .shop-checkout form .form-group input[type="text"]:-moz-placeholder, .shop-checkout form .form-group input[type="email"]:-moz-placeholder, .shop-checkout form .form-group input[type="password"]:-moz-placeholder {
       /* Mozilla Firefox 4 to 18 */
       color: #909;
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3409,7 +3442,7 @@ footer.v2 {
     .shop-checkout form .form-group input[type="text"]::-moz-placeholder, .shop-checkout form .form-group input[type="email"]::-moz-placeholder, .shop-checkout form .form-group input[type="password"]::-moz-placeholder {
       /* Mozilla Firefox 19+ */
       color: #909;
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3417,7 +3450,7 @@ footer.v2 {
       line-height: -moz-block-height; }
     .shop-checkout form .form-group input[type="text"]:-ms-input-placeholder, .shop-checkout form .form-group input[type="email"]:-ms-input-placeholder, .shop-checkout form .form-group input[type="password"]:-ms-input-placeholder {
       /* Internet Explorer 10-11 */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3425,7 +3458,7 @@ footer.v2 {
       line-height: -moz-block-height; }
     .shop-checkout form .form-group input[type="text"]::-ms-input-placeholder, .shop-checkout form .form-group input[type="email"]::-ms-input-placeholder, .shop-checkout form .form-group input[type="password"]::-ms-input-placeholder {
       /* Microsoft Edge */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3433,7 +3466,7 @@ footer.v2 {
       line-height: -moz-block-height; }
     .shop-checkout form .form-group input[type="text"]::placeholder, .shop-checkout form .form-group input[type="email"]::placeholder, .shop-checkout form .form-group input[type="password"]::placeholder {
       /* Most modern browsers support this now. */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3451,7 +3484,7 @@ footer.v2 {
     padding: 20px;
     width: 100%;
     transition: border 0.3s ease;
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #646d7c;
     line-height: 1;
@@ -3463,7 +3496,7 @@ footer.v2 {
       border-color: #a4a8b0; }
     .shop-checkout form .form-group textarea::-webkit-input-placeholder {
       /* WebKit, Blink, Edge */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3472,7 +3505,7 @@ footer.v2 {
     .shop-checkout form .form-group textarea:-moz-placeholder {
       /* Mozilla Firefox 4 to 18 */
       color: #909;
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3481,7 +3514,7 @@ footer.v2 {
     .shop-checkout form .form-group textarea::-moz-placeholder {
       /* Mozilla Firefox 19+ */
       color: #909;
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3489,7 +3522,7 @@ footer.v2 {
       line-height: -moz-block-height; }
     .shop-checkout form .form-group textarea:-ms-input-placeholder {
       /* Internet Explorer 10-11 */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3497,7 +3530,7 @@ footer.v2 {
       line-height: -moz-block-height; }
     .shop-checkout form .form-group textarea::-ms-input-placeholder {
       /* Microsoft Edge */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3505,7 +3538,7 @@ footer.v2 {
       line-height: -moz-block-height; }
     .shop-checkout form .form-group textarea::placeholder {
       /* Most modern browsers support this now. */
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #a4a8b0;
       line-height: 1;
@@ -3523,14 +3556,14 @@ footer.v2 {
       display: table-cell !important;
       padding: 20px; }
     .shop-checkout form .shop-checkout .table th {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 16px;
       color: #1d2c44;
       line-height: 1;
       display: block;
       text-transform: uppercase; }
     .shop-checkout form .shop-checkout .table td {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 16px;
       color: #1d2c44;
       line-height: 1;
@@ -3570,7 +3603,7 @@ footer.v2 {
   	About us
 *************************************/
 .about-us .about-title {
-  font-family: "Cerebri-bold";
+  font-family: "Mulish-Bold";
   font-size: 36px;
   color: #1d2c44;
   line-height: 1;
@@ -3578,7 +3611,7 @@ footer.v2 {
   margin-bottom: 25px; }
 
 .about-us .about-breadcrumb {
-  font-family: "Cerebri-regular";
+  font-family: "Mulish-Regular";
   font-size: 16px;
   color: #1d2c44;
   line-height: 1;
@@ -3591,7 +3624,7 @@ footer.v2 {
   margin-bottom: 20px; }
 
 .about-us .about-us_block .about-paragraph {
-  font-family: "Cerebri-regular";
+  font-family: "Mulish-Regular";
   font-size: 16px;
   color: #1d2c44;
   line-height: 24px;
@@ -3614,14 +3647,14 @@ footer.v2 {
     .about-us .count-up_wrapper .count-up_block:hover p {
       color: #fff; }
   .about-us .count-up_wrapper .count-up_block span {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 36px;
     color: #1d2c44;
     line-height: 1;
     display: block;
     margin-bottom: 15px; }
   .about-us .count-up_wrapper .count-up_block p {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 18px;
     color: #646d7c;
     line-height: 1;
@@ -3632,7 +3665,7 @@ footer.v2 {
   padding: 175px 0 70px 0;
   margin-top: -100px; }
   .about-us .our-team p {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #1d2c44;
     line-height: 24px;
@@ -3730,27 +3763,27 @@ footer.v2 {
         font-size: 40px;
         color: #f17070; }
     .contact .contact-method .contact-detail h2 {
-      font-family: "Cerebri-bold";
+      font-family: "Mulish-Bold";
       font-size: 16px;
       color: #1d2c44;
       line-height: 1;
       display: block;
       margin-bottom: 10px; }
     .contact .contact-method .contact-detail p {
-      font-family: "Cerebri-regular";
+      font-family: "Mulish-Regular";
       font-size: 18px;
       color: #646d7c;
       line-height: 26px;
       display: block; }
   .contact .leave-message h1 {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 36px;
     color: #1d2c44;
     line-height: 1;
     display: block;
     margin-bottom: 25px; }
   .contact .leave-message p {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 16px;
     color: #646d7c;
     line-height: 1;
@@ -3771,14 +3804,14 @@ footer.v2 {
   .error-404 img {
     margin-bottom: 70px; }
   .error-404 h1 {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 48px;
     color: #1d2c44;
     line-height: 65px;
     display: block;
     margin-bottom: 15px; }
   .error-404 p {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 18px;
     color: #1d2c44;
     line-height: 26px;
@@ -3822,14 +3855,14 @@ footer.v2 {
   align-items: center;
   justify-content: center; }
   .main-coming-soon .coming-soon h1 {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 48px;
     color: #1d2c44;
     line-height: 1;
     display: block;
     margin-bottom: 15px; }
   .main-coming-soon .coming-soon .notification {
-    font-family: "Cerebri-regular";
+    font-family: "Mulish-Regular";
     font-size: 14px;
     color: #a4a8b0;
     line-height: 18px;
@@ -3850,13 +3883,13 @@ footer.v2 {
       align-items: baseline; }
       .main-coming-soon .coming-soon #countdown .countdown-number b {
         display: inline-block;
-        font-family: "Cerebri-bold";
+        font-family: "Mulish-Bold";
         font-size: 51px;
         color: #f17070;
         line-height: 1;
         display: block; }
       .main-coming-soon .coming-soon #countdown .countdown-number p {
-        font-family: "Cerebri-bold";
+        font-family: "Mulish-Bold";
         font-size: 14px;
         color: #fff;
         line-height: 1;
@@ -3865,7 +3898,7 @@ footer.v2 {
         .main-coming-soon .coming-soon #countdown .countdown-number p:before {
           content: "/"; }
   .main-coming-soon .coming-soon .follow h3 {
-    font-family: "Cerebri-bold";
+    font-family: "Mulish-Bold";
     font-size: 18px;
     color: #1d2c44;
     line-height: 1;

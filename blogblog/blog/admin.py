@@ -132,7 +132,7 @@ class ContentAdmin(admin.ModelAdmin):
     """
 
     inlines = [CommentInline]
-    list_display = ['title',
+    list_display = ['short_title',
                     'short_text',
                     'date_time_create',
                     'date_time_edit',

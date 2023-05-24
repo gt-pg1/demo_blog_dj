@@ -333,7 +333,7 @@ class FeedView(AuthenticationRedirectMixin, ListView):
     """
     A view for displaying the feed content.
 
-    This view inherits from the PaginationRedirectMixin and ListView classes.
+    This view inherits from the AuthenticationRedirectMixin and ListView classes.
     It displays the feed content to authenticated users and redirects anonymous users to the login page.
 
     Attributes:
@@ -346,14 +346,13 @@ class FeedView(AuthenticationRedirectMixin, ListView):
     Methods:
         get_queryset(): Returns the queryset of feed content to be displayed.
         get_context_data(**kwargs): Adds additional context data to be used in the template.
+        get_template_names(): Returns the template names based on the request type.
     """
 
     model = Content
-    # template_name = 'blog/_old_feed.html'
-    template_name = 'blog/feed.html'
     context_object_name = 'contents'
     login_url = 'login'
-    paginate_by = 10
+    paginate_by = 20
 
     def get_queryset(self):
         """
@@ -394,6 +393,21 @@ class FeedView(AuthenticationRedirectMixin, ListView):
             content.short_text = content.short_text(250)
 
         return context
+
+    def get_template_names(self):
+        """
+        Returns the template names based on the request type.
+
+        If the request is made via XMLHttpRequest (AJAX), it returns a partial template.
+        Otherwise, it returns the regular feed template.
+
+        Returns:
+            list: The list of template names.
+        """
+
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return ['blog/includes/partial_feed.html']
+        return ['blog/feed.html']
 
 
 class MyFeedView(LoginRequiredMixin, FeedView):

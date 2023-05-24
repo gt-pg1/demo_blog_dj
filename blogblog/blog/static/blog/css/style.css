@@ -105,7 +105,7 @@
 @font-face {
   font-family: 'Mulish-Italic';
   src: url("../fonts/Mulish-Italic.eot");
-  src: url("../fonts/Mulish-Italic.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-Italic.woff") format("woff"), url("../fonts/Mulish-Italic.woff2") format("woff"), url("../fonts/Mulish-Italic.ttf") format("truetype"), url("../fonts/Mulish-Italic.svg#cerebrisans-italic") format("svg");
+  src: url("../fonts/Mulish-Italic.eot?#iefix") format("embedded-opentype"), url("../fonts/Mulish-Italic.woff") format("woff"), url("../fonts/Mulish-Italic.woff2") format("woff"), url("../fonts/Mulish-Italic.ttf") format("truetype"), url("../fonts/Mulish-Italic.svg#Mulish-Italic") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -556,7 +556,8 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     font-size: 12px; }
   .posts .post-tag.mini a {
     font-size: 12px; }
-  .posts .post-tag a {
+  .posts .post-tag a,
+  .posts .post-tag a.post-comment {
     font-family: "Mulish-Regular";
     font-size: 14px;
     color: #f17070;
@@ -585,6 +586,8 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     -o-transition: 0.3s ease;
     transition: 0.3s ease;
     text-transform: uppercase; }
+  .posts .post-comment.post-publication a {
+    margin-top: 30px;}
   .posts .post-comment a:hover {
       color: #f17070;
       text-decoration: none; }
@@ -634,7 +637,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
       -o-border-radius: 999px;
       padding: 20px;
       text-transform: uppercase;
-      font-family: 'Cerebri-bold';
+      font-family: "Mulish-Bold";
       border: 0 solid #f17070;
       -webkit-transition: 0.3s ease;
       -moz-transition: 0.3s ease;
@@ -663,7 +666,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     -o-border-radius: 0;
     padding: 0;
     text-transform: uppercase;
-    font-family: 'Cerebri-bold';
+    font-family: "Mulish-Bold";
     border: 0 solid #f17070;
     -webkit-transition: 0.3s ease;
     -moz-transition: 0.3s ease;
@@ -761,7 +764,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   -o-border-radius: 0px;
   padding: 10px 30px;
   text-transform: uppercase;
-  font-family: 'Cerebri-bold';
+  font-family: "Mulish-Bold";
   border: 2px solid #f17070;
   -webkit-transition: 0.3s ease;
   -moz-transition: 0.3s ease;
@@ -789,7 +792,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   -o-border-radius: 999px;
   padding: 7px;
   text-transform: uppercase;
-  font-family: 'Cerebri-bold';
+  font-family: "Mulish-Bold";
   border: 2px solid #edf0f5;
   -webkit-transition: 0.3s ease;
   -moz-transition: 0.3s ease;
@@ -1458,7 +1461,7 @@ footer.v2 {
       -o-border-radius: 999px;
       padding: 20px;
       text-transform: uppercase;
-      font-family: 'Cerebri-bold';
+      font-family: "Mulish-Bold";
       border: 0 solid #f17070;
       -webkit-transition: 0.3s ease;
       -moz-transition: 0.3s ease;
@@ -1612,7 +1615,7 @@ footer.v2 {
   -o-border-radius: 999px;
   padding: 8px;
   text-transform: uppercase;
-  font-family: 'Cerebri-bold';
+  font-family: "Mulish-Bold";
   border: 2px solid #f17070;
   -webkit-transition: 0.3s ease;
   -moz-transition: 0.3s ease;
@@ -1696,7 +1699,7 @@ footer.v2 {
       -o-border-radius: 0px;
       padding: 10px 10px;
       text-transform: uppercase;
-      font-family: 'Cerebri-bold';
+      font-family: "Mulish-Bold";
       border: 0px solid #f17070;
       -webkit-transition: 0.3s ease;
       -moz-transition: 0.3s ease;
@@ -2797,7 +2800,7 @@ footer.v2 {
       -o-border-radius: 0px;
       padding: 5px 10px;
       text-transform: uppercase;
-      font-family: 'Cerebri-bold';
+      font-family: "Mulish-Bold";
       border: 1px solid #ebebeb;
       -webkit-transition: 0.3s ease;
       -moz-transition: 0.3s ease;
@@ -2805,7 +2808,7 @@ footer.v2 {
       -o-transition: 0.3s ease;
       transition: 0.3s ease;
       display: inline-block;
-      font-family: 'Cerebri-regular';
+      font-family: "Mulish-Regular";
       margin-right: 15px; }
       .blog-detail .post-footer .post-tags a:hover {
         background-color: #f17070;
@@ -3009,7 +3012,7 @@ footer.v2 {
   -o-border-radius: 0px;
   padding: 5px 10px;
   text-transform: uppercase;
-  font-family: 'Cerebri-bold';
+  font-family: "Mulish-Bold";
   border: 1px solid #ebebeb;
   -webkit-transition: 0.3s ease;
   -moz-transition: 0.3s ease;
@@ -3017,7 +3020,7 @@ footer.v2 {
   -o-transition: 0.3s ease;
   transition: 0.3s ease;
   display: inline-block;
-  font-family: 'Cerebri-regular';
+  font-family: "Mulish-Regular";
   margin-right: 10px;
   margin-bottom: 10px; }
   .blog-detail.blog-detail-sidebar .blog-detail_sidebar .sidebar-tags a:hover {
@@ -3196,7 +3199,7 @@ footer.v2 {
     -o-border-radius: 0px;
     padding: 10px 20px;
     text-transform: uppercase;
-    font-family: 'Cerebri-bold';
+    font-family: "Mulish-Bold";
     border: 2px solid #ebebeb;
     -webkit-transition: 0.3s ease;
     -moz-transition: 0.3s ease;
@@ -3351,7 +3354,7 @@ footer.v2 {
   -o-border-radius: 0px;
   padding: 10px 0;
   text-transform: uppercase;
-  font-family: 'Cerebri-bold';
+  font-family: "Mulish-Bold";
   border: 2px solid #000;
   -webkit-transition: 0.3s ease;
   -moz-transition: 0.3s ease;
@@ -3583,7 +3586,7 @@ footer.v2 {
       -o-border-radius: 0px;
       padding: 10px 30px;
       text-transform: uppercase;
-      font-family: 'Cerebri-bold';
+      font-family: "Mulish-Bold";
       border: 2px solid #000;
       -webkit-transition: 0.3s ease;
       -moz-transition: 0.3s ease;
@@ -3829,7 +3832,7 @@ footer.v2 {
     -o-border-radius: 999px;
     padding: 10px 30px;
     text-transform: uppercase;
-    font-family: 'Cerebri-bold';
+    font-family: "Mulish-Bold";
     border: 2px solid #f17070;
     -webkit-transition: 0.3s ease;
     -moz-transition: 0.3s ease;
@@ -3916,7 +3919,7 @@ footer.v2 {
     -o-border-radius: 999px;
     padding: 5px;
     text-transform: uppercase;
-    font-family: 'Cerebri-bold';
+    font-family: "Mulish-Bold";
     border: 0px solid #f17070;
     -webkit-transition: 0.3s ease;
     -moz-transition: 0.3s ease;

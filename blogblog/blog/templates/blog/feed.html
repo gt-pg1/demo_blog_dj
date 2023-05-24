@@ -5,30 +5,14 @@
 {% block content %}
 <section class="posts blog-index">
     <div class="container">
-        <div class="row justify-content-center">
-            {% for content in contents %}
-            <div class="col-12 col-md-10">
-                <div class="post-block post-classic">
-                    <div class="row">
-                        <div class="col-12 col-md-10 mx-auto">
-                            <div class="post-detail"><a class="post-title" href="{% url 'content' content.slug %}?page={{ feed_page }}">{{ content.title }}</a>
-                                <div class="post-credit">
-                                    <div class="author">
-                                        <h5 class="author-name">{{ content.author|truncatechars:25 }}</h5>
-                                    </div>
-                                    <h5 class="upload-day">{{ content.date_time_create }}</h5>
-                                    <div class="post-comment"><a href="{% url 'content' content.slug %}?page={{ feed_page }}#comments">{{ content.comment_count }} comment{{ content.comment_count|pluralize }}</a></div>
-                                </div>
-                                <p class="post-describe">{{ content.short_text }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-            <h1>No articles yet.</h1>
-            {% endfor %}
+        <div class="row justify-content-center" id="contents">
+            {% include 'blog/includes/partial_feed.html' %}
         </div>
+        {% if page_obj.has_next %}
+        <div id="load-more-container" class="col-12 text-center">
+            <button class="normal-btn" id="load-more" data-page="2">Load more</button>
+        </div>
+        {% endif %}
     </div>
 </section>
 

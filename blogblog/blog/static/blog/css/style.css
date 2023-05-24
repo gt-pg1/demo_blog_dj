@@ -268,7 +268,8 @@ header {
           -moz-transition: all 0.4s ease;
           -ms-transition: all 0.4s ease;
           -o-transition: all 0.4s ease;
-          transition: all 0.4s ease; }
+          transition: all 0.4s ease;
+          min-width: 150px}
           header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item {
             list-style: none; }
             header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item .sub-menu-link {

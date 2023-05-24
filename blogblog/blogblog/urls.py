@@ -19,8 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('demo-blog-admin/', admin.site.urls),
-
-    # path('demo-blog-admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('', include('blog.urls')),

@@ -1,3 +1,4 @@
 *.js linguist-detectable=false
 load_data.js linguist-detectable=true
 paste-preprocessor.js linguist-detectable=true
+*.css linguist-detectable=false

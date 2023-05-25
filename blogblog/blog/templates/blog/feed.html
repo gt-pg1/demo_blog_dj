@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 
-{% block title %}Blog{% endblock %}
+{% block title %}Feed — Demo Blog{% endblock %}
 
 {% block content %}
 <section class="posts blog-index">
@@ -8,9 +8,13 @@
         <div class="row justify-content-center" id="contents">
             {% include 'blog/includes/partial_feed.html' %}
         </div>
-        {% if page_obj.has_next %}
+        {% if page_obj.has_next and is_authenticated %}
         <div id="load-more-container" class="col-12 text-center">
             <button class="normal-btn" id="load-more" data-page="2">Load more</button>
+        </div>
+        {% else %}
+        <div class="col-12 text-center">
+            <a href="{% url 'login' %}" class="normal-btn">Sign up for more</a>
         </div>
         {% endif %}
     </div>

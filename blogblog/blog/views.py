@@ -472,6 +472,17 @@ class ContentView(AuthenticationRedirectMixin, DetailView):
         context['comments_count'] = context['comments'].count()
         context['form'] = CommentForm()
         context['feed_page'] = self.request.GET.get('page')
+
+        content = self.object
+        queryset = self.get_queryset()
+        prev_content = queryset.filter(date_time_create__lt=content.date_time_create, is_published=True).order_by('-date_time_create').first()
+        next_content = queryset.filter(date_time_create__gt=content.date_time_create, is_published=True).order_by('date_time_create').first()
+
+        context['prev_content'] = prev_content
+        context['next_content'] = next_content
+        context['has_prev_content'] = bool(prev_content)
+        context['has_next_content'] = bool(next_content)
+
         return context
 
     def post(self, request, *args, **kwargs):

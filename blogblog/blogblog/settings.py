@@ -168,6 +168,32 @@ TINYMCE_DEFAULT_CONFIG = {
             'name': 'additional', 'items': ['searchreplace', 'emoticons', 'wordcount']
         }
     ],
+    'style_formats': [
+        {
+            'title': 'Heading',
+            'items': [
+                {'title': 'Heading 2', 'format': 'h2'},
+                {'title': 'Heading 3', 'format': 'h3'}
+            ]
+        },
+        {
+            'title': 'Inline',
+            'items': [
+                {'title': 'Bold', 'format': 'bold'},
+                {'title': 'Italic', 'format': 'italic'},
+                {'title': 'Underline', 'format': 'underline'},
+                {'title': 'Strikethrough', 'format': 'strikethrough'},
+                {'title': 'Code', 'format': 'code'}
+            ]
+        },
+        {
+            'title': 'Blocks',
+            'items': [
+                {'title': 'Paragraph', 'format': 'p'},
+                {'title': 'Blockquote', 'format': 'blockquote'}
+            ]
+        }
+    ],
     # 'toolbar_drawer' and 'toolbar_mode' add an extra menu that will hide menu items that won't fit
     # toolbar_drawer is actual for v5.1, toolbar_mode will actual for v5.2 and higher
     'toolbar_drawer': 'floating',

@@ -137,8 +137,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = '/login'
 
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': 'paste, emoticons, lists, searchreplace, table, hr, link, wordcount',
-    'paste_preprocess': open(os.path.join(BASE_DIR, 'blog', 'static', 'blog', 'js', 'paste-preprocess.js')).read(),
+    # 'blockquote_enter' is a wonderful custom plugin that had to be created, as the default blockquote tag is buggy
+    # and does not properly handle line breaks when pressing Enter.
+    'plugins': 'paste, emoticons, lists, searchreplace, table, hr, link, wordcount, blockquote_enter',
+    'paste_preprocess': open(os.path.join(BASE_DIR, 'blog', 'static', 'blog', 'js', 'tinymce.paste-preprocess.js')).read(),
     'height': 400,
     'skin': 'oxide-dark',
     'menubar': False,

@@ -25,7 +25,7 @@
                         {% endfor %}
                     </div>
                     <div class="submit-section">
-                        <button class="normal-btn" type="submit">Submit</button>
+                        <button class="normal-btn" type="submit">Sign in</button>
                         <p class="signup-link">No account?
                             <a href="{% url 'signup' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">Sign up</a>
                         </p>

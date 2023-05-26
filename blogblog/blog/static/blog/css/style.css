@@ -456,7 +456,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 
 /* For the correct display of the first and last menu items
 (on the left is the feed, on the right is account management, as is customary in blogs) */
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .header-wrapper .navigation {
     display: flex;
     justify-content: space-between;
@@ -476,7 +476,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 1199px) {
   .header-wrapper .nav-left,
   .header-wrapper .nav-right {
     justify-content: flex-start;

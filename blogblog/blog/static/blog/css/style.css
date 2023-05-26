@@ -25,7 +25,7 @@
   		1.16. Shop 4 column
   		1.17. Shop 5 column
   		1.18. Shop cart
-  		1.20. Shop checkout
+  		1.20. Blog authentication
   	2. COMPONENT
   	 	2.1. Centering container
       2.2. Button
@@ -3549,28 +3549,28 @@ footer.v2 {
     margin-bottom: 30px; } }
 
 /************************************
-	Shop checkout
+	Blog authentication
 *************************************/
-.shop-checkout form .checkout-title {
+.auth-form form .auth-title {
   font-family: "Mulish-Bold";
   font-size: 24px;
-  color: #1d2c44;
+  color: #000;
   line-height: 1;
   display: block;
   margin-bottom: 40px; }
 
-.shop-checkout form .form-group {
+.auth-form form .form-group {
   margin-bottom: 20px; }
-  .shop-checkout form .form-group label {
+  .auth-form form .form-group label {
     font-family: "Mulish-Regular";
     font-size: 16px;
-    color: #1d2c44;
+    color: #000;
     line-height: 1;
     display: block;
     display: inline-block;
     text-transform: Capitalize;
     margin-bottom: 10px; }
-  .shop-checkout form .form-group input[type="text"], .shop-checkout form .form-group input[type="email"], .shop-checkout form .form-group input[type="password"] {
+  .auth-form form .form-group input[type="text"], .auth-form form .form-group input[type="email"], .auth-form form .form-group input[type="password"] {
     background-color: #edf0f5;
     border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -3589,11 +3589,11 @@ footer.v2 {
     display: block;
     width: 100%;
     background-color: transparent; }
-    .shop-checkout form .form-group input[type="text"]:focus, .shop-checkout form .form-group input[type="email"]:focus, .shop-checkout form .form-group input[type="password"]:focus {
+    .auth-form form .form-group input[type="text"]:focus, .auth-form form .form-group input[type="email"]:focus, .auth-form form .form-group input[type="password"]:focus {
       outline: 0;
       box-shadow: none;
       border-color: #a4a8b0; }
-    .shop-checkout form .form-group input[type="text"]::-webkit-input-placeholder, .shop-checkout form .form-group input[type="email"]::-webkit-input-placeholder, .shop-checkout form .form-group input[type="password"]::-webkit-input-placeholder {
+    .auth-form form .form-group input[type="text"]::-webkit-input-placeholder, .auth-form form .form-group input[type="email"]::-webkit-input-placeholder, .auth-form form .form-group input[type="password"]::-webkit-input-placeholder {
       /* WebKit, Blink, Edge */
       font-family: "Mulish-Regular";
       font-size: 16px;
@@ -3601,7 +3601,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group input[type="text"]:-moz-placeholder, .shop-checkout form .form-group input[type="email"]:-moz-placeholder, .shop-checkout form .form-group input[type="password"]:-moz-placeholder {
+    .auth-form form .form-group input[type="text"]:-moz-placeholder, .auth-form form .form-group input[type="email"]:-moz-placeholder, .auth-form form .form-group input[type="password"]:-moz-placeholder {
       /* Mozilla Firefox 4 to 18 */
       color: #909;
       font-family: "Mulish-Regular";
@@ -3610,7 +3610,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group input[type="text"]::-moz-placeholder, .shop-checkout form .form-group input[type="email"]::-moz-placeholder, .shop-checkout form .form-group input[type="password"]::-moz-placeholder {
+    .auth-form form .form-group input[type="text"]::-moz-placeholder, .auth-form form .form-group input[type="email"]::-moz-placeholder, .auth-form form .form-group input[type="password"]::-moz-placeholder {
       /* Mozilla Firefox 19+ */
       color: #909;
       font-family: "Mulish-Regular";
@@ -3619,7 +3619,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group input[type="text"]:-ms-input-placeholder, .shop-checkout form .form-group input[type="email"]:-ms-input-placeholder, .shop-checkout form .form-group input[type="password"]:-ms-input-placeholder {
+    .auth-form form .form-group input[type="text"]:-ms-input-placeholder, .auth-form form .form-group input[type="email"]:-ms-input-placeholder, .auth-form form .form-group input[type="password"]:-ms-input-placeholder {
       /* Internet Explorer 10-11 */
       font-family: "Mulish-Regular";
       font-size: 16px;
@@ -3627,7 +3627,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group input[type="text"]::-ms-input-placeholder, .shop-checkout form .form-group input[type="email"]::-ms-input-placeholder, .shop-checkout form .form-group input[type="password"]::-ms-input-placeholder {
+    .auth-form form .form-group input[type="text"]::-ms-input-placeholder, .auth-form form .form-group input[type="email"]::-ms-input-placeholder, .auth-form form .form-group input[type="password"]::-ms-input-placeholder {
       /* Microsoft Edge */
       font-family: "Mulish-Regular";
       font-size: 16px;
@@ -3635,7 +3635,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group input[type="text"]::placeholder, .shop-checkout form .form-group input[type="email"]::placeholder, .shop-checkout form .form-group input[type="password"]::placeholder {
+    .auth-form form .form-group input[type="text"]::placeholder, .auth-form form .form-group input[type="email"]::placeholder, .auth-form form .form-group input[type="password"]::placeholder {
       /* Most modern browsers support this now. */
       font-family: "Mulish-Regular";
       font-size: 16px;
@@ -3643,7 +3643,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-  .shop-checkout form .form-group textarea {
+  .auth-form form .form-group textarea {
     width: 100%;
     background-color: #edf0f5;
     border-radius: 0;
@@ -3661,11 +3661,11 @@ footer.v2 {
     line-height: 1;
     display: block;
     background-color: transparent; }
-    .shop-checkout form .form-group textarea:focus {
+    .auth-form form .form-group textarea:focus {
       outline: 0;
       box-shadow: none;
       border-color: #a4a8b0; }
-    .shop-checkout form .form-group textarea::-webkit-input-placeholder {
+    .auth-form form .form-group textarea::-webkit-input-placeholder {
       /* WebKit, Blink, Edge */
       font-family: "Mulish-Regular";
       font-size: 16px;
@@ -3673,7 +3673,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group textarea:-moz-placeholder {
+    .auth-form form .form-group textarea:-moz-placeholder {
       /* Mozilla Firefox 4 to 18 */
       color: #909;
       font-family: "Mulish-Regular";
@@ -3682,7 +3682,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group textarea::-moz-placeholder {
+    .auth-form form .form-group textarea::-moz-placeholder {
       /* Mozilla Firefox 19+ */
       color: #909;
       font-family: "Mulish-Regular";
@@ -3691,7 +3691,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group textarea:-ms-input-placeholder {
+    .auth-form form .form-group textarea:-ms-input-placeholder {
       /* Internet Explorer 10-11 */
       font-family: "Mulish-Regular";
       font-size: 16px;
@@ -3699,7 +3699,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group textarea::-ms-input-placeholder {
+    .auth-form form .form-group textarea::-ms-input-placeholder {
       /* Microsoft Edge */
       font-family: "Mulish-Regular";
       font-size: 16px;
@@ -3707,7 +3707,7 @@ footer.v2 {
       line-height: 1;
       display: block;
       line-height: -moz-block-height; }
-    .shop-checkout form .form-group textarea::placeholder {
+    .auth-form form .form-group textarea::placeholder {
       /* Most modern browsers support this now. */
       font-family: "Mulish-Regular";
       font-size: 16px;
@@ -3716,33 +3716,33 @@ footer.v2 {
       display: block;
       line-height: -moz-block-height; }
 
-.shop-checkout form .shop-checkout {
+.auth-form form .auth-form {
   padding: 30px 40px;
   background-color: #f8f8f8; }
-  .shop-checkout form .shop-checkout .table {
+  .auth-form form .auth-form .table {
     margin-bottom: 30px; }
-    .shop-checkout form .shop-checkout .table td, .shop-checkout form .shop-checkout .table th {
+    .auth-form form .auth-form .table td, .auth-form form .auth-form .table th {
       border-top: 0;
       border-bottom: 1px solid #ebebeb;
       display: table-cell !important;
       padding: 20px; }
-    .shop-checkout form .shop-checkout .table th {
+    .auth-form form .auth-form .table th {
       font-family: "Mulish-Bold";
       font-size: 16px;
       color: #1d2c44;
       line-height: 1;
       display: block;
       text-transform: uppercase; }
-    .shop-checkout form .shop-checkout .table td {
+    .auth-form form .auth-form .table td {
       font-family: "Mulish-Regular";
       font-size: 16px;
       color: #1d2c44;
       line-height: 1;
       display: block;
       text-transform: capitalize; }
-  .shop-checkout form .shop-checkout .submit-form {
+  .auth-form form .auth-form .submit-form {
     text-align: center; }
-    .shop-checkout form .shop-checkout .submit-form #place-order {
+    .auth-form form .auth-form .submit-form #place-order {
       background-color: #000;
       color: #fff;
       font-size: 14px;
@@ -3761,14 +3761,38 @@ footer.v2 {
       -o-transition: 0.3s ease;
       transition: 0.3s ease;
       display: inline-block; }
-      .shop-checkout form .shop-checkout .submit-form #place-order:hover {
+      .auth-form form .auth-form .submit-form #place-order:hover {
         background-color: #f17070;
         color: #fff;
         border: 2px solid #f17070;
         text-decoration: none; }
-      .shop-checkout form .shop-checkout .submit-form #place-order:focus {
+      .auth-form form .auth-form .submit-form #place-order:focus {
         outline: 0;
         box-shadow: 0; }
+
+.submit-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signup-link {
+    font-family: "Mulish-Regular";
+    font-size: 16px;
+    color: #000;
+    line-height: 1;
+    text-align: right;
+}
+
+.signup-link a {
+    color: #f17070;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.signup-link a:hover {
+    color: #1d2c44;
+}
 
 /************************************
   	About us

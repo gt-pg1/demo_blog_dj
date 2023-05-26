@@ -3,13 +3,33 @@
 {% block title %} Application Login {% endblock %}
 
 {% block content %}
-  <h2>Application Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign in</button>
-  </form>
-<p>No account?
-  <a href="{% url 'signup' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">Sign up</a>
-</p>
+
+<section class="blog-authentication">
+    <div class="container">
+        <div class="auth-form">
+            <div class="col-12 col-md-6 mx-auto">
+                <form method="post">
+                    <h2 class="auth-title">Login</h2>
+                    <div class="form-wrapper">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                        <div class="submit-section">
+        <button class="normal-btn" type="submit">Submit</button>
+        <p class="signup-link">No account?
+            <a href="{% url 'signup' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">Sign up</a>
+        </p>
+    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

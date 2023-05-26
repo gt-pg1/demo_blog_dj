@@ -3,10 +3,42 @@
 {% block title %} Registration {% endblock %}
 
 {% block content %}
-  <h2>Registration</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-  </form>
+
+<section class="blog-authentication">
+    <div class="container">
+        <div class="auth-form">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12 col-md-6 mx-auto">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <h2 class="auth-title">Registration</h2>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <p class="additional-text">All fields are required</p>
+                            </div>
+                        </div>
+                        <div class="form-wrapper">
+                            <div class="form-row">
+                                {% include "blog/includes/row_field_template.html" with field=form.first_name %}
+                                {% include "blog/includes/row_field_template.html" with field=form.last_name %}
+                            </div>
+                            {% include "blog/includes/column_field_template.html" with field=form.email %}
+                            <div class="form-row">
+                                {% include "blog/includes/row_field_template.html" with field=form.password1 %}
+                                {% include "blog/includes/row_field_template.html" with field=form.password2 %}
+                            </div>
+                            {{ form.password1.help_text }}
+                            {% include "blog/includes/checkbox_template.html" with field=form.agree_to_terms %}
+                            <div class="button-wrapper">
+                                <button class="normal-btn" type="submit">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}

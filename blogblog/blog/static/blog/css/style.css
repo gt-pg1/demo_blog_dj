@@ -3558,7 +3558,24 @@ footer.v2 {
   color: #000;
   line-height: 1;
   display: block;
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1200px) {
+  .auth-form form .auth-title {
+    margin-bottom: 10px;
+  }
+}
+
+.auth-form ul {
+    list-style-type: none; /* Убирает маркеры списка */
+    padding-left: 0; /* Убирает отступы слева */
+}
+
+.auth-form ul li {
+    font-family: "Mulish-Regular";
+    font-size: 14px;
+}
 
 .auth-form form .form-group {
   margin-bottom: 20px; }
@@ -3569,7 +3586,6 @@ footer.v2 {
     line-height: 1;
     display: block;
     display: inline-block;
-    text-transform: Capitalize;
     margin-bottom: 10px; }
   .auth-form .form-group .error-message {
     margin-top: 10px;
@@ -3803,6 +3819,12 @@ footer.v2 {
 
 .signup-link a:hover {
     color: #1d2c44;
+}
+
+@media only screen and (max-width: 1200px) {
+  .button-wrapper {
+    padding-bottom: 50px;
+  }
 }
 
 /************************************

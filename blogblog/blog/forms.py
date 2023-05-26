@@ -109,7 +109,8 @@ class UserSignUpForm(LowercaseEmailMixin, UserCreationForm):
     """
     first_name = forms.CharField(
         required=True,
-        help_text='Required. 150 characters or fewer.'
+        help_text='Required. 150 characters or fewer.',
+        label='First name'
     )
     last_name = forms.CharField(
         required=True,
@@ -133,7 +134,7 @@ class UserSignUpForm(LowercaseEmailMixin, UserCreationForm):
             'last_name',
             'email',
             'password1',
-            'password2'
+            'password2',
         ]
 
     def __init__(self, *args, **kwargs):
@@ -141,9 +142,11 @@ class UserSignUpForm(LowercaseEmailMixin, UserCreationForm):
         Initializes a UserSignUpForm instance.
 
         It modifies the form by adding a checkbox widget for agreeing to the terms.
+        Also removes the forced colon for Django's label_tag
         """
+        kwargs.setdefault('label_suffix', '')
         super().__init__(*args, **kwargs)
-        self.fields['agree_to_terms'].widget.attrs.update({'class': 'form-check-input'})
+        self.fields['agree_to_terms'].widget.attrs.update()
 
     def clean(self):
         """

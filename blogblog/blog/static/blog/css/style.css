@@ -2704,7 +2704,8 @@ footer.v2 {
       color: #000;
       line-height: 48px;
       display: block;
-      text-align: center; }
+      text-align: center;
+      margin-bottom: 10px;}
     .blog-detail .post-block .blog-credit {
       text-align: center;
       margin-bottom: 20px; }

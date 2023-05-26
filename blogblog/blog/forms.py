@@ -204,17 +204,17 @@ class UserLogInForm(LowercaseEmailMixin, AuthenticationForm):
     """
     Form class for user login.
 
-    Inherits from LowercaseEmailMixin and AuthenticationForm.
+    This form inherits from the LowercaseEmailMixin and AuthenticationForm classes and provides a user login functionality.
 
     Attributes:
         email (EmailField): Email field for user login.
 
     Methods:
-        __init__: Initializes the form instance.
-        clean: Performs form validation and checks if the user with the provided email and password exists, and if
-               the user is active.
+        __init__: Initializes the UserLogInForm instance.
+        clean_email: Validates the email field and checks if a user with the provided email exists and is active.
+        clean_password: Validates the password field and checks if the entered password is correct.
 
-    """
+"""
 
     email = forms.EmailField(widget=forms.EmailInput())
 
@@ -222,7 +222,7 @@ class UserLogInForm(LowercaseEmailMixin, AuthenticationForm):
         """
         Initializes the UserLogInForm instance.
 
-        Removes the 'username' field from the form and rearranges the fields to make the HTML templates more compact.
+        Removes the 'username' field from the form and reorders the fields to improve HTML template organization.
         """
 
         super().__init__(*args, **kwargs)
@@ -234,34 +234,45 @@ class UserLogInForm(LowercaseEmailMixin, AuthenticationForm):
         fields.update(self.fields)
         self.fields = fields
 
-    def clean(self):
+    def clean_email(self):
         """
-        Performs form validation and checks if the user with the provided email and password exists and is active.
-
-        Raises:
-            ValidationError: If the user with the provided email was not found, the password is incorrect,
-                             or the user is inactive.
+        Validates the email field and checks if a user with the provided email exists and is active.
 
         Returns:
-            dict: Cleaned form data.
+            str: Validated email value.
+
+        Raises:
+            forms.ValidationError: If the email is not found or is inactive.
         """
-        cleaned_data = super().clean()
-        email = cleaned_data.get('email')
-        password = cleaned_data.get('password')
 
-        if email and password:
-            try:
-                user = User.objects.get(email=email)
-            except User.DoesNotExist:
-                raise ValidationError("User with this email was not found")
+        email = self.cleaned_data.get('email')
+        try:
+            self.user_cache = User.objects.get(email=email)
+        except User.DoesNotExist:
+            raise forms.ValidationError("User with this email was not found")
 
-            if not user.check_password(password):
-                raise ValidationError("Incorrect password")
+        if self.user_cache and not self.user_cache.is_active:
+            raise forms.ValidationError("Email is inactive")
 
-            if not user.is_active:
-                raise ValidationError("User is inactive")
+        return email
 
-        return cleaned_data
+    def clean_password(self):
+        """
+        Validates the password field and checks if the entered password is correct.
+
+        Returns:
+            str: Validated password value.
+
+        Raises:
+            forms.ValidationError: If the password is incorrect.
+        """
+
+        password = self.cleaned_data.get('password')
+        if self.cleaned_data.get('email') and password:
+            user = getattr(self, 'user_cache', None)
+            if user and not user.check_password(password):
+                raise forms.ValidationError("Incorrect password")
+        return password
 
 
 class UserEditForm(forms.ModelForm):

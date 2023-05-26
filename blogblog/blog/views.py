@@ -207,7 +207,10 @@ class UserLogInView(SuccessUrlRedirectMixin, LoginView):
             username=username,
             password=password
         )
-        if user.is_authenticated:
+        if user is None:
+            form.add_error(None, 'Authentication failed')
+            return self.form_invalid(form)
+        elif user.is_authenticated:
             login(self.request, user)
             return redirect(self.request.GET.get('next', reverse('main')))
         else:

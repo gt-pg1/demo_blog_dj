@@ -16,18 +16,21 @@
                         <div class="form-group">
                             <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
                             {{ field }}
+                            {% if field.errors %}
+                            {% for error in field.errors %}
+                            <p class="error-message"><i class="fa fa-exclamation-triangle"></i>  {{ error }}</p>
+                            {% endfor %}
+                            {% endif %}
                         </div>
                         {% endfor %}
-
                     </div>
-                        <div class="submit-section">
-        <button class="normal-btn" type="submit">Submit</button>
-        <p class="signup-link">No account?
-            <a href="{% url 'signup' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">Sign up</a>
-        </p>
-    </div>
+                    <div class="submit-section">
+                        <button class="normal-btn" type="submit">Submit</button>
+                        <p class="signup-link">No account?
+                            <a href="{% url 'signup' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">Sign up</a>
+                        </p>
+                    </div>
                 </form>
-
             </div>
         </div>
     </div>

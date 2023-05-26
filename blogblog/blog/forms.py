@@ -391,7 +391,20 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['text']
-        widgets = {'text': forms.Textarea(attrs={'rows': 3})}
+        widgets = {
+            'text': forms.Textarea(
+                attrs={
+                    'rows': 6,
+                    'cols': 30,
+                    'class': 'textarea-form trans-bg',
+                    'placeholder': 'Comment',
+                    'id': 'messages',
+                }
+            )
+        }
+        labels = {
+            'text': False,
+        }
 
 
 class ContentForm(forms.ModelForm):

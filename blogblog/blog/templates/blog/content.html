@@ -1,44 +1,98 @@
 {% extends "blog/base.html" %}
 
-{% block title %}{{ content.title }}{% endblock %}
+{% block title %}{{ content.title }} — Demo Blog{% endblock %}
 
 {% block content %}
-    <p><a href="{% url 'feed' %}{% if feed_page %}?page={{ feed_page }}{% endif %}">Back to feed</a></p>
-    {% if content.author == request.user.author %}
-        <a href="{% url 'update' slug=content.slug %}">Edit</a>
-    {% endif %}
-    <h1>{{ content.title }}</h1>
-    <p>Published on {{ content.date_time_create }} by {{ content.author }}</p>
-    <p>{{ content.text|safe }}</p>
-    {% if content.author == request.user.author and content.is_published %}
-        <a href="{% url 'unpublish' slug=content.slug %}?next={{ request.path }}">Unpublish</a>
-    {% elif content.author == request.user.author and not content.is_published %}
-        <a href="{% url 'publish' slug=content.slug %}?next={{ request.path }}">Publish</a>
-    {% endif %}
-
-    {% if comments %}
-        <h2>Comments:</h2>
-        <p>{{ comments_count }} comment{{ comments_count|pluralize }}</p>
-        <ul>
-        {% for comment in comments %}
-            <li>
-                <p>{{ comment.text }}</p>
-                <p>Published on {{ comment.date_time_create }} by {{ comment.author }}</p>
-                {% if request.user.is_authenticated and comment.author == request.user.author %}
-                <button onclick="location.href='{% url 'delete_comment' pk=comment.pk slug=content.slug %}?page={{ feed_page }}'">Delete</button>
-                {% endif %}
-            </li>
-        {% empty %}
-            <p>No comments yet.</p>
-        {% endfor %}
-        </ul>
-    {% endif %}
-
-    <h2>Add Comment:</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-
-{% endblock %}
+<section class="blog-detail">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 mx-auto">
+                <div class="post-block">
+                    <h1 class="blog-detail-title">{{ content.title }}</h1>
+                    <div class="blog-credit">
+                        <div class="blog-credit_wrapper">
+                            <p>{{ content.author }} | {{ content.date_time_create }}</p>
+                        </div>
+                    </div>
+                    <div class="control-panel">
+                        <a href="{% url 'feed' %}{% if feed_page %}?page={{ feed_page }}{% endif %}">Back to feed</a>
+                        {% if content.author == request.user.author %} <a href="{% url 'update' slug=content.slug %}">Edit</a>
+                        {% endif %}
+                    </div>
+                    <div class="user-content">
+                        {{ content.text|safe }}
+                    </div>
+                    <div class="another-posts">
+                        {% if has_prev_content %}
+                        <a class="arrow-control arrow-prev"
+                           href="{% url 'content' slug=prev_content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}">
+                            <i class="arrow_left"></i>
+                        </a>
+                        {% endif %}
+                        {% if has_next_content %}
+                        <a class="arrow-control arrow-next"
+                           href="{% url 'content' slug=next_content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}">
+                            <i class="arrow_right"></i>
+                        </a>
+                        {% endif %}
+                        <div class="row no-gutters">
+                            {% if prev_content %}
+                            <div class="col-12 col-md-6">
+                                <a href="{% url 'content' slug=prev_content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}"></a>
+                                <div class="another-post_block prev-post">
+                                    <div class="post-title">
+                                        <p>Previous post</p>
+                                        <a href="{% url 'content' slug=prev_content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}">{{prev_content.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if next_content %}
+                            <div class="col-12 col-md-6">
+                                <div class="another-post_block text-right next-post">
+                                    <div class="post-title">
+                                        <p>Next post</p>
+                                        <a href="{% url 'content' slug=next_content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}">{{next_content.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="post-comment">
+                        <h2>Leave a comment</h2>
+                        <div class="comments_count">
+                            <p>{{ comments_count }} comment{{ comments_count|pluralize }}</p></div>
+                        {% if comments %}
+                        {% for comment in comments %}
+                        <div class="post-credit">
+                            <div class="author-date">
+                                <h5 class="author-name">{{ comment.author }}</h5>
+                                <h5 class="upload-day">{{ comment.date_time_create }}</h5>
+                            </div>
+                            {% if request.user.is_authenticated and comment.author == request.user.author %}
+                            <a href="{% url 'delete_comment' pk=comment.pk slug=content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}#comments-end"
+                               class="delete-icon">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <p>{{ comment.text }}</p>
+                        {% empty %}
+                        <p>No comments yet.</p>
+                        {% endfor %}
+                        {% endif %}
+                        <form method="post" action="#comments-end">
+                            <div class="form-group">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                            </div>
+                            <button class="normal-btn" type="submit">Submit</button>
+                        </form>
+                        <div id="comments-end"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> {% endblock %}

@@ -40,6 +40,7 @@
       2.8. Post audio
       2.9. Post classic
         2.9.1. Post classic text in
+        2.9.2. Custom Blog detail (for user content)
       2.10. Post mini
       2.11. Post quote
       2.12. Post slide
@@ -221,7 +222,7 @@ header {
         header .header-wrapper .header-menu ul .nav-item .pisen-nav-link {
           font-family: "Mulish-Bold";
           font-size: 16px;
-          color: #1d2c44;
+          color: #000;
           line-height: 24px;
           display: inline-block;
           -webkit-transition: 0.3s ease;
@@ -275,7 +276,7 @@ header {
             header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item .sub-menu-link {
               font-family: "Mulish-Regular";
               font-size: 16px;
-              color: #1d2c44;
+              color: #000;
               line-height: 40px;
               display: inline-block;
               -webkit-transition: 0.3s ease;
@@ -303,6 +304,9 @@ header {
                 -ms-transition: all 0.4s cubic-bezier(0.22, 0.68, 0, 1.71);
                 -o-transition: all 0.4s cubic-bezier(0.22, 0.68, 0, 1.71);
                 transition: all 0.4s cubic-bezier(0.22, 0.68, 0, 1.71); }
+              header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item .sub-menu-link:focus,
+              header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item .sub-menu-link:active {
+                outline: none;}
 
     header .header-wrapper .menu-function {
       text-align: right; }
@@ -497,13 +501,13 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   .posts .post-describe {
     font-family: "Mulish-Regular";
     font-size: 17px;
-    color: #646d7c;
+    color: #000;
     line-height: 26px;
     display: block; }
   .posts .post-title {
     font-family: "Mulish-Bold";
     font-size: 36px;
-    color: #1d2c44;
+    color: #000;
     line-height: 44px;
     display: inline-block;
     -webkit-transition: 0.3s ease;
@@ -2697,7 +2701,7 @@ footer.v2 {
     .blog-detail .post-block .blog-detail-title {
       font-family: "Mulish-Bold";
       font-size: 36px;
-      color: #1d2c44;
+      color: #000;
       line-height: 48px;
       display: block;
       text-align: center; }
@@ -2876,15 +2880,15 @@ footer.v2 {
         flex-grow: 1; }
         .blog-detail .another-posts .another-post_block .post-title p {
           font-family: "Mulish-Regular";
-          font-size: 16px;
+          font-size: 14px;
           color: #a4a8b0;
           line-height: 1;
           display: block;
           margin-bottom: 15px; }
         .blog-detail .another-posts .another-post_block .post-title a {
           font-family: "Mulish-Bold";
-          font-size: 20px;
-          color: #1d2c44;
+          font-size: 16px;
+          color: #000;
           line-height: 26px;
           display: inline-block;
           -webkit-transition: 0.3s ease;
@@ -2940,7 +2944,7 @@ footer.v2 {
   .blog-detail .post-comment h2 {
     font-family: "Mulish-Bold";
     font-size: 30px;
-    color: #1d2c44;
+    color: #000;
     line-height: 1;
     display: block;
     margin-bottom: 30px; }
@@ -3063,6 +3067,169 @@ footer.v2 {
 @media (min-width: 768px) and (max-width: 991px) {
   .blog-detail .another-posts .arrow-control {
     display: none; } }
+
+/************************************
+   	Custom Blog detail (for user content)
+*************************************/
+
+.post-block .control-panel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-family: "Mulish-Bold";
+}
+
+.post-block .control-panel a {
+  color: #f17070;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.post-block .control-panel a:hover {
+  color: #000000;
+}
+
+
+
+.user-content p {
+  font-family: "Mulish-Regular";
+  font-size: 18px;
+  color: #000000;
+  line-height: 30px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.user-content h2,
+.user-content h3 {
+  font-family: "Mulish-Bold";
+  color: #000000;
+  margin-top: 26px;
+  margin-bottom: 12px;
+}
+
+.user-content blockquote {
+  position: relative;
+  padding-left: 13px;
+  border-left: 3px solid #1d2c44;
+  margin-left: 20px;
+}
+
+.user-content blockquote p {
+  font-family: "Mulish-Italic";
+  font-size: 18px;
+  color: #000000;
+  line-height: 30px;
+  display: block;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.user-content blockquote p:before {
+  content: '“';
+}
+
+.user-content blockquote p:after {
+  content: '”';
+}
+
+.user-content ol {
+  font-family: "Mulish-Regular";
+  font-size: 18px;
+  color: #000000;
+  line-height: 30px;
+  margin-bottom: 20px;
+  list-style: decimal;  /* тип маркера для нумерованного списка */
+  padding-left: 20px;
+}
+
+.user-content ul {
+  font-family: "Mulish-Regular";
+  font-size: 18px;
+  color: #000000;
+  line-height: 30px;
+  margin-bottom: 20px;
+  list-style: disc;  /* тип маркера для маркированного списка */
+  padding-left: 20px;
+}
+
+.user-content table {
+  font-family: "Mulish-Regular";
+  font-size: 18px;
+  color: #000000;
+  line-height: 30px;
+  margin-bottom: 20px;
+  width: 100%;  /* ширина таблицы */
+  text-align: left;  /* выравнивание текста */
+  border-collapse: collapse;  /* отображение границ */
+}
+
+.user-content table th, .user-content table td {
+  padding: 10px;  /* внутренние отступы ячеек */
+  border: 2px solid #1d2c44;  /* граница ячеек */
+}
+
+.user-content a {
+  color: #f17070;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.user-content a:hover {
+  color: #000000;
+}
+
+.post-comment .comments_count p {
+  font-family: "Mulish-Regular";
+  font-size: 14px;
+  color: #000000;
+  line-height: 1;
+  display: block;
+  display: inline-block;
+  margin-bottom: 10px;}
+
+.post-comment .post-credit {
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow-x: auto;
+  justify-content: space-between;
+  overflow: visible;
+  }
+
+.post-comment .post-credit .author-date {
+  display: flex;
+  }
+
+.post-comment .author-name,
+.post-comment .upload-day {
+  font-family: "Mulish-Bold";
+  font-size: 16px;
+  color: #000000;
+  display: block;
+  text-transform: uppercase;
+  margin-right: 35px;
+  }
+
+.post-comment p {
+  font-family: "Mulish-Regular";
+  font-size: 16px;
+  color: #000000;
+  line-height: 25px;
+  display: block;
+  margin-bottom: 30px;
+}
+.delete-icon i.fa.fa-trash {
+  color: #1d2c44; /* цвет иконки в обычном состоянии */
+  transition: color 0.3s ease; /* плавный переход цвета за 0.3 секунды */
+  position: relative;
+  top: -6px;  /* измените значение на нужное вам */
+}
+
+.delete-icon:hover i.fa.fa-trash {
+  color: #f17070; /* цвет иконки при наведении */
+}
 
 /************************************
    	Shop 4 column

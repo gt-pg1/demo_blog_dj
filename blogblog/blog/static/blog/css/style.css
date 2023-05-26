@@ -3571,10 +3571,14 @@ footer.v2 {
     display: inline-block;
     text-transform: Capitalize;
     margin-bottom: 10px; }
-  .auth-form .form-group p {
+  .auth-form .form-group .error-message {
     margin-top: 10px;
     font-family: "Mulish-Regular";
     font-size: 14px;}
+  .auth-form .form-group .additional-text {
+    font-family: "Mulish-Regular";
+    font-size: 14px;
+    margin-top: 5px;}
   .auth-form .fa-exclamation-triangle {
     color: #f17070;}
   .auth-form form .form-group input[type="text"], .auth-form form .form-group input[type="email"], .auth-form form .form-group input[type="password"] {

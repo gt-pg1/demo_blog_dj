@@ -18,7 +18,7 @@
                             {{ field }}
                             {% if field.errors %}
                             {% for error in field.errors %}
-                            <p class="error-message"><i class="fa fa-exclamation-triangle"></i>  {{ error }}</p>
+                            <small class="error-message"><i class="fa fa-exclamation-triangle"></i>  {{ error }}</small>
                             {% endfor %}
                             {% endif %}
                         </div>

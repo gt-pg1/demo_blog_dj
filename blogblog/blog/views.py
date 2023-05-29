@@ -382,6 +382,7 @@ class FeedView(AuthenticationRedirectMixin, ListView):
         The method also updates the `short_text` attribute of each content item
         in the `contents` queryset. It calls the `short_text` method of the `Content`
         model, which returns a shortened version of the article text.
+        Adds the 'title' attribute to the context data.
 
         Args:
             **kwargs: Arbitrary keyword arguments.
@@ -441,6 +442,15 @@ class MyFeedView(LoginRequiredMixin, FeedView):
         return queryset
 
     def get_context_data(self, **kwargs):
+        """
+        Returns the context data for rendering the view.
+
+        Adds the 'title' attribute to the context data.
+
+        Returns:
+            dict: The context data for rendering the view.
+        """
+
         context = super().get_context_data(**kwargs)
         context['title'] = 'My Feed — Demo Blog'
         return context

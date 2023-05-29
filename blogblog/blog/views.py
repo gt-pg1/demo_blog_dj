@@ -392,6 +392,7 @@ class FeedView(AuthenticationRedirectMixin, ListView):
 
         context = super().get_context_data(**kwargs)
         context['feed_page'] = context['page_obj'].number
+        context['title'] = 'Feed — Demo Blog'
         for content in context['contents']:
             content.short_text = content.short_text(250)
 
@@ -439,6 +440,11 @@ class MyFeedView(LoginRequiredMixin, FeedView):
         queryset = queryset.annotate(comment_count=Count('comment'))
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'My Feed — Demo Blog'
+        return context
+
 
 class ContentView(AuthenticationRedirectMixin, DetailView):
     """
@@ -478,8 +484,19 @@ class ContentView(AuthenticationRedirectMixin, DetailView):
 
         content = self.object
         queryset = self.get_queryset()
-        prev_content = queryset.filter(date_time_create__lt=content.date_time_create, is_published=True).order_by('-date_time_create').first()
-        next_content = queryset.filter(date_time_create__gt=content.date_time_create, is_published=True).order_by('date_time_create').first()
+        prev_content = (
+            queryset
+            .filter(date_time_create__lt=content.date_time_create, is_published=True)
+            .order_by('-date_time_create')
+            .first()
+        )
+
+        next_content = (
+            queryset
+            .filter(date_time_create__gt=content.date_time_create, is_published=True)
+            .order_by('date_time_create')
+            .first()
+        )
 
         context['prev_content'] = prev_content
         context['next_content'] = next_content
@@ -654,7 +671,6 @@ class CreateContentView(CreateAuthorMixin, CreateView):
         author.save()
 
         return response
-
 
 
 class UpdateContentView(CreateAuthorMixin, UpdateView):

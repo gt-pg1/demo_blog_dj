@@ -1,12 +1,34 @@
 {% extends 'blog/base.html' %}
 
-{% block title %} Edit Article {% endblock %}
+{% block title %} Edit Article — Demo Blog {% endblock %}
 
 {% block content %}
-  <h2>Edit Article</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update Article</button>
-  </form>
+<section class="blog-authentication">
+    <div class="container">
+        <div class="auth-form">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12 col-md-10 mx-auto">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <h2 class="auth-title">Edit Article</h2>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <p class="additional-text"></p>
+                            </div>
+                        </div>
+                        <div class="form-wrapper">
+                            {% include "blog/includes/column_field_template.html" with field=form.title %}
+                            {% include "blog/includes/column_field_template.html" with field=form.text %}
+                        </div>
+                        <div class="button-wrapper">
+                            <button class="normal-btn" type="submit">Update Article</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}

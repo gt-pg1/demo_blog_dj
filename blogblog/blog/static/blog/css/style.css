@@ -3558,10 +3558,10 @@ footer.v2 {
   color: #000;
   line-height: 1;
   display: block;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 767px) {
   .auth-form form .auth-title {
     margin-bottom: 10px;
   }
@@ -3597,6 +3597,15 @@ footer.v2 {
     margin-top: 5px;}
   .auth-form .fa-exclamation-triangle {
     color: #f17070;}
+  .auth-form form .form-group .uneditable {
+    padding: 13px 20px;
+    font-family: "Mulish-Regular";
+    font-size: 16px;
+    color: #646d7c;
+    line-height: 1;
+    display: block;
+    width: 100%;
+    background-color: transparent;}
   .auth-form form .form-group input[type="text"], .auth-form form .form-group input[type="email"], .auth-form form .form-group input[type="password"] {
     background-color: #edf0f5;
     border-radius: 2px;
@@ -3821,11 +3830,75 @@ footer.v2 {
     color: #1d2c44;
 }
 
-@media only screen and (max-width: 1200px) {
-  .button-wrapper {
-    padding-bottom: 50px;
-  }
+
+.button-wrapper {
+  padding-bottom: 50px;
 }
+
+.button-wrapper {
+    padding-bottom: 50px;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+}
+
+.messages .message {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    font-family: "Mulish-Regular";
+    font-size: 14px;
+}
+
+.messages .message ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.messages .message ul li {
+    padding: 0;
+    margin: 0;
+}
+
+.messages .message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.messages .message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.messages .icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.error-icon .fas {
+    color: #721c24;
+}
+
+.success-icon .fas {
+    color: #155724;
+}
+
+.messages .errorlist {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+
 
 /************************************
   	About us

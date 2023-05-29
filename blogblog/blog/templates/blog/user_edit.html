@@ -1,28 +1,93 @@
 {% extends "blog/base.html" %}
 
-{% block title %}Edit User Profile{% endblock %}
+{% block title %}Edit User Profile — Demo Blog{% endblock %}
 
 {% block content %}
 {% if messages %}
-<p>
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-7 mx-auto px-0">
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {% if message.tags == 'error' %}
+                            <span class="icon error-icon"><i class="fas fa-times"></i></span>
+                        {% else %}
+                            <span class="icon success-icon"><i class="fas fa-check"></i></span>
+                        {% endif %}
+                        {{ message|safe }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endif %}
 
-<h1>Edit User Profile</h1>
-<form method="post">
-    {% csrf_token %}
-    <p>Email: {{ user_form.email.value }}</p>
-    {{ user_form.as_p }}
 
-    <button type="submit" name="save_user">Save</button>
-</form>
-<h2>Change password</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ password_form.as_p }}
-    <button type="submit" name="change_password">Change Password</button>
-</form>
+
+
+<section class="blog-authentication">
+    <div class="container">
+        <div class="auth-form">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12 col-md-7 mx-auto">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <h1 class="auth-title">Edit User Profile</h1>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <p class="additional-text"></p>
+                            </div>
+                        </div>
+                        <div class="form-wrapper">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <div class="uneditable">{{ user_form.email.value }}</div>
+                                {{ user_form.email }}
+                            </div>
+                            {% include "blog/includes/column_field_template.html" with field=user_form.username %}
+                            <div class="form-row">
+                                {% include "blog/includes/row_field_template.html" with field=user_form.first_name %}
+                                {% include "blog/includes/row_field_template.html" with field=user_form.last_name %}
+                            </div>
+                            {% include "blog/includes/column_field_template.html" with field=user_form.phone %}
+                            <div class="button-wrapper">
+                                <button class="normal-btn" type="submit" name="save_user">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12 col-md-7 mx-auto">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <h2 class="auth-title">Change password</h2>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <p class="additional-text"></p>
+                            </div>
+                        </div>
+                        <div class="form-wrapper">
+                            {% include "blog/includes/column_field_template.html" with field=password_form.old_password%}
+                            {% include "blog/includes/column_field_template.html" with field=password_form.new_password1%}
+                            {% include "blog/includes/column_field_template.html" with field=password_form.new_password2%}
+                            <div class="button-wrapper">
+                                <button class="normal-btn" type="submit" name="change_password">Change Password</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
 {% endblock %}
+

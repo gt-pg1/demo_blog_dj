@@ -3,7 +3,6 @@ from collections import OrderedDict
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 
 from .helpers import to_latin
 from .models import Comment, Content, Author
@@ -226,8 +225,10 @@ class UserLogInForm(LowercaseEmailMixin, AuthenticationForm):
         Initializes the UserLogInForm instance.
 
         Removes the 'username' field from the form and reorders the fields to improve HTML template organization.
+        Also removes the forced colon for Django's label_tag
         """
 
+        kwargs.setdefault('label_suffix', '')
         super().__init__(*args, **kwargs)
 
         del self.fields['username']
@@ -325,6 +326,8 @@ class UserEditForm(forms.ModelForm):
         If the 'Author.DoesNotExist' exception is raised during the retrieval process, it means that there is no
         associated author for the user instance, and the 'phone' field is left untouched.
 
+        Also removes the forced colon for Django's label_tag
+
         Args:
             *args: Variable length argument list.
             **kwargs: Arbitrary keyword arguments.
@@ -332,6 +335,9 @@ class UserEditForm(forms.ModelForm):
         Attributes:
             author (Author): The associated author instance, if available.
         """
+
+        kwargs.setdefault('label_suffix', '')
+
         super().__init__(*args, **kwargs)
         self.author = None
         instance = kwargs.get('instance')

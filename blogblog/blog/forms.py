@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 from .helpers import to_latin
 from .models import Comment, Content, Author
+from .validators import phone_validator
 
 
 class LowercaseEmailMixin:
@@ -51,7 +52,8 @@ class AdminUserCreationForm(LowercaseEmailMixin, UserCreationForm):
         help_text='Required'
     )
     phone = forms.CharField(
-        required=False
+        required=False,
+        validators=[phone_validator]
     )
     first_name = forms.CharField(
         required=True,
@@ -305,7 +307,7 @@ class UserEditForm(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.EmailField(widget=forms.HiddenInput)
-    phone = forms.CharField(max_length=25, required=False)
+    phone = forms.CharField(max_length=25, required=False, validators=[phone_validator])
     username = forms.CharField()
 
     class Meta:

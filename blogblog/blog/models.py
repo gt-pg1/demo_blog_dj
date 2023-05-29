@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from tinymce.models import HTMLField
 
 from .helpers import to_latin
+from .validators import phone_validator
 
 User._meta.get_field('email')._unique = True
 
@@ -87,11 +88,21 @@ class Author(models.Model):
 
     user: User
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE
+    )
     date_last_active = models.DateTimeField()
-    phone = models.CharField(max_length=25, null=True, blank=True)
-    date_time_last_post = models.DateTimeField(null=True, blank=True)
-
+    phone = models.CharField(
+        max_length=25,
+        null=True,
+        blank=True,
+        validators=[phone_validator]
+    )
+    date_time_last_post = models.DateTimeField(
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         """
@@ -146,13 +157,35 @@ class Content(models.Model, ShortTextMixin):
     id: int
     text: str
 
-    title = models.CharField(max_length=120, null=False, blank=False)
-    slug = models.SlugField(max_length=180, unique=True, null=False, blank=False)
-    text = HTMLField(null=False, verbose_name='Text (maximum 2000 characters)')
-    date_time_create = models.DateTimeField(auto_now_add=True)
-    date_time_edit = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    is_published = models.BooleanField(default=True, null=False)
+    title = models.CharField(
+        max_length=120,
+        null=False,
+        blank=False
+    )
+    slug = models.SlugField(
+        max_length=180,
+        unique=True,
+        null=False,
+        blank=False
+    )
+    text = HTMLField(
+        null=False,
+        verbose_name='Text (maximum 2000 characters)'
+    )
+    date_time_create = models.DateTimeField(
+        auto_now_add=True
+    )
+    date_time_edit = models.DateTimeField(
+        auto_now=True
+    )
+    author = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE
+    )
+    is_published = models.BooleanField(
+        default=True,
+        null=False
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -230,7 +263,20 @@ class Comment(models.Model, ShortTextMixin):
 
     text: str
 
-    text = models.CharField(max_length=500, null=False)
-    date_time_create = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
-    content = models.ForeignKey(Content, on_delete=models.SET_NULL, null=True)
+    text = models.CharField(
+        max_length=500,
+        null=False
+    )
+    date_time_create = models.DateTimeField(
+        auto_now_add=True
+    )
+    author = models.ForeignKey(
+        Author,
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    content = models.ForeignKey(
+        Content,
+        on_delete=models.SET_NULL,
+        null=True
+    )

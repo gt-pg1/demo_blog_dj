@@ -30,5 +30,10 @@
     </div>
 </div>
 {% empty %}
-<h1>No articles yet.</h1>
+<div class="center-screen">
+    <h1>No articles yet.</h1>
+    <div class="button-wrapper">
+        <a href="{% url 'create_content' %}" class="normal-btn">Create</a>
+    </div>
+</div>
 {% endfor %}

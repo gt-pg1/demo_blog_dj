@@ -1231,6 +1231,20 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
       .posts.blog-index .post-slide .post-img-multi-slide .post-slide_img {
         height: auto; } }
 
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 65vh; /* vh stands for Viewport Height, it will take the full height of the viewport */
+    text-align: center;
+}
+
+.center-screen h1 {
+    font-family: 'Mulish-Bold';
+    margin-bottom: 20px;
+}
+
 /************************************
    	Blog detail
 *************************************/
@@ -1713,11 +1727,11 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 }
 
 .user-content blockquote p:before {
-  content: '“';
+    content: '\201C'; /* “ */
 }
 
 .user-content blockquote p:after {
-  content: '”';
+    content: '\201D'; /* ” */
 }
 
 .user-content ol {

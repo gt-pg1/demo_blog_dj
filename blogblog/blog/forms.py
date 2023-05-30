@@ -368,32 +368,25 @@ class UserEditForm(forms.ModelForm):
 
 
 class UserPasswordChangeForm(PasswordChangeForm):
-
     """
-    !!!THIS METHOD IS NOT USED IN THE WEB APP CURRENTLY. !!!
-    !!!IT WILL BE SAVED UNTIL THE LAYOUT AND DESIGN OF THE SITE IS ADDED!!!
-    A form for changing the user's password.
+    A custom password change form for the user.
 
-    Fields:
-        old_password (CharField): The field for the old password.
-        new_password1 (CharField): The field for the new password.
-        new_password2 (CharField): The field for confirming the new password.
+    This form extends the default `PasswordChangeForm` and adds additional customization.
+    First of all, to remove autofocus from the form.
 
-    The 'UserPasswordChangeForm' class provides a form for users to change their password.
-    It extends Django's built-in 'PasswordChangeForm' class and adds additional customization.
+    Attributes:
+        old_password (forms.CharField): The field for the user's old password. Required.
 
     Meta:
-        model (User): The User model class associated with the form.
-        fields (tuple): The fields to include in the form.
-
+        model (User): The User model to be used for the form.
+        fields (tuple): The fields to be included in the form.
     """
-    old_password = forms.PasswordInput(attrs={'type': 'password'})
-    new_password1 = forms.PasswordInput(attrs={'type': 'password'})
-    new_password2 = forms.PasswordInput(attrs={'type': 'password'})
 
-    class Meta:
-        model = User
-        fields = ('old_password', 'new_password1', 'new_password2')
+    old_password = forms.CharField(
+        label="Old password",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autofocus': False}),
+    )
 
 
 class CommentForm(forms.ModelForm):

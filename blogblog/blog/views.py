@@ -15,7 +15,7 @@ from django.utils import timezone
 from django.views import View
 from django.views.generic import FormView, ListView, DetailView, CreateView, UpdateView
 
-from .forms import UserSignUpForm, UserLogInForm, CommentForm, ContentForm, UserEditForm
+from .forms import UserSignUpForm, UserLogInForm, CommentForm, ContentForm, UserEditForm, UserPasswordChangeForm
 from .models import Content, Comment
 
 
@@ -238,7 +238,7 @@ class UserEditView(View):
 
     template_name = 'blog/user_edit.html'
     user_form_class = UserEditForm
-    password_form_class = PasswordChangeForm
+    password_form_class = UserPasswordChangeForm
     success_url = reverse_lazy('user_edit')
 
     def get(self, request, *args, **kwargs):

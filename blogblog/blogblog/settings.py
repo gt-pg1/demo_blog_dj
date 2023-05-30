@@ -144,6 +144,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': 400,
     'skin': 'oxide-dark',
     'menubar': False,
+    'contextmenu': False,
     'toolbar': [
         {
             'name': 'history', 'items': ['undo', 'redo']

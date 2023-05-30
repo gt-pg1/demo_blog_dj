@@ -525,10 +525,9 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   .posts .upload-day, .posts .author-name {
     font-family: "Mulish-Regular";
     font-size: 14px;
-    color: #a4a8b0;
+    color: #646d7c;
     line-height: 1;
     display: block;
-    text-transform: uppercase;
     margin-right: 30px; }
   .posts .author-name.mini {
     font-size: 12px; }
@@ -1290,11 +1289,11 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     margin-bottom: 30px; }
     .blog-detail .post-block .blog-detail-title {
       font-family: "Mulish-Bold";
-      font-size: 36px;
+      font-size: 32px;
       color: #000;
-      line-height: 48px;
+      line-height: 42px;
       display: block;
-      text-align: center;
+      text-align: left;
       margin-bottom: 10px;}
     .blog-detail .post-block .blog-credit {
       text-align: center;
@@ -1684,12 +1683,24 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   color: #f17070;
   transition: color 0.3s ease;
   text-decoration: none;
+  margin-right: 40px;
+}
+
+.post-block .control-panel a:last-child {
+  margin-right: 0;
 }
 
 .post-block .control-panel a:hover {
   color: #000000;
 }
 
+.control-panel-right {
+  display: flex;
+}
+
+.control-panel a i {
+  margin-right: 5px;
+}
 
 
 .user-content p {
@@ -1840,6 +1851,39 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 
 .delete-icon:hover i.fa.fa-trash {
   color: #f17070;
+}
+
+.blog-detail .post-block .blog-credit {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.blog-detail .post-block .blog-credit .author {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.blog-detail .post-block .blog-credit .author .author-name {
+    font-family: "Mulish-Regular";
+    font-size: 14px;
+    color: #646d7c;
+    line-height: 1;
+    display: block;
+    display: inline-block;
+}
+
+.blog-detail .post-block .blog-credit .upload-day {
+    font-family: "Mulish-Regular";
+    font-size: 14px;
+    color: #646d7c;
+    line-height: 1;
+    display: block;
+    display: inline-block;
 }
 
 @media only screen and (max-width: 576px) {

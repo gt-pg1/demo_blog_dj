@@ -8,17 +8,35 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8 mx-auto">
                 <div class="post-block">
-                    <h1 class="blog-detail-title">{{ content.title }}</h1>
                     <div class="blog-credit">
-                        <div class="blog-credit_wrapper">
-                            <p>{{ content.author }} | {{ content.date_time_create }}</p>
+                        <div class="author">
+                            <p class="author-name">{{ content.author }}</p>
+                        </div>
+                        <p class="upload-day">{{ content.date_time_create }}</p>
+                    </div>
+                    <h1 class="blog-detail-title">{{ content.title }}</h1>
+                    <div class="control-panel">
+                        <a href="{% url 'feed' %}{% if feed_page %}?page={{ feed_page }}{% endif %}">
+                            <i class="fas fa-arrow-left"></i> Back to feed
+                        </a>
+                        <div class="control-panel-right">
+                            {% if content.author == request.user.author and content.is_published %}
+                            <a href="{% url 'unpublish' slug=content.slug %}?next={{ request.path }}?page={{feed_page}}">
+                                <i class="fas fa-eye-slash"></i> Unpublish
+                            </a>
+                            {% elif content.author == request.user.author and not content.is_published %}
+                            <a href="{% url 'publish' slug=content.slug %}?next={{ request.path }}?page={{feed_page}}">
+                                <i class="fas fa-eye"></i> Publish
+                            </a>
+                            {% endif %}
+                            {% if content.author == request.user.author %}
+                            <a href="{% url 'update' slug=content.slug %}">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            {% endif %}
                         </div>
                     </div>
-                    <div class="control-panel">
-                        <a href="{% url 'feed' %}{% if feed_page %}?page={{ feed_page }}{% endif %}">Back to feed</a>
-                        {% if content.author == request.user.author %} <a href="{% url 'update' slug=content.slug %}">Edit</a>
-                        {% endif %}
-                    </div>
+
                     <div class="user-content">
                         {{ content.text|safe }}
                     </div>

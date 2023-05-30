@@ -647,8 +647,26 @@ class CreateContentView(CreateAuthorMixin, CreateView):
         cooldown_period (timedelta): The cooldown period between content submissions in minutes.
     """
 
-    template_name = 'blog/create.html'
+    template_name = 'blog/article_form.html'
     cooldown_period = timedelta(minutes=10)
+
+    def get_context_data(self, **kwargs):
+        """
+        Adds additional context data to be used in the template.
+
+        Adds the page title and button text to the context.
+
+        Args:
+            **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+            dict: The updated context data.
+        """
+
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Create Article'
+        context['button_text'] = 'Create Article'
+        return context
 
     def form_valid(self, form):
         """
@@ -692,10 +710,29 @@ class UpdateContentView(CreateAuthorMixin, UpdateView):
         - UpdateView: Provides the functionality for updating existing objects.
 
     Attributes:
-        - template_name (str): The name of the template used to render the view.
+        template_name (str): The name of the template used to render the view.
     """
 
-    template_name = 'blog/update.html'
+    template_name = 'blog/article_form.html'
+
+    def get_context_data(self, **kwargs):
+        """
+        Adds additional context data to be used in the template.
+
+        Adds the page title and button text to the context.
+
+        Args:
+            **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+            dict: The updated context data.
+        """
+
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = 'Edit Article'
+        context['button_text'] = 'Update Article'
+        return context
+
 
 
 def change_content_status(request, slug, publish):

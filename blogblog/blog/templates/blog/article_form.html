@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} {{ page_title }} — Demo Blog {% endblock %}
+
+{% block content %}
+{% if messages %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-10 mx-auto px-0">
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {% if message.tags == 'error' %}
+                            <span class="icon error-icon"><i class="fas fa-times"></i></span>
+                        {% else %}
+                            <span class="icon success-icon"><i class="fas fa-check"></i></span>
+                        {% endif %}
+                        {{ message|safe }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<section class="blog-authentication">
+    <div class="container">
+        <div class="auth-form">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12 col-md-10 mx-auto">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <h2 class="auth-title">{{ page_title }}</h2>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <p class="additional-text"></p>
+                            </div>
+                        </div>
+                        <div class="form-wrapper">
+                            {% include "blog/includes/column_field_template.html" with field=form.title %}
+                            {% include "blog/includes/column_field_template.html" with field=form.text %}
+                        </div>
+                        <div class="button-wrapper">
+                            <button class="normal-btn" type="submit">{{ button_text }}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

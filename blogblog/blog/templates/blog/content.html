@@ -60,9 +60,24 @@
                         </div>
                     </div>
                     <div class="post-comment">
-                        <h2>Leave a comment</h2>
-                        <div class="comments_count">
-                            <p>{{ comments_count }} comment{{ comments_count|pluralize }}</p></div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <h2>Leave a comment</h2>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="comments-count">{{ comments_count }} comment{{ comments_count|pluralize }}</div>
+                            </div>
+                        </div>
+
+                        <form method="post" action="#comments-end">
+                            <div class="form-group">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                            </div>
+                            <div class="button-wrapper">
+                                <button class="normal-btn" type="submit">Submit</button>
+                            </div>
+                        </form>
                         {% if comments %}
                         {% for comment in comments %}
                         <div class="post-credit">
@@ -82,17 +97,11 @@
                         <p>No comments yet.</p>
                         {% endfor %}
                         {% endif %}
-                        <form method="post" action="#comments-end">
-                            <div class="form-group">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                            </div>
-                            <button class="normal-btn" type="submit">Submit</button>
-                        </form>
                         <div id="comments-end"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section> {% endblock %}
+</section>
+{% endblock %}

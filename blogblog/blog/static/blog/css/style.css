@@ -571,6 +571,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
       text-decoration: none; }
   .posts .post-comment a:before {
       content: ""; }
+
   .posts .post-img {
     width: 100%;
     overflow: hidden; }
@@ -679,7 +680,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 /************************************
    	Custom Post (mobile version improvements)
 *************************************/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
     .posts .post-title {
         font-size: 28px;
         line-height: 34px;
@@ -1149,14 +1150,15 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 .blog-index .post-detail .post-credit .author {
   display: flex;
   align-items: center;
-  margin-right: 15px; /* Отступ между автором и датой публикации */
+  margin-right: 15px;
 }
 .blog-index .post-detail .post-comment-block {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 30px; /* Отступ от текста поста */
+  margin-top: 30px;
 }
+
 .blog-index .post-detail .post-comment-block .post-publication a {
   font-family: "Mulish-Regular";
   font-size: 14px;
@@ -1523,6 +1525,11 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     line-height: 1;
     display: block;
     margin-bottom: 30px; }
+  .blog-detail .post-comment .comments-count {
+    font-family: "Mulish-Regular";
+    font-size: 14px;
+    margin-top: 9px;
+}
 
 .blog-detail.blog-detail-02 .post-block .blog-quote {
   background: #f17070;
@@ -1627,6 +1634,11 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     margin-bottom: 30px; }
   .blog-detail .post-author-detail .author-info {
     margin-left: 0; } }
+
+@media (min-width: 768px) {
+    .blog-detail .post-comment .comments-count{
+        text-align: right;} }
+
 
 @media (min-width: 576px) and (max-width: 767px) {
   .blog-detail .another-posts .arrow-control {
@@ -1761,31 +1773,36 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   line-height: 1;
   display: block;
   display: inline-block;
-  margin-bottom: 10px;}
+  margin-bottom: 10px;
+}
 
 .post-comment .post-credit {
   margin-bottom: 7px;
   display: flex;
-  align-items: center;
-  white-space: nowrap;
-  overflow-x: auto;
+  align-items: flex-start;
   justify-content: space-between;
   overflow: visible;
-  }
+}
 
 .post-comment .post-credit .author-date {
   display: flex;
-  }
+  flex-direction: column;
+}
 
-.post-comment .author-name,
-.post-comment .upload-day {
+.post-comment .author-name {
   font-family: "Mulish-Bold";
   font-size: 16px;
   color: #000000;
   display: block;
   text-transform: uppercase;
-  margin-right: 35px;
-  }
+  margin-bottom: 5px; /* adjust as needed */
+}
+
+.post-comment .upload-day {
+  font-family: "Mulish-Regular";
+  font-size: 12px; /* adjust as needed */
+  color: #000000;
+}
 
 .post-comment p {
   font-family: "Mulish-Regular";
@@ -1795,16 +1812,30 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   display: block;
   margin-bottom: 30px;
 }
+
+.delete-icon {
+  align-self: flex-end;
+}
+
 .delete-icon i.fa.fa-trash {
   color: #1d2c44;
   transition: color 0.3s ease;
   position: relative;
-  top: -6px;
+  top: -12px;
 }
 
 .delete-icon:hover i.fa.fa-trash {
   color: #f17070;
 }
+
+@media only screen and (max-width: 576px) {
+    .blog-detail .post-block .blog-detail-title {
+        font-size: 28px;
+        line-height: 34px;
+    }
+}
+
+
 
 /************************************
 	Blog authentication

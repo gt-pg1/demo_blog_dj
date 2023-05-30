@@ -677,6 +677,16 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     right: 0; }
 
 /************************************
+   	Custom Post (mobile version improvements)
+*************************************/
+@media only screen and (max-width: 600px) {
+    .posts .post-title {
+        font-size: 28px;
+        line-height: 34px;
+    }
+}
+
+/************************************
    	Typography
 *************************************/
 .title {
@@ -1129,14 +1139,34 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   margin-bottom: 20px; }
 
 .blog-index .post-detail .post-credit {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   white-space: nowrap;
-  overflow-x: auto; }
-  .blog-index .post-detail .post-credit .author {
-    display: flex;
-    align-items: center; }
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.blog-index .post-detail .post-credit .author {
+  display: flex;
+  align-items: center;
+  margin-right: 15px; /* Отступ между автором и датой публикации */
+}
+.blog-index .post-detail .post-comment-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px; /* Отступ от текста поста */
+}
+.blog-index .post-detail .post-comment-block .post-publication a {
+  font-family: "Mulish-Regular";
+  font-size: 14px;
+  color: #f17070;
+  line-height: 1;
+  display: inline-block;
+  transition: 0.3s ease;
+  text-transform: uppercase;
+}
+
 
 .blog-index .post-classic .post-img {
   border-radius: 5px;

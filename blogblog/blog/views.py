@@ -28,6 +28,10 @@ def index(request):
     return redirect('feed')
 
 
+def handler404(request, exception):
+    return render(request, 'blog/404.html', status=404)
+
+
 class AuthenticationRedirectMixin:
     """
     Mixin that redirects unauthenticated users to the login page.

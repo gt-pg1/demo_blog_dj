@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
+handler404 = 'blog.views.handler404'
+
 urlpatterns = [
     path('demo-blog-admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),

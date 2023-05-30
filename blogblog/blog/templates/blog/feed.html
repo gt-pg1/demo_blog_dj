@@ -11,12 +11,16 @@
         {% if user.is_authenticated %}
             {% if page_obj.has_next %}
                 <div id="load-more-container" class="col-12 text-center">
-                    <button class="normal-btn" id="load-more" data-page="2">Load more</button>
+                    <div class="button-wrapper">
+                        <button class="normal-btn" id="load-more" data-page="2">Load more</button>
+                    </div>
                 </div>
             {% endif %}
         {% else %}
             <div class="col-12 text-center">
-                <a href="{% url 'login' %}" class="normal-btn">Sign up for more</a>
+                <div class="button-wrapper">
+                    <a href="{% url 'login' %}" class="normal-btn">Sign up for more</a>
+                </div>
             </div>
         {% endif %}
     </div>

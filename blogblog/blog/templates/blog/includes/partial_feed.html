@@ -1,35 +1,31 @@
 {% for content in contents %}
-<div class="col-12 col-md-10">
-    <div class="post-block post-classic">
-        <div class="row">
-            <div class="col-12 col-md-10 mx-auto">
-                <div class="post-detail">
-                    <div class="post-credit">
-                        <div class="author">
-                            <h5 class="author-name">{{ content.author|truncatechars:25 }}</h5>
-                        </div>
-                        <h5 class="upload-day">{{ content.date_time_create }}</h5>
-                    </div>
-                    <a class="post-title" href="{% url 'content' content.slug %}?page={{ feed_page }}">{{ content.title }}</a>
-                    <p class="post-describe">{{ content.short_text }}</p>
-                    <div class="post-comment-block">
-                        <div class="post-comment">
-                            <a href="{% url 'content' content.slug %}?page={{ feed_page }}#comments">{{ content.comment_count }} comment{{ content.comment_count|pluralize }}</a>
-                        </div>
-                        <div class="post-publication">
-                            {% if content.author == request.user.author and content.is_published %}
-                            <a href="{% url 'unpublish' slug=content.slug %}?next={{ request.path }}?page={{feed_page}}">Unpublish</a>
-                            {% elif content.author == request.user.author and not content.is_published %}
-                            <a href="{% url 'publish' slug=content.slug %}?next={{ request.path }}?page={{feed_page}}">Publish</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+
+<div class="post-block post-classic">
+    <div class="post-detail">
+        <div class="post-credit">
+            <div class="author">
+                <h5 class="author-name">{{ content.author|truncatechars:25 }}</h5>
+            </div>
+            <h5 class="upload-day">{{ content.date_time_create }}</h5>
+        </div>
+        <a class="post-title" href="{% url 'content' content.slug %}?page={{ feed_page }}">{{ content.title }}</a>
+        <p class="post-describe">{{ content.short_text }}</p>
+        <div class="post-comment-block">
+            <div class="post-comment">
+                <a href="{% url 'content' content.slug %}?page={{ feed_page }}#comments">{{ content.comment_count }}
+                    comment{{ content.comment_count|pluralize }}</a>
+            </div>
+            <div class="post-publication">
+                {% if content.author == request.user.author and content.is_published %}
+                <a href="{% url 'unpublish' slug=content.slug %}?next={{ request.path }}?page={{feed_page}}">Unpublish</a>
+                {% elif content.author == request.user.author and not content.is_published %}
+                <a href="{% url 'publish' slug=content.slug %}?next={{ request.path }}?page={{feed_page}}">Publish</a>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
-{% empty %}
+    {% empty %}
 <div class="center-screen">
     <h1>No articles yet.</h1>
     <div class="button-wrapper">

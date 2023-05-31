@@ -474,9 +474,9 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   cursor: default; }
   .posts .post-describe {
     font-family: "Mulish-Regular";
-    font-size: 17px;
+    font-size: 18px;
     color: #000;
-    line-height: 26px;
+    line-height: 30px;
     display: block; }
   .posts .post-title {
     font-family: "Mulish-Bold";
@@ -682,7 +682,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 @media only screen and (max-width: 576px) {
     .posts .post-title {
         font-size: 28px;
-        line-height: 34px;
+        line-height: 36px;
     }
 }
 
@@ -1294,7 +1294,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
       line-height: 42px;
       display: block;
       text-align: left;
-      margin-bottom: 10px;}
+      margin-bottom: 18px;}
     .blog-detail .post-block .blog-credit {
       text-align: center;
       margin-bottom: 20px; }
@@ -1820,12 +1820,12 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   color: #000000;
   display: block;
   text-transform: uppercase;
-  margin-bottom: 5px; /* adjust as needed */
+  margin-bottom: 5px;
 }
 
 .post-comment .upload-day {
   font-family: "Mulish-Regular";
-  font-size: 12px; /* adjust as needed */
+  font-size: 12px;
   color: #000000;
 }
 
@@ -1875,6 +1875,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
     line-height: 1;
     display: block;
     display: inline-block;
+    margin-right: 30px;
 }
 
 .blog-detail .post-block .blog-credit .upload-day {
@@ -1889,7 +1890,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
 @media only screen and (max-width: 576px) {
     .blog-detail .post-block .blog-detail-title {
         font-size: 28px;
-        line-height: 34px;
+        line-height: 36px;
     }
 }
 

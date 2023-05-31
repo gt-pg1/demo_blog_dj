@@ -5,8 +5,10 @@
 {% block content %}
 <section class="posts blog-index">
     <div class="container">
-        <div class="row justify-content-center" id="contents">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 mx-auto" id="contents">
             {% include 'blog/includes/partial_feed.html' %}
+            </div>
         </div>
         {% if user.is_authenticated %}
             {% if page_obj.has_next %}

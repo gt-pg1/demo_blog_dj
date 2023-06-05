@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'demo_blog_dj',
         'USER': 'dev',
         'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }

@@ -56,18 +56,19 @@
                         <div class="row no-gutters">
                             {% if prev_content %}
                             <div class="col-12 col-md-6">
-                                <a href="{% url 'content' slug=prev_content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}"></a>
-                                <div class="another-post_block prev-post">
+                                <div class="another-post_block prev-post d-flex flex-column justify-content-center align-items-center">
                                     <div class="post-title">
                                         <p>Previous post</p>
                                         <a href="{% url 'content' slug=prev_content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}">{{prev_content.title}}</a>
                                     </div>
                                 </div>
                             </div>
+                            {% else %}
+                            <div class="col-12 col-md-6"></div>
                             {% endif %}
                             {% if next_content %}
                             <div class="col-12 col-md-6">
-                                <div class="another-post_block text-right next-post">
+                                <div class="another-post_block text-right next-post d-flex flex-column justify-content-center align-items-center">
                                     <div class="post-title">
                                         <p>Next post</p>
                                         <a href="{% url 'content' slug=next_content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}">{{next_content.title}}</a>
@@ -77,6 +78,7 @@
                             {% endif %}
                         </div>
                     </div>
+
                     <div class="post-comment">
                         <div class="form-row">
                             <div class="form-group col-md-6">

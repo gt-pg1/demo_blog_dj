@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.urls import resolve
 
 
 class RemoveSlashMiddleware:
@@ -6,7 +7,9 @@ class RemoveSlashMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.path != '/' and request.path.endswith('/'):
-            return HttpResponseRedirect(request.path[:-1])
+        url_name = resolve(request.path_info).namespace
+        if url_name != 'admin':
+            if request.path != '/' and request.path.endswith('/'):
+                return HttpResponseRedirect(request.path[:-1])
         response = self.get_response(request)
         return response

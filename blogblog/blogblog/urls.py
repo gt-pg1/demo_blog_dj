@@ -21,7 +21,7 @@ from django.urls import path, include
 handler404 = 'blog.views.handler404'
 
 urlpatterns = [
-    path('demo-blog-admin/', admin.site.urls),
+    path('demo-blog-admin/', admin.site.urls, name='admin'),
     path('__debug__/', include('debug_toolbar.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('', include('blog.urls')),

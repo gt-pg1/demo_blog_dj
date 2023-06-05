@@ -7,8 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.db.models import Count
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import redirect, get_object_or_404, render
+from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views import View
@@ -396,11 +397,36 @@ class FeedView(AuthenticationRedirectMixin, ListView):
 
         context = super().get_context_data(**kwargs)
         context['feed_page'] = context['page_obj'].number
-        context['title'] = 'Feed — Demo Blog'
+        context['title'] = 'Feed'
         for content in context['contents']:
             content.short_text = content.short_text(250)
+        context['has_next'] = context['page_obj'].has_next()
 
         return context
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Renders the response based on the request type.
+
+        If the request is made via XMLHttpRequest (AJAX), it returns a partial template.
+        Otherwise, it returns the regular feed template.
+
+        Args:
+            context (dict): The context data for rendering the template.
+            **response_kwargs: Arbitrary keyword arguments.
+
+        Returns:
+            HttpResponse or JsonResponse: The rendered response.
+        """
+
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            html = render_to_string('blog/includes/partial_feed.html', context)
+            return JsonResponse({
+                'html': html,
+                'has_next': context['has_next'],
+            })
+        else:
+            return super().render_to_response(context, **response_kwargs)
 
     def get_template_names(self):
         """
@@ -455,7 +481,7 @@ class MyFeedView(LoginRequiredMixin, FeedView):
         """
 
         context = super().get_context_data(**kwargs)
-        context['title'] = 'My Feed — Demo Blog'
+        context['title'] = 'My Feed'
         return context
 
 

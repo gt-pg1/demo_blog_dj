@@ -3,7 +3,6 @@ from urllib.parse import urlencode
 
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView

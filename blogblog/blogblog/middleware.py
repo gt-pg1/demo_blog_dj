@@ -8,7 +8,7 @@ class RemoveSlashMiddleware:
 
     def __call__(self, request):
         url_name = resolve(request.path_info).namespace
-        if url_name != 'admin':
+        if url_name != 'admin' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             if request.path != '/' and request.path.endswith('/'):
                 return HttpResponseRedirect(request.path[:-1])
         response = self.get_response(request)

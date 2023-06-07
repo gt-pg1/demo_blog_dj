@@ -1,5 +1,4 @@
 {% extends "blog/base.html" %}
-
 {% block title %}{{ content.title }} — Demo Blog{% endblock %}
 
 {% block content %}
@@ -12,7 +11,7 @@
                         <div class="author">
                             <p class="author-name">{{ content.author }}</p>
                         </div>
-                        <p class="upload-day">{{ content.date_time_create }}</p>
+                        <p class="upload-day">{{ content.date_time_create|date:"F j, Y, H:i" }}</p>
                     </div>
                     <h1 class="blog-detail-title">{{ content.title }}</h1>
                     <div class="control-panel">
@@ -103,7 +102,8 @@
                         <div class="post-credit">
                             <div class="author-date">
                                 <h5 class="author-name">{{ comment.author }}</h5>
-                                <h5 class="upload-day">{{ comment.date_time_create }}</h5>
+                                <h5 class="upload-day">{{ comment.date_time_create|date:"F j, Y, H:i" }}</h5>
+
                             </div>
                             {% if request.user.is_authenticated and comment.author == request.user.author %}
                             <a href="{% url 'delete_comment' pk=comment.pk slug=content.slug %}{% if feed_page %}?page={{ feed_page }}{% endif %}#comments-end"

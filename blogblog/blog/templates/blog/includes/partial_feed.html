@@ -6,7 +6,7 @@
             <div class="author">
                 <h5 class="author-name">{{ content.author|truncatechars:25 }}</h5>
             </div>
-            <h5 class="upload-day">{{ content.date_time_create }}</h5>
+            <h5 class="upload-day">{{ content.date_time_create|date:"F j, Y, H:i" }}</h5>
         </div>
         <a class="post-title" href="{% url 'content' content.slug %}?page={{ feed_page }}">{{ content.title }}</a>
         <p class="post-describe">{{ content.short_text }}</p>

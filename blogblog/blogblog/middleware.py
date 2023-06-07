@@ -1,6 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.urls import resolve
 
+import pytz
+from django.utils import timezone
+from django.utils.deprecation import MiddlewareMixin
+
 
 class RemoveSlashMiddleware:
     """
@@ -50,3 +54,13 @@ class RemoveSlashMiddleware:
                 return HttpResponseRedirect(request.path[:-1])
         response = self.get_response(request)
         return response
+
+
+class TimezoneMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        tzname = request.COOKIES.get('timezone')
+        if tzname:
+            timezone.activate(pytz.timezone(tzname))
+        else:
+            timezone.deactivate()
+

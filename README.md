@@ -1,0 +1,230 @@
+
+
+# Description
+
+This web application is built with Django and serves as a platform for creating and publishing user-generated content, such as articles, as well as commenting on those articles.
+
+# Key Features
+
+ 1. User registration/authentication 
+ 2. Creation, editing, and publishing of articles 
+ 3. Adding and deleting comments to articles 
+ 4. Changing the publication status of articles
+ 5. Updating user activity upon specific actions
+
+# Technical Details
+
+## Models:
+
+The project includes the following main models:
+
+1. **User**: Django user model, modified to make email the primary unique identifier.
+2. **Author**: A model associated with User, containing additional user information such as last activity date, phone number, and last message time.
+3. **Content**: A model representing user-generated content, such as articles.
+4. **Comment**: A model representing comments on articles.
+
+## Forms:
+The project includes the following forms for interacting with the models:
+
+1. **AdminUserCreationForm**: User creation form for administrators
+2. **UserSignUpForm**: User registration form
+3. **UserLogInForm**: User login form
+4. **UserEditForm**: User data editing form
+5. **UserPasswordChangeForm**: User password change form
+6. **CommentForm**: Form for adding a comment to an article
+7. **ContentForm**: Form for creating and editing an article
+
+## Views:
+The project uses the following views for handling and displaying requests:
+
+1. **index**, **handler404**: Functional views for basic navigation and error handling.
+2. **UserSignUpView**, **UserLogInView**, **UserEditView**: Views for user registration, login, and data editing.
+3. **FeedView**, **MyFeedView**: Views for displaying all articles and articles written by a specific user.
+4. **ContentView**: View for displaying a specific article and its associated comments.
+5. **CreateContentView**, **UpdateContentView**: Views for creating and updating content.
+
+## Templates:
+The project utilizes Django templates for rendering content. Most templates are located in the blog/templates/blog directory.
+
+# Installation and Execution
+1. Clone the repository: 
+```bash
+git clone https://github.com/gt-pg1/demo_blog_dj
+```
+2. Install python-decouple:
+```bash
+pip install python-decouple
+```
+3. Copy the .env.example file to .env: 
+- **Linux**
+```bash
+cp .env.example .env
+```
+- **Windows**
+```powershell
+copy .env.example .env
+```
+4. Update the .env file with your environment information (```DB_HOST=localhost``` if you are running the project locally not in Docker)
+5. Install PostgreSQL, if not already installed. In Ubuntu, you can use:
+- **Linux**
+```bash
+sudo apt-get install postgresql
+```
+- **Windows**  
+You can download it from [here](https://www.postgresql.org/download/windows/).
+6. After installation, create a new database and user for your application. 
+- **Linux**
+Login to PostgreSQL command line:  
+```bash  
+sudo -u postgres psql
+```
+- **Windows**
+Open the PostgreSQL command line (pgAdmin tool that comes with PostgreSQL)
+7. Create the database:
+```sql
+CREATE DATABASE your_database_name;
+```
+8. Create the user:
+```sql
+CREATE USER your_user WITH PASSWORD 'your_password';
+```
+9. Grant privileges to the user:
+```sql
+GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_user;
+```
+10. Exit PostgreSQL command line:
+```sql
+\q
+```
+
+11. Install dependencies: ```pip install -r requirements.txt```
+12. Apply migrations: ```python manage.py migrate```
+13. Start the development server: ```python manage.py runserver```
+
+You can now open the web application in your browser at http://localhost:8000/.
+
+Remember to replace **your_database_name**, **your_user**, and **your_password** with your actual database name, user, and password. Also, remember to update these values in your .env file.
+
+**Important: Do not commit your .env file to the repository. It contains sensitive data. Ensure it is added to your .gitignore file.**
+
+## Installation and Execution using Docker:
+If you already have Docker installed, you can use it to install and run the project. Add the Dockerfile and docker-compose.yml files.
+
+Dockerfile:
+```bash
+    FROM python:3.11
+    
+    WORKDIR /code
+    
+    ENV PYTHONDONTWRITEBYTECODE 1
+    ENV PYTHONUNBUFFERED 1
+    
+    RUN pip install --upgrade pip
+    COPY ./requirements.txt /code/
+    RUN pip install -r requirements.txt
+    
+    COPY . /code/
+```
+docker-compose.yml:
+```yaml
+version: '3.11'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+
+  web:
+    build: .
+    command: bash -c "python blogblog/manage.py migrate && python blogblog/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+
+```
+Then you can execute the following commands:
+
+1. Copy the .env.example file to .env: 
+- **Linux**
+```bash
+cp .env.example .env
+``` 
+- **Windows**
+```powershell
+copy .env.example .env
+``` 
+2. Update the .env file with your environment information (```DB_HOST=db``` if you are running the project in Docker)
+3. Build the Docker image: 
+- **Linux**
+```bash
+sudo docker-compose build
+```
+- **Windows**
+```powershell
+docker-compose build
+```
+4. Run the Docker container: 
+- **Linux**
+```bash
+sudo docker-compose up
+```
+- **Windows**
+```powershell
+docker-compose up
+```
+You can now open the web application in your browser at http://localhost:8000/.
+
+To interact with your Dockerized Django application, you can use ```docker exec``` command. For example, to create a superuser:
+
+```bash
+docker exec -it <container_name> python blogblog/manage.py createsuperuser
+```
+
+To find out the **container_name**, you can run `docker ps -a`.
+
+## .env file template
+Here is a template for the .env file:
+
+```
+SECRET_KEY=<your_secret_key>
+DEBUG=<True_or_False>
+DB_NAME=<your_database_name>
+DB_USER=<your_database_user>
+DB_PASSWORD=<your_database_password>
+DB_HOST=<db_or_localhost>
+DB_PORT=5432
+```
+Replace **<your_secret_key>**, **<True_or_False>**, **<your_database_name>**, **<your_database_user>**, **<your_database_password>**, and **<db_or_localhost>** with your actual data.
+
+# Development
+The project was developed using the following technologies and packages:
+
+- Python 3.8
+- Django 4.2
+- django-debug-toolbar 4.0.0
+- django-extensions 3.2.1
+- django-tinymce 3.6.1
+- psycopg2-binary 2.9.6
+- beautifulsoup4 4.12.2
+- transliterate 1.10.2
+- Unidecode 1.3.6
+- and others specified in the requirements.txt file
+
+# License
+This project is licensed under the terms of the MIT License.

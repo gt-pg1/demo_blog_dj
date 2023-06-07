@@ -97,9 +97,18 @@ GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_user;
 \q
 ```
 
-11. Install dependencies: ```pip install -r requirements.txt```
-12. Apply migrations: ```python manage.py migrate```
-13. Start the development server: ```python manage.py runserver```
+11. Install dependencies: 
+```bash
+pip install -r requirements.txt
+```
+12. Apply migrations: 
+```
+python manage.py migrate
+```
+13. Start the development server: 
+```
+python manage.py runserver
+```
 
 You can now open the web application in your browser at http://localhost:8000/.
 
@@ -109,6 +118,8 @@ Remember to replace **your_database_name**, **your_user**, and **your_password**
 
 ## Installation and Execution using Docker:
 If you already have Docker installed, you can use it to install and run the project. Add the Dockerfile and docker-compose.yml files.
+
+**Important: Django Debug Toolbar not showing up when run from Docker container**
 
 Dockerfile:
 ```bash

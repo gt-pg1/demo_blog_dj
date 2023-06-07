@@ -19,3 +19,5 @@ document.querySelector("#load-more").addEventListener("click", function() {
     }
 });
 });
+
+document.cookie = "timezone=" + Intl.DateTimeFormat().resolvedOptions().timeZone;

@@ -21,9 +21,9 @@ services:
       - db
     environment:
       - SECRET_KEY=${SECRET_KEY}
-      - DEBUG=${DEBUG}
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}

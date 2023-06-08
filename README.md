@@ -161,12 +161,12 @@ services:
       - db
     environment:
       - SECRET_KEY=${SECRET_KEY}
-      - DEBUG=${DEBUG}
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
 
 ```
 Then you can execute the following commands:
@@ -214,15 +214,18 @@ Here is a template for the .env file:
 
 ```
 SECRET_KEY=<your_secret_key>
-DEBUG=<True_or_False>
 DB_NAME=<your_database_name>
 DB_USER=<your_database_user>
 DB_PASSWORD=<your_database_password>
 DB_HOST=<db_or_localhost>
 DB_PORT=5432
+DJANGO_SETTINGS_MODULE=blogblog.settings.<dev_or_prod>
 ```
-Replace **<your_secret_key>**, **<True_or_False>**, **<your_database_name>**, **<your_database_user>**, **<your_database_password>**, and **<db_or_localhost>** with your actual data.
+Replace **<your_secret_key>**, **<your_database_name>**, **<your_database_user>**, **<your_database_password>**, **<db_or_localhost>** and **<dev_or_prod>** with your actual data.
 
+Note: The value of **<dev_or_prod>** should correspond to the Django settings module you want to use: **blogblog.settings.dev** for development and **blogblog.settings.prod** for production.
+
+The value of **DJANGO_SETTINGS_MODULE** affects the security settings of the project, including the **DEBUG** flag (**DEBUG=True** for development and **DEBUG=False** for production).
 # Development
 The project was developed using the following technologies and packages:
 

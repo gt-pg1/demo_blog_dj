@@ -193,7 +193,7 @@ docker-compose build
 To run the project in the production environment, a separate **docker-compose.prod.yml** file has been created. Accordingly, the command to run in this case will be: 
 
 ```bash
-docker-compose -f docker-compose.prod.yml up
+docker-compose -f docker-compose.prod.yml build
 ```
 4. Run the Docker container: 
 - **Linux**
@@ -205,6 +205,12 @@ sudo docker-compose up
 docker-compose up
 ```
 You can now open the web application in your browser at http://localhost:8000/.
+
+In production environment:
+
+```bash
+docker-compose -f docker-compose.prod.yml up
+```
 
 To interact with your Dockerized Django application, you can use ```docker exec``` command. For example, to create a superuser:
 

@@ -190,6 +190,11 @@ sudo docker-compose build
 ```powershell
 docker-compose build
 ```
+To run the project in the production environment, a separate **docker-compose.prod.yml** file has been created. Accordingly, the command to run in this case will be: 
+
+```bash
+docker-compose -f docker-compose.prod.yml up
+```
 4. Run the Docker container: 
 - **Linux**
 ```bash

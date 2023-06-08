@@ -210,6 +210,11 @@ docker exec -it <container_name> python blogblog/manage.py createsuperuser
 To find out the **container_name**, you can run `docker ps -a`.
 
 ## .env file template
+The environment variables set all the basic settings for running the project locally or on a web-server.
+For comfortable work, modules are used:
+- **python-decouple**
+- **python-dotenv**
+
 Here is a template for the .env file:
 
 ```
@@ -220,12 +225,26 @@ DB_PASSWORD=<your_database_password>
 DB_HOST=<db_or_localhost>
 DB_PORT=5432
 DJANGO_SETTINGS_MODULE=blogblog.settings.<dev_or_prod>
+DJANGO_ALLOWED_HOSTS=127.0.0.1
 ```
 Replace **<your_secret_key>**, **<your_database_name>**, **<your_database_user>**, **<your_database_password>**, **<db_or_localhost>** and **<dev_or_prod>** with your actual data.
+
+To work from a local computer, DJANGO_ALLOWED_HOSTS is enough to leave 127.0.0.1. To place the project on the server, it will need to be replaced with the server IP or domain name.
 
 Note: The value of **<dev_or_prod>** should correspond to the Django settings module you want to use: **blogblog.settings.dev** for development and **blogblog.settings.prod** for production.
 
 The value of **DJANGO_SETTINGS_MODULE** affects the security settings of the project, including the **DEBUG** flag (**DEBUG=True** for development and **DEBUG=False** for production).
+
+Important Security Considerations:
+- Be cautious when setting **DEBUG=True** in a production environment. Debug mode can expose sensitive information and is intended for development purposes only.
+- Keep your **SECRET_KEY** secure and do not share it publicly. It is used for cryptographic signing and should be kept confidential.
+- Ensure that your database credentials (**DB_NAME**, **DB_USER**, **DB_PASSWORD**) are strong and not easily guessable. Limit database access to authorized users only.
+- Review and configure the **ALLOWED_HOSTS** setting carefully. In production, specify the appropriate domain names or IP addresses that are allowed to access your application.
+- When deploying the application to a production environment, update **DJANGO_SETTINGS_MODULE** to **blogblog.settings.prod** and configure appropriate security measures such as HTTPS, secure server configuration, and access controls.
+
+Make sure to review and update the values in your **.env** file according to your specific project requirements and security guidelines.
+
+
 # Development
 The project was developed using the following technologies and packages:
 

@@ -1,2 +1,0 @@
-FROM nginx:alpine
-COPY staticfiles /usr/share/nginx/html

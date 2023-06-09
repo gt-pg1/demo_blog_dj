@@ -9,12 +9,6 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-  static:
-    build:
-      context: .
-      dockerfile: Dockerfile.static
-    volumes:
-      - static_volume:/usr/share/nginx/html
 
   web:
     build: .

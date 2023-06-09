@@ -37,8 +37,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - static_volume:/code/blogblog/static
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - web
 

@@ -10,3 +10,7 @@ COPY ./requirements.txt /code/
 RUN pip install -r requirements.txt
 
 COPY . /code/
+
+RUN python blogblog/manage.py collectstatic --no-input --clear
+
+CMD ["gunicorn", "blogblog.wsgi:application", "--bind", "0.0.0.0:8000"]

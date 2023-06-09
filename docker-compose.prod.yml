@@ -13,7 +13,7 @@ services:
   web:
     build: .
     command: >
-      sh -c "cd /code/blogblog && ls && python manage.py migrate &&
+      sh -c "cd /code/blogblog && python manage.py migrate &&
       gunicorn blogblog.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/code

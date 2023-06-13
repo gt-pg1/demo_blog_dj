@@ -3,12 +3,14 @@ version: '3'
 services:
   db:
     image: postgres:13
+    restart: always
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
+
 
   web:
     build: .
@@ -18,6 +20,7 @@ services:
     volumes:
       - .:/code
       - static_volume:/code/blogblog/static
+    restart: always
     depends_on:
       - db
     environment:
@@ -30,6 +33,7 @@ services:
       - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
 
+
   nginx:
     image: nginx:latest
     ports:
@@ -40,6 +44,7 @@ services:
       - static_volume:/code/blogblog/static
     depends_on:
       - web
+
 
 volumes:
   static_volume:

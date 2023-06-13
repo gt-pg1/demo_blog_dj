@@ -14,3 +14,5 @@ COPY . /code/
 RUN python blogblog/manage.py collectstatic --no-input --clear
 
 CMD ["gunicorn", "blogblog.wsgi:application", "--bind", "0.0.0.0:8000"]
+
+HEALTHCHECK --interval=5m --timeout=3s CMD curl --fail http://localhost:8000/ || exit 1

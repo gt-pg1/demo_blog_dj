@@ -12,7 +12,7 @@
         <p class="post-describe">{{ content.short_text }}</p>
         <div class="post-comment-block">
             <div class="post-comment">
-                <a href="{% url 'content' content.slug %}?page={{ feed_page }}#comments">{{ content.comment_count }}
+                <a href="{% url 'content' content.slug %}?page={{ feed_page }}#comments-end">{{ content.comment_count }}
                     comment{{ content.comment_count|pluralize }}</a>
             </div>
             <div class="post-publication">

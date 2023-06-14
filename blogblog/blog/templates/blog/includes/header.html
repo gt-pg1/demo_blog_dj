@@ -1,75 +1,76 @@
 {% load static %}
 
 {% url 'feed' as feed_url %}
+{% url 'about' as about_url %}
 {% url 'user_edit' as user_edit_url %}
 {% url 'create_content' as create_content_url %}
 {% url 'my_content' username=request.user.username as my_content_url %}
-{% url 'logout' as logout_url %}
-{% url 'login' as login_url %}
-
+{% url 'logout' as logout_url %} {% url 'login' as login_url %}
 {% with is_authenticated=user.is_authenticated %}
+
 <header>
-    <div class="header-wrapper">
-        <div class="container">
-            <div class="header-menu">
-                <div class="row no-gutters align-items-center justify-content-center">
-                    <div class="col-4 col-md-2">
-                        <a class="logo" href="{{ feed_url }}"><img src="{% static 'blog/img/logo_transparent.png' %}"
-                                                                   alt="logo"></a>
-                    </div>
-                    <div class="col-8 col-md-8">
-                        <div class="mobile-menu">
-                            <a href="#" id="showMenu"><i class="fas fa-bars"></i></a>
-                        </div>
-                        <nav class="navigation">
-                            <div class="nav-left">
-                                <ul>
-                                    <li class="nav-item nav-feed">
-                                        <a class="pisen-nav-link {% if feed_url in request.path %}active{% endif %}"
-                                           href="{{ feed_url }}">Feed</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="nav-right">
-                                <ul>
-                                    {% if is_authenticated %}
-                                    <li class="nav-item nav-user">
-                                        <a class="pisen-nav-link {% if user_edit_url in request.path or create_content_url in request.path or request.user.username in request.path %}active{% endif %}"
-                                           href="{{ user_edit_url }}">{{ user.author|truncatechars:30 }}</a>
-                                        <i class="submenu-opener fas fa-plus"></i>
-                                        <ul class="sub-menu">
-                                            <li class="sub-menu_item"><a class="sub-menu-link"
-                                                                         href="{{ create_content_url }}">Create</a></li>
-                                            <li class="sub-menu_item"><a class="sub-menu-link"
-                                                                         href="{{ my_content_url }}">My Content</a></li>
-                                            <li class="sub-menu_item">
-                                                <form action="{{ logout_url }}" method="post">
-                                                    {% csrf_token %}
-                                                    <button class="sub-menu-link" type="submit">Log Out</button>
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    {% else %}
-                                    <li class="nav-item nav-user">
-                                        <a class="pisen-nav-link" href="{{ login_url }}">Sign In</a>
-                                    </li>
-                                    {% endif %}
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="col-0 col-xl-2">
-                        <div class="menu-function">
-                            <div class="social-contact">
-                                <a href="https://github.com/gt-pg1"><i class="fab fa-github"></i></a>
-                                <a href="https://t.me/gt_pg1"><i class="fab fa-telegram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="header-wrapper">
+    <div class="container">
+      <div class="header-menu">
+        <div class="row no-gutters align-items-center justify-content-center">
+          <div class="col-4 col-md-2">
+            <a class="logo" href="{{ feed_url }}">
+              <img src="{% static 'blog/img/logo_transparent.png' %}" alt="logo">
+            </a>
+          </div>
+          <div class="col-8 col-md-8">
+            <div class="mobile-menu">
+              <a href="#" id="showMenu">
+                <i class="fas fa-bars"></i>
+              </a>
             </div>
+            <nav class="navigation">
+              <div class="nav-left">
+                <ul>
+                  <li class="nav-item nav-feed">
+                    <a class="pisen-nav-link {% if feed_url in request.path %}active{% endif %}" href="{{ feed_url }}">Feed</a>
+                  </li>
+                  <li class="nav-item nav-feed">
+                    <a class="pisen-nav-link {% if about_url in request.path %}active{% endif %}" href="{{ about_url }}">About</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="nav-right">
+                <ul> {% if is_authenticated %} <li class="nav-item nav-user">
+                    <a class="pisen-nav-link {% if user_edit_url in request.path or create_content_url in request.path or request.user.username in request.path %}active{% endif %}" href="{{ user_edit_url }}">{{ user.author|truncatechars:30 }}</a>
+                    <i class="submenu-opener fas fa-plus"></i>
+                    <ul class="sub-menu">
+                      <li class="sub-menu_item">
+                        <a class="sub-menu-link" href="{{ create_content_url }}">Create</a>
+                      </li>
+                      <li class="sub-menu_item">
+                        <a class="sub-menu-link" href="{{ my_content_url }}">My Content</a>
+                      </li>
+                      <li class="sub-menu_item">
+                        <form action="{{ logout_url }}" method="post"> {% csrf_token %} <button class="sub-menu-link" type="submit">Log Out</button>
+                        </form>
+                      </li>
+                    </ul>
+                  </li> {% else %} <li class="nav-item nav-user">
+                    <a class="pisen-nav-link" href="{{ login_url }}">Sign In</a>
+                  </li> {% endif %} </ul>
+              </div>
+            </nav>
+          </div>
+          <div class="col-0 col-xl-2">
+            <div class="menu-function">
+              <div class="social-contact">
+                <a href="https://github.com/gt-pg1">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://t.me/gt_pg1">
+                  <i class="fab fa-telegram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</header>
-{% endwith %}
+  </div>
+</header> {% endwith %}

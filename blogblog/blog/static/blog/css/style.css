@@ -1541,8 +1541,29 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   .blog-detail .post-comment .comments-count {
     font-family: "Mulish-Regular";
     font-size: 14px;
-    margin-top: 9px;
-}
+    margin-top: 9px;}
+  .blog-detail summary {
+    font-family: "Mulish-Bold";
+    font-size: 36px;
+    margin-bottom: 25px;}
+  .blog-detail .contacts h2 {
+    font-family: "Mulish-Bold";
+    font-size: 36px;
+    margin-top: 30px;
+    margin-bottom: 15px;}
+.blog-detail .contacts .contacts-contact {
+    font-family: "Mulish-Regular";
+    font-size: 20px;
+    color: #000000;
+    transition: color 0.3s ease-in-out;}
+.blog-detail .contacts .contacts-contact a {
+    color: #000000;
+    text-decoration: none;}
+.blog-detail .contacts .contacts-contact :hover {
+  color: #f17070;
+  }
+
+
 
 .blog-detail.blog-detail-02 .post-block .blog-quote {
   background: #f17070;
@@ -1718,7 +1739,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   color: #000000;
   line-height: 30px;
   display: block;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
 }
 
 .user-content h2,
@@ -1760,6 +1781,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   color: #000000;
   line-height: 30px;
   margin-bottom: 20px;
+  margin-top: -15px;
   list-style: decimal;
   padding-left: 20px;
 }
@@ -1770,6 +1792,7 @@ header .header-wrapper .header-menu ul .nav-item .sub-menu .sub-menu_item form b
   color: #000000;
   line-height: 30px;
   margin-bottom: 20px;
+  margin-top: -15px;
   list-style: disc;
   padding-left: 20px;
 }

@@ -27,6 +27,15 @@ def index(request):
     """
     return redirect('feed')
 
+def about(request):
+    """
+    Renders the 'about' page.
+
+    This view function renders the 'about' page of the application. The 'about' page provides information
+    about the application or the website.
+    """
+    return render(request, template_name='blog/about.html')
+
 
 class AuthenticationRedirectMixin:
     """

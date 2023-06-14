@@ -1,0 +1,114 @@
+{% extends "blog/base.html" %}
+{% block title %}About — Demo Blog{% endblock %}
+
+{% block content %}
+<section class="blog-detail">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8 mx-auto">
+        <div class="post-block">
+          <details>
+            <summary>In English</summary>
+            <h1 class="blog-detail-title">Demo Project</h1>
+            <div class="user-content">
+              <p>It is important to understand that this is a "demo project". <strong>Simply a demo project</strong> showcasing my skills in Django development. Additionally, it served as a playground for me to dive deeper into the framework and learn how to do things I hadn't done before or only partially understood. </p>
+              <h2>Technologies</h2>
+              <p>This project demonstrates proficiency in:</p>
+              <ul>
+                <li>Python</li>
+                <li>Django</li>
+                <li>PostgreSQL (using Django ORM, although I'm also familiar with raw SQL)</li>
+                <li>Nginx</li>
+                <li>Docker</li>
+                <li>Gunicorn</li>
+                <li>Basic HTML/CSS/JavaScript</li>
+              </ul>
+              <p>In my experience, I have encountered many programmers who didn't fully grasp the capabilities of their framework and ended up implementing functionalities already provided by the framework. First and foremost, I aim to avoid such an approach in my work.</p>
+              <h2>Concept</h2>
+              <p>This blog appears as a "simple blog," and that's exactly what it should be. I focused on a minimal set of features (though I implemented them in interesting ways for my personal development), ensuring they work flawlessly and are polished. My goal was to create a simple and understandable project for my portfolio, showcasing quality work rather than a commercial project that I would continue to develop.</p>
+              <p>However, this blog implementation significantly differs from the blogs created in development courses. The main difference lies in the fact that you can independently add a publication, and it will be displayed.</p>
+              <h2>Implementation</h2>
+              <p>The majority of the functionality was implemented as comprehensively as possible for a demo project:</p>
+              <ul>
+                <li>The main feature is the ability for users to add content. I used the most "user-friendly" editor I could find while protecting the project from spam by limiting post submissions to once every 10 minutes. Editing existing posts has no restrictions.</li>
+                <li>The same editor was finely tuned and customized to match my vision. I even had to fix some plugin developer's mistakes.</li>
+                <li>Implemented security measures, including spam protection (limiting publications within a specified time) and preventing the insertion of unwanted code using a preprocessor for the text editor.</li>
+                <li>Replaced Django's default username authentication with email authentication (while preserving username authentication in the admin panel because how can we live without admin:admin).</li>
+                <li>Added a unique email requirement to the corresponding field in the database.</li>
+                <li>Configured clear error messages for authentication failures, explaining possible causes to the user in simple and understandable language.</li>
+                <li>Implemented proper editing of user data using two forms on a single page (which was a bit challenging).</li>
+                <li>Configured an accurate user activity tracker (signals.py).</li>
+                <li>Naturally, the admin panel was also configured.</li>
+                <li>Time display (for comments and posts) is adjusted according to your time zone (middleware.py).</li>
+                <li>Implemented middleware to ensure correct redirection from pages ending with a slash to slash-less pages ("address/" → "address") to avoid content duplication.</li>
+                <li>Implemented functionality for users to manage their own publications.</li>
+                <li>The layout is responsive, adapting to desktops, tablets, and smartphones. Additionally, I independently designed a stylish layout for user article tags to seamlessly integrate them into the site's design.</li>
+                <li>Some elements required my own "redesigning" and rearranging to create a more user-friendly UX/UI.</li>
+                <li>The code is thoroughly documented, describing the functionality of classes, functions, and methods.</li>
+                <li>Everything was packaged into a Docker container with configurations for gunicorn and Nginx.</li>
+              </ul>
+              <blockquote>
+                <p>I cannot say how well-suited this implementation is for your specific company/startup, but based on my previous experience managing a development department, my junior developers would not have been able to handle a project of this caliber. This would be the level of a competent middle developer in our company.</p>
+              </blockquote>
+            </div>
+          </details>
+          <details>
+            <summary>На русском</summary>
+            <h1 class="blog-detail-title">Демонстрационный проект</h1>
+            <div class="user-content">
+              <p>Важно понимать, что это "демонстрационный проект". <strong>Просто демонстрационный проект</strong>, который показывает мои навыки в области разработки на Django. Кроме того, это был полигон для меня, чтобы углубиться в фреймворк и научиться делать вещи, которые я ранее не делал или делал не до конца понимая, как они работают. </p>
+              <h2>Технологии</h2>
+              <p>Данный проект подтверждает умение работать с:</p>
+              <ul>
+                <li>Python</li>
+                <li>Django</li>
+                <li>PostgreSQL (используя Django ORM, хотя я также знаком с чистым SQL)</li>
+                <li>Nginx</li>
+                <li>Docker</li>
+                <li>Gunicorn</li>
+                <li>И базовые знания HTML/CSS/JavaScript</li>
+              </ul>
+              <p>В своей практике я встречал множество программистов, которые не до конца понимали все возможности своего фреймворка и самостоятельно реализовывали функции, которые уже предусмотрены в фреймворке. В первую очередь, я хочу избегать подобного подхода в своей работе.</p>
+              <h2>Концепция</h2>
+              <p>Этот блог выглядит как "просто блог", и таким он и должен быть. Здесь я сконцентрировался на минимальном количестве функций (хотя и реализовал их интересным образом, для моего личного развития), но при этом все они должны работать безотказно и быть отполированными. Моя задача заключалась в создании простого и понятного проекта для портфолио, который демонстрирует качественную работу, а не коммерческий проект, который я потом развивал бы.</p>
+              <p>Однако, данная реализация блога сильно отличается от тех блогов, что делают на курсах по разработке. Основное отличие заключается в том, что вы можете самостоятельно добавить публикацию и она будет отображаться.</p>
+              <h2>Реализация</h2>
+              <p>Большая часть функционала сделана максимально комплексно, насколько это было возможно для демонстрационного проекта:</p>
+              <ul>
+                <li>Главная функция - возможность пользователей добавлять контент. Я использовал самый "симпатичный" редактор, который смог найти, и при этом защитил проект от спама путем ограничения добавления постов раз в 10 минут. Редактирование уже существующих постов не имеет ограничений;</li>
+                <li>Тот же редактор был тонко настроен и доработан под мое виденье редактора. Пришлось даже ошибки разработчиков плагина исправлять;</li>
+                <li>Реализованы меры безопасности, включая защиту от спама (ограничение на публикацию в течение определенного времени) и предотвращение вставки нежелательного кода с использованием препроцессора для текстового редактора;</li>
+                <li>Стандартная аутентификация Django по username изменена на аутентификацию по email (причем в админке сохранена аутентификация по username, как же мы будем жить без admin:admin);</li>
+                <li>Добавлено условие уникальности email в соответствующем поле в базы данных;</li>
+                <li>Настроены понятные сообщения об ошибках аутентификации и их возможные причины, объясненные пользователю простым и понятным языком;</li>
+                <li>Реализовано корректное редактирование пользовательских данных с использованием двух форм на одной странице (это было немного трудно);</li>
+                <li>Настроен корректный трекер активностей пользователя (signals.py);</li>
+                <li>Админку, разумеется, тоже настроил;</li>
+                <li>Вывод времени (комментариев и постов) настроен в соответствии с вашим часовым поясом (middleware.py);</li>
+                <li>С помощью промежуточного программного обеспечения (middleware), была настроена корректная работа перенаправлений со страницами, оканчивающимися на слэш, на страницы без слэша ("address/" → "address"), чтобы избежать дублирования контента.</li>
+                <li>Реализован функционал управления своими публикациями пользователя;</li>
+                <li>Верстка адаптирована под десктопы, планшеты и смартфоны. Кроме того, я самостоятельно разработал стильную верстку для тегов пользовательских статей, чтобы они органично вписывались в дизайн сайта.;</li>
+                <li>Часть элементов пришлось самому “редизайнить” и переставлять, чтобы UX/UI сделать дружелюбнее;</li>
+                <li>Код максимально задокументирован. Вся функциональность классов, функций и методов описана;</li>
+                <li>Все это было упаковано в Docker-контейнер, сконфигурированы gunicorn и Nginx.</li>
+              </ul>
+              <blockquote>
+                <p>Не знаю насколько это "компетентная" реализация конкретно для Вашей компании/стартапа, но в моем предыдущем опыте управления отделом разработки, мои junior-разработчики с таким бы не справились. Это был уровень хорошего middle-разработчика в нашей компании.</p>
+              </blockquote>
+            </div>
+          </details>
+          <div class="contacts">
+            <h2>Contacts:</h2>
+            <div class="contacts-contact">
+              <a href="https://t.me/gt_pg1"><i class="fab fa-telegram"></i> Telegram</a>
+            </div>
+            <div class="contacts-contact">
+              <a href="https://github.com/gt-pg1"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

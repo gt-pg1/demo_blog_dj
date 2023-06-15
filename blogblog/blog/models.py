@@ -132,7 +132,7 @@ class Content(models.Model, ShortTextMixin):
         - id (int): The ID of the content.
         - title (CharField): The title of the content.
         - slug (SlugField): The slug of the content.
-        - text (HTMLField): The text of the content (maximum 2000 characters). Instance of the TinyMCE editor.
+        - text (HTMLField): The text of the content (maximum 2500 characters). Instance of the TinyMCE editor.
         - date_time_create (DateTimeField): The date and time of content creation.
         - date_time_edit (DateTimeField): The date and time of content last edit.
         - author (ForeignKey): The author of the content.
@@ -149,7 +149,7 @@ class Content(models.Model, ShortTextMixin):
         - str: String representation of the content.
 
     Note:
-        The 2000 character limit for the text field is not reflected in the model because the field is written HTML,
+        The 2500 character limit for the text field is not reflected in the model because the field is written HTML,
         and the restriction for the user is reflected in characters, not taking into account HTML -
         therefore, the interface and model restrictions will conflict with each other.
     """

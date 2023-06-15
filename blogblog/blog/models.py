@@ -170,7 +170,7 @@ class Content(models.Model, ShortTextMixin):
     )
     text = HTMLField(
         null=False,
-        verbose_name='Text (maximum 2000 characters)'
+        verbose_name='Text (maximum 2500 characters)'
     )
     date_time_create = models.DateTimeField(
         auto_now_add=True
